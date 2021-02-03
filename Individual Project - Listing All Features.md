@@ -7,26 +7,26 @@ This project is to create a simple invoice application that will help my father'
 ### The plan
 Date: starting at **21/01/2020**
 
-1. To start creating the project, all keys/features of the application will be listed down and each will have a description of why a key is needed for the application in regards for business and programmers side.
+1. To start creating the project, all ticket/features of the application will be listed down and each will have a description of why a ticket is needed for the application in regards for business and programmers side.
 
 2. After writing all the keys, condition of success will be implement to find out which of the keys will be seuccesful with reasons. Lastly, is writing down some technical notes for keys that have technical requirements. 
 
 Date: starting at **29/01/2020**
 
-3. Sizing; to identify each key with unique number based on its complexity. 
+3. Sizing; to identify each ticket with unique number based on its complexity. 
 
-4. Product backlogs will be placed on a task board which Github or trello will be used.
+4. Product backlogs will be placed on a task board which Github.
 
 5. Pending..
 
 
 
-## List of Keys
+## List of Tickets
 
 
 ### 1st Sprint
 * ### Business side
-| ID  | Keys | Purpose |
+| ID  | Tickets | Purpose |
 |-----|------|---------|
 |  1  | Display main menu |To display the title and to select create invoice  |
 |  2  | Display invoice form  | To view and write forms  | |
@@ -38,12 +38,12 @@ Date: starting at **29/01/2020**
 |  8  | Export invoice as PDF | To export all details as a PDF document |
 
 * ### Programmers side
-| ID  | Keys | Purpose |
+| ID  | Tickets | Purpose |
 |-----|------|---------|
 |  9  | Database for invoice details |To save each invoice info in the database |
 
 ### 2nd Sprint
-| ID  | Keys | Purpose |
+| ID  | Tickets | Purpose |
 |-----|------|---------|
 |  10 |  Update invoice details option | To have another menu option for the user to update the invoice details (Recipient, Services and Payments)|
 |  11 |   Update invoice details   |  To add, remove or edit the chosen invoice details|
@@ -53,13 +53,13 @@ Date: starting at **29/01/2020**
 |  15 |  Saved invoice PDF| To save the invoice PDF on a specific location |
 
 * ### Programmers side
-| ID  | Keys | Purpose |
+| ID  | Tickets | Purpose |
 |-----|------|---------|
 | 16  | Database for Client |To save new added client details in the invoice |
 | 17  | Database for Services | To save new added service details in the invoice |
 
 ### 3rd Sprint
-| ID  | Keys | Purpose |
+| ID  | Tickets | Purpose |
 |-----|------|---------|
 | 18  | Auto add new invoice details | To update details in the database if it does not exist in the database |
 | 19  | Open PDF file after saving  | To open the current invoice quickly  |
@@ -71,7 +71,7 @@ Date: starting at **29/01/2020**
 
 ## Condition of success
 * ### Business side
-| Key ID| Condition of Satisfaction  | Done(Y)/Not(N) |
+| Tickets ID| Condition of Satisfaction  | Done(Y)/Not(N) |
 |-------|------|----------- |
 |  1    |   When the user starts the application, the main menu view must be displayed with button to create an invoce. |   Y   |
 |  2    | The user must be able to view the form and be able to write the fields. Forms for recipient, services and payment details must be shown.     |  Y |
@@ -96,7 +96,7 @@ Date: starting at **29/01/2020**
 
 
 * ### Programmers side - Technical notes
-| Key ID | Requirements  |
+| Tickets ID | Requirements  |
 |-----   |------|
 |  9, 16, 17  |My sql, csv file, or simple text file|
 
