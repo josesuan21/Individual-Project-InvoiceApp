@@ -33,6 +33,16 @@ namespace Invoice_Application_Project
 
 		private void Button2_Click(object sender, EventArgs e)
 		{
+			//Show Invoice notes section
+			groupBox_InvoiceNotes.Visible = true;
+
+			//Position the form to extend the top
+			this.StartPosition = FormStartPosition.Manual;
+			this.Top = (Screen.PrimaryScreen.Bounds.Height - this.Height) / 2;
+		}
+
+		private void Button_InvoiceNotes_Click(object sender, EventArgs e)
+		{
 			//Show payment details section
 			groupBox_PaymentDetails.Visible = true;
 
@@ -61,5 +71,7 @@ namespace Invoice_Application_Project
 				textBox_Discount.Visible = false;
 			}
 		}
+
+	
 	}
 }

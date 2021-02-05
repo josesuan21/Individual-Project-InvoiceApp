@@ -62,11 +62,15 @@
 			this.button_PaymentDetails = new System.Windows.Forms.Button();
 			this.groupBox_Confirmation = new System.Windows.Forms.GroupBox();
 			this.button_SavePDF = new System.Windows.Forms.Button();
+			this.groupBox_InvoiceNotes = new System.Windows.Forms.GroupBox();
+			this.textBox_InvoiceNotes = new System.Windows.Forms.TextBox();
+			this.button_InvoiceNotes = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
 			this.groupBox_CustomerDetails.SuspendLayout();
 			this.groupBox_ServicesDetails.SuspendLayout();
 			this.groupBox_PaymentDetails.SuspendLayout();
 			this.groupBox_Confirmation.SuspendLayout();
+			this.groupBox_InvoiceNotes.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dateTimePicker_date
@@ -321,9 +325,9 @@
 			this.groupBox_PaymentDetails.Controls.Add(this.textBox_PaymentTransfer);
 			this.groupBox_PaymentDetails.Controls.Add(this.button_PaymentDetails);
 			this.groupBox_PaymentDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox_PaymentDetails.Location = new System.Drawing.Point(12, 618);
+			this.groupBox_PaymentDetails.Location = new System.Drawing.Point(12, 746);
 			this.groupBox_PaymentDetails.Name = "groupBox_PaymentDetails";
-			this.groupBox_PaymentDetails.Size = new System.Drawing.Size(426, 194);
+			this.groupBox_PaymentDetails.Size = new System.Drawing.Size(426, 188);
 			this.groupBox_PaymentDetails.TabIndex = 8;
 			this.groupBox_PaymentDetails.TabStop = false;
 			this.groupBox_PaymentDetails.Text = "Payment Details";
@@ -365,7 +369,7 @@
 			// 
 			// button_PaymentDetails
 			// 
-			this.button_PaymentDetails.Location = new System.Drawing.Point(172, 163);
+			this.button_PaymentDetails.Location = new System.Drawing.Point(172, 159);
 			this.button_PaymentDetails.Name = "button_PaymentDetails";
 			this.button_PaymentDetails.Size = new System.Drawing.Size(75, 23);
 			this.button_PaymentDetails.TabIndex = 0;
@@ -377,9 +381,9 @@
 			// 
 			this.groupBox_Confirmation.Controls.Add(this.button_SavePDF);
 			this.groupBox_Confirmation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox_Confirmation.Location = new System.Drawing.Point(12, 833);
+			this.groupBox_Confirmation.Location = new System.Drawing.Point(12, 943);
 			this.groupBox_Confirmation.Name = "groupBox_Confirmation";
-			this.groupBox_Confirmation.Size = new System.Drawing.Size(426, 132);
+			this.groupBox_Confirmation.Size = new System.Drawing.Size(426, 85);
 			this.groupBox_Confirmation.TabIndex = 9;
 			this.groupBox_Confirmation.TabStop = false;
 			this.groupBox_Confirmation.Text = "Confirmation";
@@ -387,12 +391,44 @@
 			// 
 			// button_SavePDF
 			// 
-			this.button_SavePDF.Location = new System.Drawing.Point(144, 43);
+			this.button_SavePDF.Location = new System.Drawing.Point(145, 19);
 			this.button_SavePDF.Name = "button_SavePDF";
 			this.button_SavePDF.Size = new System.Drawing.Size(128, 50);
 			this.button_SavePDF.TabIndex = 0;
 			this.button_SavePDF.Text = "Save PDF";
 			this.button_SavePDF.UseVisualStyleBackColor = true;
+			// 
+			// groupBox_InvoiceNotes
+			// 
+			this.groupBox_InvoiceNotes.Controls.Add(this.button_InvoiceNotes);
+			this.groupBox_InvoiceNotes.Controls.Add(this.textBox_InvoiceNotes);
+			this.groupBox_InvoiceNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox_InvoiceNotes.Location = new System.Drawing.Point(12, 601);
+			this.groupBox_InvoiceNotes.Name = "groupBox_InvoiceNotes";
+			this.groupBox_InvoiceNotes.Size = new System.Drawing.Size(426, 139);
+			this.groupBox_InvoiceNotes.TabIndex = 10;
+			this.groupBox_InvoiceNotes.TabStop = false;
+			this.groupBox_InvoiceNotes.Text = "Invoice notes";
+			this.groupBox_InvoiceNotes.Visible = false;
+			// 
+			// textBox_InvoiceNotes
+			// 
+			this.textBox_InvoiceNotes.Location = new System.Drawing.Point(13, 20);
+			this.textBox_InvoiceNotes.Multiline = true;
+			this.textBox_InvoiceNotes.Name = "textBox_InvoiceNotes";
+			this.textBox_InvoiceNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox_InvoiceNotes.Size = new System.Drawing.Size(399, 85);
+			this.textBox_InvoiceNotes.TabIndex = 0;
+			// 
+			// button_InvoiceNotes
+			// 
+			this.button_InvoiceNotes.Location = new System.Drawing.Point(172, 110);
+			this.button_InvoiceNotes.Name = "button_InvoiceNotes";
+			this.button_InvoiceNotes.Size = new System.Drawing.Size(75, 23);
+			this.button_InvoiceNotes.TabIndex = 14;
+			this.button_InvoiceNotes.Text = "Next";
+			this.button_InvoiceNotes.UseVisualStyleBackColor = true;
+			this.button_InvoiceNotes.Click += new System.EventHandler(this.Button_InvoiceNotes_Click);
 			// 
 			// Invoice_Form
 			// 
@@ -401,7 +437,8 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-			this.ClientSize = new System.Drawing.Size(459, 971);
+			this.ClientSize = new System.Drawing.Size(459, 1024);
+			this.Controls.Add(this.groupBox_InvoiceNotes);
 			this.Controls.Add(this.groupBox_Confirmation);
 			this.Controls.Add(this.groupBox_PaymentDetails);
 			this.Controls.Add(this.groupBox_ServicesDetails);
@@ -424,6 +461,8 @@
 			this.groupBox_PaymentDetails.ResumeLayout(false);
 			this.groupBox_PaymentDetails.PerformLayout();
 			this.groupBox_Confirmation.ResumeLayout(false);
+			this.groupBox_InvoiceNotes.ResumeLayout(false);
+			this.groupBox_InvoiceNotes.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -464,5 +503,8 @@
 		private System.Windows.Forms.Label label_DirectTransfer;
 		private System.Windows.Forms.TextBox textBox_ChequePayment;
 		private System.Windows.Forms.TextBox textBox_PaymentTransfer;
+		private System.Windows.Forms.GroupBox groupBox_InvoiceNotes;
+		private System.Windows.Forms.Button button_InvoiceNotes;
+		private System.Windows.Forms.TextBox textBox_InvoiceNotes;
 	}
 }
