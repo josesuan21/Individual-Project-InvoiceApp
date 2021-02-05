@@ -1,0 +1,13 @@
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Invoice_Application_Project.exe.config
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Invoice_Application_Project.exe
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Invoice_Application_Project.pdb
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.csprojAssemblyReference.cache
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.Properties.Resources.resources
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.csproj.GenerateResource.cache
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.csproj.CoreCompileInputs.cache
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.exe
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.pdb
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.Invoice_Form.resources
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.Form_Menu.resources
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\InvoiceDatabase.mdf
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\InvoiceDatabase_log.ldf
