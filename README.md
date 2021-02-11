@@ -11,3 +11,7 @@
   * Version 4.8.04084
   * 2019
   
+# How to open the project
+ * Open the project folder "Inovice_Application_Project"
+ * Run the "Invoice_Application_Project.sln" file
+  
