@@ -418,6 +418,7 @@
 			this.button_SavePDF.TabIndex = 0;
 			this.button_SavePDF.Text = "Save PDF";
 			this.button_SavePDF.UseVisualStyleBackColor = true;
+			this.button_SavePDF.Click += new System.EventHandler(this.Button_SavePDF_Click);
 			// 
 			// Invoice_Form
 			// 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Invoice_Application_Project
 {
 	public partial class Form_Menu : Form
@@ -18,12 +19,15 @@ namespace Invoice_Application_Project
 		public Form_Menu()
 		{
 			InitializeComponent();
+
 		}
 
 		private void Button1_Click(object sender, EventArgs e)
 		{
-			invoice_Form.Show();
 			this.Hide();
+			invoice_Form.Show();
 		}
+
+
 	}
 }
