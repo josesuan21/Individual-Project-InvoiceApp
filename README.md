@@ -12,6 +12,5 @@
   * 2019
   
 # How to open the project
- * Open the project folder "Inovice_Application_Project"
- * Run the "Invoice_Application_Project.sln" file
+  https://hackmd.io/l4Rnry2HQmOzF1UrygD4XA - Open this link
   
