@@ -32,6 +32,8 @@
 			this.dateTimePicker_date = new System.Windows.Forms.DateTimePicker();
 			this.pictureBox_Logo = new System.Windows.Forms.PictureBox();
 			this.groupBox_CustomerDetails = new System.Windows.Forms.GroupBox();
+			this.textBox_Email = new System.Windows.Forms.TextBox();
+			this.label_Email = new System.Windows.Forms.Label();
 			this.textBox_PostCode = new System.Windows.Forms.TextBox();
 			this.textBox_Address = new System.Windows.Forms.TextBox();
 			this.textBox_CustomerName = new System.Windows.Forms.TextBox();
@@ -75,7 +77,7 @@
 			this.dateTimePicker_date.Location = new System.Drawing.Point(472, 24);
 			this.dateTimePicker_date.Name = "dateTimePicker_date";
 			this.dateTimePicker_date.Size = new System.Drawing.Size(169, 24);
-			this.dateTimePicker_date.TabIndex = 0;
+			this.dateTimePicker_date.TabIndex = 100;
 			this.dateTimePicker_date.Value = new System.DateTime(2021, 2, 2, 1, 29, 55, 0);
 			// 
 			// pictureBox_Logo
@@ -90,6 +92,8 @@
 			// 
 			// groupBox_CustomerDetails
 			// 
+			this.groupBox_CustomerDetails.Controls.Add(this.textBox_Email);
+			this.groupBox_CustomerDetails.Controls.Add(this.label_Email);
 			this.groupBox_CustomerDetails.Controls.Add(this.textBox_PostCode);
 			this.groupBox_CustomerDetails.Controls.Add(this.textBox_Address);
 			this.groupBox_CustomerDetails.Controls.Add(this.textBox_CustomerName);
@@ -97,44 +101,62 @@
 			this.groupBox_CustomerDetails.Controls.Add(this.label_Address);
 			this.groupBox_CustomerDetails.Controls.Add(this.label_CustomerName);
 			this.groupBox_CustomerDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox_CustomerDetails.Location = new System.Drawing.Point(12, 135);
+			this.groupBox_CustomerDetails.Location = new System.Drawing.Point(12, 126);
 			this.groupBox_CustomerDetails.Name = "groupBox_CustomerDetails";
-			this.groupBox_CustomerDetails.Size = new System.Drawing.Size(633, 171);
+			this.groupBox_CustomerDetails.Size = new System.Drawing.Size(633, 180);
 			this.groupBox_CustomerDetails.TabIndex = 6;
 			this.groupBox_CustomerDetails.TabStop = false;
 			this.groupBox_CustomerDetails.Text = "Customer Details";
 			// 
+			// textBox_Email
+			// 
+			this.textBox_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox_Email.Location = new System.Drawing.Point(194, 60);
+			this.textBox_Email.Name = "textBox_Email";
+			this.textBox_Email.Size = new System.Drawing.Size(316, 24);
+			this.textBox_Email.TabIndex = 5;
+			// 
+			// label_Email
+			// 
+			this.label_Email.AutoSize = true;
+			this.label_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_Email.Location = new System.Drawing.Point(126, 58);
+			this.label_Email.Name = "label_Email";
+			this.label_Email.Size = new System.Drawing.Size(45, 18);
+			this.label_Email.TabIndex = 7;
+			this.label_Email.Text = "Email";
+			// 
 			// textBox_PostCode
 			// 
 			this.textBox_PostCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_PostCode.Location = new System.Drawing.Point(194, 132);
+			this.textBox_PostCode.Location = new System.Drawing.Point(194, 144);
 			this.textBox_PostCode.Name = "textBox_PostCode";
 			this.textBox_PostCode.Size = new System.Drawing.Size(86, 24);
-			this.textBox_PostCode.TabIndex = 6;
+			this.textBox_PostCode.TabIndex = 7;
 			// 
 			// textBox_Address
 			// 
 			this.textBox_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_Address.Location = new System.Drawing.Point(194, 72);
+			this.textBox_Address.Location = new System.Drawing.Point(194, 89);
 			this.textBox_Address.Multiline = true;
 			this.textBox_Address.Name = "textBox_Address";
 			this.textBox_Address.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox_Address.Size = new System.Drawing.Size(316, 50);
-			this.textBox_Address.TabIndex = 5;
+			this.textBox_Address.TabIndex = 6;
 			// 
 			// textBox_CustomerName
 			// 
 			this.textBox_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_CustomerName.Location = new System.Drawing.Point(194, 41);
+			this.textBox_CustomerName.Location = new System.Drawing.Point(194, 30);
 			this.textBox_CustomerName.Name = "textBox_CustomerName";
 			this.textBox_CustomerName.Size = new System.Drawing.Size(316, 24);
-			this.textBox_CustomerName.TabIndex = 4;
+			this.textBox_CustomerName.TabIndex = 0;
 			// 
 			// label_PostCode
 			// 
 			this.label_PostCode.AutoSize = true;
 			this.label_PostCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_PostCode.Location = new System.Drawing.Point(95, 132);
+			this.label_PostCode.Location = new System.Drawing.Point(95, 144);
 			this.label_PostCode.Name = "label_PostCode";
 			this.label_PostCode.Size = new System.Drawing.Size(76, 18);
 			this.label_PostCode.TabIndex = 3;
@@ -144,7 +166,7 @@
 			// 
 			this.label_Address.AutoSize = true;
 			this.label_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_Address.Location = new System.Drawing.Point(109, 72);
+			this.label_Address.Location = new System.Drawing.Point(110, 91);
 			this.label_Address.Name = "label_Address";
 			this.label_Address.Size = new System.Drawing.Size(62, 18);
 			this.label_Address.TabIndex = 2;
@@ -154,7 +176,7 @@
 			// 
 			this.label_CustomerName.AutoSize = true;
 			this.label_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_CustomerName.Location = new System.Drawing.Point(56, 41);
+			this.label_CustomerName.Location = new System.Drawing.Point(56, 30);
 			this.label_CustomerName.Name = "label_CustomerName";
 			this.label_CustomerName.Size = new System.Drawing.Size(115, 18);
 			this.label_CustomerName.TabIndex = 1;
@@ -162,17 +184,17 @@
 			// 
 			// textBox_InvoiceNum
 			// 
-			this.textBox_InvoiceNum.Location = new System.Drawing.Point(152, 106);
+			this.textBox_InvoiceNum.Location = new System.Drawing.Point(152, 100);
 			this.textBox_InvoiceNum.Name = "textBox_InvoiceNum";
 			this.textBox_InvoiceNum.Size = new System.Drawing.Size(115, 20);
-			this.textBox_InvoiceNum.TabIndex = 7;
+			this.textBox_InvoiceNum.TabIndex = 100;
 			this.textBox_InvoiceNum.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
 			// 
 			// label_InvoiceNumber
 			// 
 			this.label_InvoiceNumber.AutoSize = true;
 			this.label_InvoiceNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_InvoiceNumber.Location = new System.Drawing.Point(15, 105);
+			this.label_InvoiceNumber.Location = new System.Drawing.Point(15, 99);
 			this.label_InvoiceNumber.Name = "label_InvoiceNumber";
 			this.label_InvoiceNumber.Size = new System.Drawing.Size(135, 18);
 			this.label_InvoiceNumber.TabIndex = 8;
@@ -206,7 +228,7 @@
 			this.checkBox_Notes.Location = new System.Drawing.Point(24, 144);
 			this.checkBox_Notes.Name = "checkBox_Notes";
 			this.checkBox_Notes.Size = new System.Drawing.Size(96, 22);
-			this.checkBox_Notes.TabIndex = 14;
+			this.checkBox_Notes.TabIndex = 9;
 			this.checkBox_Notes.Text = "Add Notes";
 			this.checkBox_Notes.UseVisualStyleBackColor = true;
 			this.checkBox_Notes.CheckedChanged += new System.EventHandler(this.CheckBox_Notes_CheckedChanged);
@@ -219,26 +241,17 @@
             0,
             0,
             0});
-			this.numericUpDown_Discount.Location = new System.Drawing.Point(524, 203);
-			this.numericUpDown_Discount.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+			this.numericUpDown_Discount.Location = new System.Drawing.Point(546, 203);
 			this.numericUpDown_Discount.Name = "numericUpDown_Discount";
 			this.numericUpDown_Discount.Size = new System.Drawing.Size(43, 24);
 			this.numericUpDown_Discount.TabIndex = 12;
-			this.numericUpDown_Discount.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
 			this.numericUpDown_Discount.Visible = false;
+			this.numericUpDown_Discount.ValueChanged += new System.EventHandler(this.NumericUpDown_Discount_ValueChanged);
 			// 
 			// textBox_TotalPrice
 			// 
 			this.textBox_TotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_TotalPrice.Location = new System.Drawing.Point(474, 235);
+			this.textBox_TotalPrice.Location = new System.Drawing.Point(496, 235);
 			this.textBox_TotalPrice.Name = "textBox_TotalPrice";
 			this.textBox_TotalPrice.ReadOnly = true;
 			this.textBox_TotalPrice.Size = new System.Drawing.Size(94, 24);
@@ -252,14 +265,14 @@
 			this.textBox_InvoiceNotes.Name = "textBox_InvoiceNotes";
 			this.textBox_InvoiceNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox_InvoiceNotes.Size = new System.Drawing.Size(321, 92);
-			this.textBox_InvoiceNotes.TabIndex = 0;
+			this.textBox_InvoiceNotes.TabIndex = 10;
 			this.textBox_InvoiceNotes.Visible = false;
 			// 
 			// label_TotalPrice
 			// 
 			this.label_TotalPrice.AutoSize = true;
 			this.label_TotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_TotalPrice.Location = new System.Drawing.Point(373, 238);
+			this.label_TotalPrice.Location = new System.Drawing.Point(395, 238);
 			this.label_TotalPrice.Name = "label_TotalPrice";
 			this.label_TotalPrice.Size = new System.Drawing.Size(79, 18);
 			this.label_TotalPrice.TabIndex = 10;
@@ -269,10 +282,10 @@
 			// 
 			this.checkBox_ApplyDiscount.AutoSize = true;
 			this.checkBox_ApplyDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox_ApplyDiscount.Location = new System.Drawing.Point(375, 203);
+			this.checkBox_ApplyDiscount.Location = new System.Drawing.Point(397, 203);
 			this.checkBox_ApplyDiscount.Name = "checkBox_ApplyDiscount";
 			this.checkBox_ApplyDiscount.Size = new System.Drawing.Size(152, 22);
-			this.checkBox_ApplyDiscount.TabIndex = 9;
+			this.checkBox_ApplyDiscount.TabIndex = 11;
 			this.checkBox_ApplyDiscount.Text = "Apply Discount (%)";
 			this.checkBox_ApplyDiscount.UseVisualStyleBackColor = true;
 			this.checkBox_ApplyDiscount.CheckedChanged += new System.EventHandler(this.CheckBox_ApplyDiscount_CheckedChanged);
@@ -280,7 +293,7 @@
 			// textBox_CurrentPrice
 			// 
 			this.textBox_CurrentPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_CurrentPrice.Location = new System.Drawing.Point(474, 167);
+			this.textBox_CurrentPrice.Location = new System.Drawing.Point(496, 167);
 			this.textBox_CurrentPrice.Name = "textBox_CurrentPrice";
 			this.textBox_CurrentPrice.ReadOnly = true;
 			this.textBox_CurrentPrice.Size = new System.Drawing.Size(94, 24);
@@ -290,7 +303,7 @@
 			// 
 			this.label_CurrentPrice.AutoSize = true;
 			this.label_CurrentPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_CurrentPrice.Location = new System.Drawing.Point(373, 168);
+			this.label_CurrentPrice.Location = new System.Drawing.Point(395, 168);
 			this.label_CurrentPrice.Name = "label_CurrentPrice";
 			this.label_CurrentPrice.Size = new System.Drawing.Size(95, 18);
 			this.label_CurrentPrice.TabIndex = 5;
@@ -302,10 +315,11 @@
             this.columnHeader1,
             this.columnHeader2});
 			this.listView_Services.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.listView_Services.GridLines = true;
 			this.listView_Services.HideSelection = false;
-			this.listView_Services.Location = new System.Drawing.Point(394, 33);
+			this.listView_Services.Location = new System.Drawing.Point(385, 33);
 			this.listView_Services.Name = "listView_Services";
-			this.listView_Services.Size = new System.Drawing.Size(174, 106);
+			this.listView_Services.Size = new System.Drawing.Size(242, 106);
 			this.listView_Services.TabIndex = 4;
 			this.listView_Services.UseCompatibleStateImageBehavior = false;
 			this.listView_Services.View = System.Windows.Forms.View.Details;
@@ -313,24 +327,27 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Service";
-			this.columnHeader1.Width = 90;
+			this.columnHeader1.Width = 150;
 			// 
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "Price";
+			this.columnHeader2.Width = 90;
 			// 
 			// button_ChooseService
 			// 
 			this.button_ChooseService.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_ChooseService.Location = new System.Drawing.Point(272, 33);
+			this.button_ChooseService.Location = new System.Drawing.Point(279, 33);
 			this.button_ChooseService.Name = "button_ChooseService";
 			this.button_ChooseService.Size = new System.Drawing.Size(84, 46);
 			this.button_ChooseService.TabIndex = 3;
 			this.button_ChooseService.Text = "Add";
 			this.button_ChooseService.UseVisualStyleBackColor = true;
+			this.button_ChooseService.Click += new System.EventHandler(this.Button_ChooseService_Click);
 			// 
 			// comboBox_ChooseService
 			// 
+			this.comboBox_ChooseService.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
 			this.comboBox_ChooseService.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.comboBox_ChooseService.FormattingEnabled = true;
 			this.comboBox_ChooseService.ItemHeight = 18;
@@ -340,10 +357,10 @@
             "Overn Cleaning",
             "Communal Cleaning",
             "Other"});
-			this.comboBox_ChooseService.Location = new System.Drawing.Point(87, 44);
+			this.comboBox_ChooseService.Location = new System.Drawing.Point(25, 44);
 			this.comboBox_ChooseService.Name = "comboBox_ChooseService";
-			this.comboBox_ChooseService.Size = new System.Drawing.Size(153, 26);
-			this.comboBox_ChooseService.TabIndex = 2;
+			this.comboBox_ChooseService.Size = new System.Drawing.Size(238, 26);
+			this.comboBox_ChooseService.TabIndex = 8;
 			this.comboBox_ChooseService.Text = "Choose service";
 			// 
 			// groupBox_PaymentDetails
@@ -387,7 +404,7 @@
 			this.textBox_ChequePayment.Multiline = true;
 			this.textBox_ChequePayment.Name = "textBox_ChequePayment";
 			this.textBox_ChequePayment.Size = new System.Drawing.Size(267, 110);
-			this.textBox_ChequePayment.TabIndex = 2;
+			this.textBox_ChequePayment.TabIndex = 13;
 			// 
 			// textBox_PaymentTransfer
 			// 
@@ -396,7 +413,7 @@
 			this.textBox_PaymentTransfer.Multiline = true;
 			this.textBox_PaymentTransfer.Name = "textBox_PaymentTransfer";
 			this.textBox_PaymentTransfer.Size = new System.Drawing.Size(258, 110);
-			this.textBox_PaymentTransfer.TabIndex = 1;
+			this.textBox_PaymentTransfer.TabIndex = 12;
 			// 
 			// groupBox_Confirmation
 			// 
@@ -415,7 +432,7 @@
 			this.button_SavePDF.Location = new System.Drawing.Point(248, 32);
 			this.button_SavePDF.Name = "button_SavePDF";
 			this.button_SavePDF.Size = new System.Drawing.Size(128, 50);
-			this.button_SavePDF.TabIndex = 0;
+			this.button_SavePDF.TabIndex = 14;
 			this.button_SavePDF.Text = "Save PDF";
 			this.button_SavePDF.UseVisualStyleBackColor = true;
 			this.button_SavePDF.Click += new System.EventHandler(this.Button_SavePDF_Click);
@@ -490,5 +507,7 @@
 		private System.Windows.Forms.TextBox textBox_InvoiceNotes;
 		private System.Windows.Forms.NumericUpDown numericUpDown_Discount;
 		private System.Windows.Forms.CheckBox checkBox_Notes;
+		private System.Windows.Forms.Label label_Email;
+		private System.Windows.Forms.TextBox textBox_Email;
 	}
 }
