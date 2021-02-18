@@ -44,7 +44,7 @@
   
   
   
-# Contacts
+# Contact
 ### If you have any quetions, please contact me using the email below:
 
 j.e.suan1210@canterbury.ac.uk
