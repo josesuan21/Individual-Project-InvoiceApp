@@ -27,10 +27,17 @@
   * Microsoft .NET Framework
   * Version 4.8.04084
   * 2019
-  
+
  ### "**We recommend**: To use the latest version stated above to ensure well functionality when running the program."  
  
- 
+
+# Branches
+* Main branch
+* Invoice-App-(Finishing 1-Milestone)
+* Invoice-App-(Finishing 2-Milestone)
+* Invoice-App-(Finishing 3-Milestone)
+  
+
 # How to open the project
 
   https://hackmd.io/l4Rnry2HQmOzF1UrygD4XA - Open this link and follow the instructions
