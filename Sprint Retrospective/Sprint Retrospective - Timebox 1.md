@@ -76,7 +76,7 @@ Excelenltly conveyed
     * Didnt properly commit main branch (Sometimes I forget)
 * Development of features done in single branch?
     * Shall we keep with this approach? or more to discilined branch names? Pull requests?
-* Setup instructions needed
+* Setup instructions needed (Created a bit late)
 * There were many tickets missed out during development and changes of tickets which causes to consume time. 
 * The planning for achieving a particular ticket expectation is not guaranteed due to cost of having many holes found in each ticket. 
 
@@ -88,7 +88,7 @@ Excelenltly conveyed
 * How do we track research/exploration/spike tasks? (Types of tickets and  These are not 'sized' tickets)
     * Research/Exploration - new libraries, Check about spike ticket
     * Spike - Goal? Timeboxed? 1 Day (8 dev hours)
-    * These will still require an Id same as Tickets
+    * These will still require an Id same as Tick ets
 * How will we track bugs when the user reports them? 
     * Are these just tickets? Maybe BUG001?
     * Invalidates the COS of an existing ticket - Important distinction to a _feature request_
