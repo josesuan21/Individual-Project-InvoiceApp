@@ -288,11 +288,11 @@ namespace Invoice_Application_Project.Models
 
 			decimal currentPrice = Convert.ToDecimal(inputCurrentPrice);
 
-			decimal discountValue = discountVal / 100;
+			decimal discountValue = discountVal / 100m;
 
 			totalDiscountedPrice = currentPrice - (currentPrice * discountValue);
 
-			return totalDiscountedPrice ;
+			return Math.Round(totalDiscountedPrice,2);
 		}
 
 

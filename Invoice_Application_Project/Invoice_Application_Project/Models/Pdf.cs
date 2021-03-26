@@ -109,7 +109,7 @@ namespace Invoice_Application_Project.Models
 			using (SaveFileDialog sfd= new SaveFileDialog() { Filter="PDF file|*.pdf",ValidateNames = true })
 			{
 				//default file name
-				sfd.FileName = InvoiceId +"_"+InvoiceAddress;
+				sfd.FileName = InvoiceId +" "+InvoiceAddress;
 
 				//If the save button is clicked
 				if (sfd.ShowDialog()==DialogResult.OK)
@@ -183,7 +183,7 @@ namespace Invoice_Application_Project.Models
 						document.Add(text);
 
 						//Total price
-						text = new Paragraph("Total Price: "+ InvoiceTotalPrice).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetFontSize(14);
+						text = new Paragraph("Total Price: £"+ InvoiceTotalPrice).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetFontSize(14);
 						document.Add(text);
 
 
