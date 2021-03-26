@@ -1,4 +1,4 @@
-﻿namespace Invoice_Application_Project
+namespace Invoice_Application_Project
 {
 	partial class Form_Menu
 	{
