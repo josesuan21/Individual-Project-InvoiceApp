@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Model">
+    <Position X="1.067" Y="1.038" Height="0.369" Width="0.7" />
+  </Comment>
+  <Comment CommentText="View">
+    <Position X="3.25" Y="1" Height="0.369" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Presenter">
+    <Position X="5.542" Y="1.017" Height="0.369" Width="0.847" />
+  </Comment>
+  <Comment CommentText="UI">
+    <Position X="8" Y="1.75" Height="0.369" Width="0.847" />
+  </Comment>
+  <Class Name="Invoice_Application_Project.Presenters.CustomerPresenter" Collapsed="true" HideInheritanceLine="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAIAAAQAAAAAUAAAAA=</HashCode>
+      <FileName>Presenters\CustomerPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Models.Customer" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAggAAABIAABQIIEIBAAAAAAAAABAgA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Models.InvoiceRecord" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAICAAAAEAgAAAABAABAAAAAAACAAAAAhQMAKgA=</HashCode>
+      <FileName>Models\InvoiceRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Presenters.InvoiceRecordPresenter" Collapsed="true" HideInheritanceLine="true">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAQAAAAAAAACKEAAAA=</HashCode>
+      <FileName>Presenters\InvoiceRecordPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Models.Service" Collapsed="true">
+    <Position X="0.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAAYAAAAgAAAAJAAAAAAAEAAIAAAAEACAABgA=</HashCode>
+      <FileName>Models\Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Presenters.ServicePresenter" Collapsed="true" HideInheritanceLine="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAYAAAAAAAAEIAAAAAAAAAAIAAEAAACAAAAA=</HashCode>
+      <FileName>Presenters\ServicePresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Presenters.PdfPresenter" Collapsed="true" HideInheritanceLine="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAACAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Presenters\PdfPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Models.Pdf" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAYAAAAQAAAoAAAAAABAAAIAAUCAAAAAgQAgIaA=</HashCode>
+      <FileName>Models\Pdf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invoice_Application_Project.Invoice_Form" Collapsed="true">
+    <Position X="8" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>hKUgIAMwkCGCodQAQQSIAAhLBwyAFGBDFFQQHMAIoRA=</HashCode>
+      <FileName>Invoice_Form.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Invoice_Application_Project.Views.ICustomer" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAEAAIAAAAQIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ICustomer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Invoice_Application_Project.Views.IinvoiceRecord" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAAAEAAAQA=</HashCode>
+      <FileName>Views\IinvoiceRecord.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Invoice_Application_Project.Views.IService" Collapsed="true">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAIAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Views\IService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Invoice_Application_Project.Views.IPdf" Collapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAgEAAAAAQAAAQAAABAAAAAAAAAAAQAAAAIABA=</HashCode>
+      <FileName>Views\IPdf.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
