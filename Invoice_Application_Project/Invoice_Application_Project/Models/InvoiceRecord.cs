@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -153,13 +153,14 @@ namespace Invoice_Application_Project.Models
 				}
 				else
 				{
-					Form_Menu menu = new Form_Menu();
 					
+					
+					//Form_Menu menu = new Form_Menu();
 					
 					MessageBox.Show("Invoice number must be added. Try again");
 
 					//Show menu form
-					menu.Show();
+					//menu.Show();
 
 					//Closing invoice Form
 					foreach (Form form in System.Windows.Forms.Application.OpenForms) {
@@ -288,7 +289,6 @@ namespace Invoice_Application_Project.Models
 
 
 			//Reseeding record
-
 			connection.Open();
 			cmd1.Parameters.AddWithValue("@reseedVal", recentId-1);
 			cmd1.ExecuteNonQuery();

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="InvoiceDatabaseDataSet" targetNamespace="http://tempuri.org/InvoiceDatabaseDataSet.xsd" xmlns:mstns="http://tempuri.org/InvoiceDatabaseDataSet.xsd" xmlns="http://tempuri.org/InvoiceDatabaseDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
