@@ -99,6 +99,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateService.Designer.cs">
+      <DependentUpon>CreateService.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerRecord_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     <Compile Include="ViewUpdate_Form.Designer.cs">
       <DependentUpon>ViewUpdate_Form.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CreateService.resx">
+      <DependentUpon>CreateService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerRecord_Form.resx">
       <DependentUpon>CustomerRecord_Form.cs</DependentUpon>
     </EmbeddedResource>

@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 using Invoice_Application_Project.Views;
 using Invoice_Application_Project.Presenters;
-
+using System.Collections;
 
 namespace Invoice_Application_Project
 {
@@ -25,6 +26,9 @@ namespace Invoice_Application_Project
 		//Flag for Save PDF button
 		bool completedInvoice;
 
+		//Flag create service
+		static string newService_Name;
+		static string newService_Price;
 
 		//InvoiceRecord Interface - Ticket 30
 		public int InvoiceId_Text { get {return currentInvoiceId; } set { currentInvoiceId = value; } }
@@ -72,6 +76,7 @@ namespace Invoice_Application_Project
 		public Invoice_Form()
 		{
 			InitializeComponent();
+			
 		}
 
 
@@ -133,6 +138,12 @@ namespace Invoice_Application_Project
 				//Assigns and get the current customer Id
 				curentCustomerId = customerPresenter.GetCustomerId();
 
+				//Predict Existing Customer - Ticket 022
+				textBox_CustomerName.AutoCompleteMode = AutoCompleteMode.Suggest;
+				textBox_CustomerName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+				//Do the sorting here
+				textBox_CustomerName.AutoCompleteCustomSource = customerPresenter.ProducePredicted_Customer();
+				 
 
 				//List of services (Service Presenter)
 				comboBox_ChooseService.Items.Clear();
@@ -141,7 +152,7 @@ namespace Invoice_Application_Project
 				for (int i=0; i<servicePresenter.ShowListServices().Count;i++) {
 
 					comboBox_ChooseService.Items.Add(servicePresenter.ShowListServices()[i]);
-
+					
 				}
 
 
@@ -184,8 +195,9 @@ namespace Invoice_Application_Project
 				//Updates total price
 				textBox_TotalPrice.Text = textBox_CurrentPrice.Text;
 
-				//Calculate total price (with discount)
-				textBox_TotalPrice.Text = string.Format("{0:0.00}",servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString());
+				//Calculate total price (Discount and VAT)
+				textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
 			}
 			else
 			{
@@ -228,14 +240,12 @@ namespace Invoice_Application_Project
 				//BUG 002 - Flag Saving Dialogue Cancel
 				completedInvoice = pdfPresenter.SavePDF(listView_Services);
 
-
 			}
 			else
 			{
 				//No services 
 				Prompt_NoServices();
 			}
-
 
 			//Close invoice and go to main menu
 			Form_Menu openHome = new Form_Menu();
@@ -249,8 +259,10 @@ namespace Invoice_Application_Project
 		{
 			ServicePresenter servicePresenter = new ServicePresenter(this);
 
-			//Calculate total price (with discount)
-			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString());
+			//Calculate total price (Discount and VAT)
+			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
+
 		}
 
 		//Remove selected Service - Ticket 018
@@ -267,8 +279,9 @@ namespace Invoice_Application_Project
 			//Updates total price
 			textBox_TotalPrice.Text = textBox_CurrentPrice.Text;
 
-			//Calculate total price (with discount)
-			textBox_TotalPrice.Text = string.Format("{0:#.00}", servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString());
+			//Calculate total price (Discount and VAT)
+			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
 		}
 
 		//Ticket 026 - Stop Saving record if PDF is not completed
@@ -299,6 +312,154 @@ namespace Invoice_Application_Project
 				MessageBox.Show("Invoice Saved");
 			}
 			
+
+		}
+
+		private void Button_CreateService_Click(object sender, EventArgs e)
+		{
+			
+			CreateService createServiceForm = new CreateService();
+			ServicePresenter servicePresenter = new ServicePresenter(this);
+
+			createServiceForm.ShowDialog();
+
+			if (newService_Name != null || newService_Price != null)
+			{
+				ListViewItem item = new ListViewItem();
+				item.Text = newService_Name;
+				item.SubItems.Add(newService_Price);
+
+				//Add Custom Service and Price - Ticket 20.1
+				listView_Services.Items.Add(item);
+
+				//Update price
+				//Calculate price (Service presenter)
+				textBox_CurrentPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculatePrice(listView_Services).ToString());
+				//Updates total price
+				textBox_TotalPrice.Text = textBox_CurrentPrice.Text;
+
+				//Calculate total price (Discount and VAT)
+				textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
+
+				//reset custom service data
+				newService_Name = null;
+				newService_Price = null;
+
+				//reset combo box incase of newly saved service in database
+				comboBox_ChooseService.Items.Clear();
+
+				for (int i = 0; i < servicePresenter.ShowListServices().Count; i++)
+				{
+					
+					comboBox_ChooseService.Items.Add(servicePresenter.ShowListServices()[i]);
+
+				}
+
+
+			}
+
+
+		}
+		
+		public void GetNewService(string newService, decimal newPrice) {
+			newService_Name = newService;
+			newService_Price = newPrice.ToString();
+
+		}
+
+		//Ticket 21.3
+		private void CheckBox_Vat_CheckedChanged(object sender, EventArgs e)
+		{
+
+			if (checkBox_Vat.Checked)
+			{
+				numericUpDown_vat.Visible = true;
+				numericUpDown_vat.Value = 20; //standard VAT UK
+			}
+			else
+			{
+				numericUpDown_vat.Visible = false;
+				numericUpDown_vat.Value = 0; //Sets to zero if unchecked
+			}
+
+		}
+
+		private void NumericUpDown_vat_ValueChanged(object sender, EventArgs e)
+		{
+			ServicePresenter servicePresenter = new ServicePresenter(this);
+			//Calculate total price (Discount and VAT)
+			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+		}
+
+		//Ticket 022.1
+		private void TextBox_CustomerName_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyData == Keys.Enter) {
+
+				CustomerPresenter customer = new CustomerPresenter(this);
+				string[] customerDetails = new string[5];
+
+				//*****Get customer name details and Assign textboxes using array
+				customerDetails = customer.CustomerFullDetails(textBox_CustomerName.Text);
+				//BUG 004 creating the if
+				if (customerDetails[0] != null) {
+					//Ticket 022.1
+					//*****Return full details in an arrayList or List
+					//0 - id - Ticket 24
+					curentCustomerId = Convert.ToInt32(customerDetails[0]);
+					//1 - name
+					textBox_CustomerName.Text = customerDetails[1];
+					//2 - email
+					textBox_Email.Text = customerDetails[2];
+					//3 - address
+					textBox_Address.Text = customerDetails[3];
+					//4 - Postcode
+					textBox_PostCode.Text = customerDetails[4];
+
+					//*****Remove created deafault customer
+					customer.RemoveDefaultAdded_CustomerRecord();
+
+					//Disable textboxes
+					textBox_CustomerName.Enabled = false;
+					textBox_Email.Enabled = false;
+					textBox_Address.Enabled = false;
+					textBox_PostCode.Enabled = false;
+
+					//Make button create new customer visible
+					button_NewCustomer.Visible = true;
+
+				}
+				
+			}
+
+		}
+
+		//BUG 004
+		private void Button_NewCustomer_Click(object sender, EventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+			//Create a new non existing customer
+			customer.CreateCustomerId();
+
+			//Assigns and get the current customer Id
+			curentCustomerId = customer.GetCustomerId();
+
+			//Clear textboxes fields
+			textBox_CustomerName.Clear();
+			textBox_Email.Clear();
+			textBox_Address.Clear(); 
+			textBox_PostCode.Clear();
+
+			//Enable textboxes
+			textBox_CustomerName.Enabled = true;
+			textBox_Email.Enabled = true;
+			textBox_Address.Enabled = true;
+			textBox_PostCode.Enabled = true;
+
+			//Make button invisible
+			button_NewCustomer.Visible = false;
+
 
 		}
 	}

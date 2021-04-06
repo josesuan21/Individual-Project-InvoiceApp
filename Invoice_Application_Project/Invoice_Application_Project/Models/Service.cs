@@ -132,7 +132,7 @@ namespace Invoice_Application_Project.Models
 		/// </summary>
 		public void AddRecord_ServiceChosen(int currentCustomer, int currentInvoiceId, ListView items)
 		{
-			//SQL
+			//SQL1
 			connection = new SqlConnection(connectionString);
 			connection.Open();
 
@@ -331,6 +331,52 @@ namespace Invoice_Application_Project.Models
 
 
 		}
+
+
+		//Ticket 20.3
+		public void SaveService_Database(string servicename, decimal price) {
+
+			//Open connection
+			connection = new SqlConnection(connectionString);
+			connection.Open();
+
+			//Selecting recent added id
+			string sqlQuery_Insert = "INSERT INTO Service (serviceName, price) VALUES (@serviceName, @servicePrice);";
+
+			SqlCommand cmd1 = new SqlCommand(sqlQuery_Insert, connection);
+
+			cmd1.Parameters.AddWithValue("@serviceName", servicename);
+
+			cmd1.Parameters.AddWithValue("@servicePrice", price);
+
+			//Insert new service record in database
+			cmd1.ExecuteNonQuery();
+
+			connection.Close(); //Close for cmd
+
+		}
+
+		/// <summary>
+		///  - Apply VAT - Ticket 21.3
+		/// </summary>
+		/// <returns></returns>
+		public decimal CalculateVAT(string inputCurrentPrice, decimal vat_Val)
+		{
+
+			//- Apply VAT
+			decimal totalDiscountedPrice = 0m;
+
+			decimal currentPrice = Convert.ToDecimal(inputCurrentPrice);
+
+			decimal discountValue = vat_Val / 100m;
+
+			totalDiscountedPrice = currentPrice + (currentPrice * discountValue);
+
+			return Math.Round(totalDiscountedPrice, 2);
+		}
+
+
+
 
 
 	}
