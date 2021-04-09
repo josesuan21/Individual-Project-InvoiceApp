@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 using System.Configuration;
 using System.Data.SqlClient;
@@ -17,6 +18,8 @@ namespace Invoice_Application_Project.Models
 		//SQL connection
 		SqlConnection connection;
 		string connectionString = ConfigurationManager.ConnectionStrings["Invoice_Application_Project.Properties.Settings.InvoiceDatabaseConnectionString"].ConnectionString;
+		//string connectionString = ""; //use this for user testing 
+
 
 		//Fields
 		private int id;
@@ -373,6 +376,25 @@ namespace Invoice_Application_Project.Models
 			totalDiscountedPrice = currentPrice + (currentPrice * discountValue);
 
 			return Math.Round(totalDiscountedPrice, 2);
+		}
+
+
+
+		//Regular expression for notes
+		public bool regularExpression_Notes(string notesInput) {
+
+			bool result = false;
+
+			Regex notesPattern = new Regex(@"^[a-zA-Z0-9\s+\,.!?%£/:+\-]*$");//Matches lower to upper case, space, comma, dot, exclamation, question mark and dash
+
+			if (notesPattern.IsMatch(notesInput) != true)
+			{
+				MessageBox.Show("Do not uncommon symbols in the notes", "Invalid text");
+				result = true;
+			}
+
+			return result;
+
 		}
 
 

@@ -28,6 +28,7 @@ namespace Invoice_Application_Project.Models
 		private string paymentDetails_1;
 		private string paymentDetails_2;
 		private string discountGiven;
+		private string vat;
 		private string totalPrice;
 
 		//Properties
@@ -88,6 +89,11 @@ namespace Invoice_Application_Project.Models
 		{
 			get { return discountGiven; }
 			set { discountGiven = value; }
+		}
+		public string InvoiceVAT
+		{
+			get { return vat; }
+			set { vat = value; }
 		}
 		public string InvoiceTotalPrice
 		{
@@ -180,6 +186,8 @@ namespace Invoice_Application_Project.Models
 
 						//Discount Given
 						text = new Paragraph("Discount Given: "+ InvoiceDiscountGiven+"%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
+						document.Add(text);
+						text = new Paragraph("VAT: " + InvoiceDiscountGiven + "%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
 						document.Add(text);
 
 						//Total price

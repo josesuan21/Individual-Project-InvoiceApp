@@ -71,6 +71,10 @@ namespace Invoice_Application_Project.Presenters
 			return service.CalculateVAT(inputCurrentPrice, vat_VAL);
 		}
 
+		public bool regularExpression_Notes(string notesInput){
+			return service.regularExpression_Notes(notesInput);
+		}
+
 
 
 	}

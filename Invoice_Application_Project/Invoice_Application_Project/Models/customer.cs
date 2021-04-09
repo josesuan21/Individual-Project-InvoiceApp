@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 using System.Configuration;
 using System.Data.SqlClient;
@@ -251,8 +252,76 @@ namespace Invoice_Application_Project.Models
 			return customerFullDetails;
 
 
-		} 
+		}
 
+
+		//Regular Expressions
+
+		public bool RegularExpression(int textboxNum, string textboxInput) {
+
+			//FALSE means nothing violates the expression
+			bool result = false;
+
+			//Checks whether what textbox is using
+			switch (textboxNum) {
+
+				//Name
+				case 1:
+
+					Regex namePattern = new Regex(@"^[a-zA-Z\s+\-]*$");//Matches lower to upper case, space and dash
+					if (namePattern.IsMatch(textboxInput) != true)
+					{
+						MessageBox.Show("Name text only accept: \n 1. Letters \n 2. Numbers \n 3. Signs (@, £, $, €, ¥, #) \n 4. Symbols (full stop, comma, colon, semi-colon, hypen) ","Invalid text name");
+						result = true;
+					}
+
+					break;
+
+				//Email
+				case 2:
+
+					Regex emailPattern = new Regex(@"(@)(.+)$"); //From Microsoft Docs
+
+					if (emailPattern.IsMatch(textboxInput) != true) {
+						MessageBox.Show("Make sure that the email is correct with no spaces","Invalid email");
+						result = true;
+					}
+
+					break;
+
+				//Address
+				case 3:
+
+					Regex addressPattern = new Regex(@"^[a-zA-Z0-9\s+\,.+\-]*$");//Matches lower to upper case, space, comma, dot and dash
+
+					if (addressPattern.IsMatch(textboxInput) != true) {
+						MessageBox.Show("Do not use signs in the address", "Invalid address");
+						result = true;
+					}
+
+					break;
+
+				//Post code
+				case 4:
+
+					Regex postcodePattern = new Regex(@"[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$");// Post code format from wiki
+
+					if (postcodePattern.IsMatch(textboxInput) != true)
+					{
+						MessageBox.Show("Ensure it is a UK Post code. \n e.g. CT1 1QU or CT11QU", "Invalid Post code");
+						result = true;
+					}
+
+					break;
+
+
+
+			}
+
+
+			return result;
+
+		}
 
 
 

@@ -66,6 +66,7 @@ namespace Invoice_Application_Project
 
 
 		public string PDFdiscountGiven_Text { get { return numericUpDown_Discount.Text; } set { numericUpDown_Discount.Text = value; } }
+		public string PDFvat_Text { get { return numericUpDown_vat.Text; } set { numericUpDown_vat.Text = value; } }
 		public string PDFtotalPrice_Text { get { return textBox_TotalPrice.Text; } set { textBox_TotalPrice.Text = value; } }
 
 		//Payment Details (Observe if needed any use for future tickets)  Ticket 17
@@ -108,6 +109,7 @@ namespace Invoice_Application_Project
 			else
 			{
 				textBox_InvoiceNotes.Visible = false;
+				checkBox_Notes.ForeColor = Color.Black;
 			}
 		}
 
@@ -119,8 +121,12 @@ namespace Invoice_Application_Project
 
 			//Current Date
 			dateTimePicker_date.Value = DateTime.Today;
-
+			//Validate date = due date
+			dateTimePicker_date.MaxDate = dateTimePicker_DueDate.Value;
+			//Due date plus 1 day
 			dateTimePicker_DueDate.Value = DateTime.Today.AddDays(1);
+			//Validate due date
+			dateTimePicker_DueDate.MinDate = dateTimePicker_date.Value;
 
 			//Create Invoice Number;
 			InvoiceRecordPresenter invoiceRecordPresenter = new InvoiceRecordPresenter(this);
@@ -205,6 +211,7 @@ namespace Invoice_Application_Project
 				Prompt_NoServices();
 
 			}
+
 		}
 
 		private void Button_SavePDF_Click(object sender, EventArgs e)
@@ -460,8 +467,151 @@ namespace Invoice_Application_Project
 			//Make button invisible
 			button_NewCustomer.Visible = false;
 
+		}
+
+		// Validate header input details (date and due date) -  Ticket 38
+		private void DateTimePicker_DueDate_ValueChanged(object sender, EventArgs e)
+		{
+			dateTimePicker_date.MaxDate = dateTimePicker_DueDate.Value;
+		}
+
+		private void DateTimePicker_date_ValueChanged(object sender, EventArgs e)
+		{
+			dateTimePicker_DueDate.MinDate = dateTimePicker_date.Value;
+		}
+
+		// Validation Customer input details - Ticket 38.1
+		private void TextBox_CustomerName_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+
+			if (customer.RegularExpression(1,textBox_CustomerName.Text)) {
+				e.Cancel = true;
+				label_CustomerName.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_CustomerName.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
 
 		}
+
+		private void TextBox_Email_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+
+			if (customer.RegularExpression(2, textBox_Email.Text)) {
+				e.Cancel = true;
+				label_Email.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_Email.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		private void TextBox_Address_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+
+			if (customer.RegularExpression(3, textBox_Address.Text))
+			{
+				e.Cancel = true;
+				label_Address.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_Address.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+		}
+
+		private void TextBox_PostCode_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+			if (customer.RegularExpression(4, textBox_PostCode.Text))
+			{
+				e.Cancel = true;
+				label_PostCode.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_PostCode.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		//(Validation) Service input details - Ticket 038.2 
+		private void ComboBox_ChooseService_DropDownClosed(object sender, EventArgs e)
+		{
+			label_chooseAservice.Visible = false;
+		}
+
+		private void TextBox_InvoiceNotes_Validating(object sender, CancelEventArgs e)
+		{
+			ServicePresenter servicePresenter = new ServicePresenter(this);
+			if (servicePresenter.regularExpression_Notes(textBox_InvoiceNotes.Text)) {
+				e.Cancel = true;
+				checkBox_Notes.ForeColor = Color.Red;
+
+			}
+			else
+			{
+				checkBox_Notes.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		//(Validation) Payment input details - Ticket 038.3 
+		private void TextBox_PaymentTransfer_Validating(object sender, CancelEventArgs e)
+		{
+			PaymentDetailsPresenter paymentDetails = new PaymentDetailsPresenter(this);
+			if (paymentDetails.regularExpression_PaymentDetails(1,textBox_PaymentTransfer.Text))
+			{
+				e.Cancel = true;
+				label_DirectTransfer.ForeColor = Color.Red;
+
+			}
+			else
+			{
+				label_DirectTransfer.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		private void TextBox_ChequePayment_Validating(object sender, CancelEventArgs e)
+		{
+			PaymentDetailsPresenter paymentDetails = new PaymentDetailsPresenter(this);
+			if (paymentDetails.regularExpression_PaymentDetails(2, textBox_ChequePayment.Text))
+			{
+				e.Cancel = true;
+				label_ChequePayment.ForeColor = Color.Red;
+
+			}
+			else
+			{
+				label_ChequePayment.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+		}
+
+		private void ComboBox_ChooseService_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			button_ChooseService.Focus();
+		}
+
+
+
+		//Add service focus - Ticket 033
+
+
+
 	}
 
 }

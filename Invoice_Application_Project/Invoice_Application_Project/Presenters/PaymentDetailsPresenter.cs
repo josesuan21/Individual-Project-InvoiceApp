@@ -35,6 +35,11 @@ namespace Invoice_Application_Project.Presenters
 		}
 
 
+		public bool regularExpression_PaymentDetails(int textNum, string notesInput)
+		{
+			return paymentDetails.regularExpression_PaymentDetails(textNum,notesInput);
+		}
+
 
 	}
 }

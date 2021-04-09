@@ -36,6 +36,7 @@ namespace Invoice_Application_Project.Presenters
 			pdf.InvoicePaymentDetails_1 = pdfView.PDFnotes_PaymentTransfer;
 			pdf.InvoicePaymentDetails_2 = pdfView.PDFnotes_PaymentCheque;
 			pdf.InvoiceDiscountGiven = pdfView.PDFdiscountGiven_Text;
+			pdf.InvoiceVAT = pdfView.PDFvat_Text;
 			pdf.InvoiceTotalPrice = pdfView.PDFtotalPrice_Text;
 
 

@@ -66,6 +66,11 @@ namespace Invoice_Application_Project.Presenters
 			return customer.CustomerFullDetails(customerDetails);
 		}
 
+		public bool RegularExpression(int textboxNum, string textboxInput) {
+			return customer.RegularExpression(textboxNum, textboxInput);
+
+		}
+
 
 	}
 

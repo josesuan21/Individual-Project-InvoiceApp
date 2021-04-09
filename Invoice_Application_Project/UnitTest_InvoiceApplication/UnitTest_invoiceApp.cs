@@ -13,6 +13,7 @@ namespace UnitTest_InvoiceApplication
 		/// </summary>
 
 		Invoice_Application_Project.Invoice_Form invoice_Form = new Invoice_Application_Project.Invoice_Form();
+		Invoice_Application_Project.Models.Service service = new Invoice_Application_Project.Models.Service();
 
 		[TestMethod]
 		/// <summary>
@@ -55,7 +56,6 @@ namespace UnitTest_InvoiceApplication
 
 
 		[TestMethod]
-
 		/// <summary>
 		/// Invoice Record Details
 		/// </summary>
@@ -95,6 +95,168 @@ namespace UnitTest_InvoiceApplication
 
 
 		}
+
+
+		[TestMethod]
+		/// <summary>
+		/// Inputs of service details
+		/// </summary>
+		public void Test_ServiceDetails() {
+
+			string name = "End of tenancy";
+			decimal price = 250.50m;
+
+			bool validData;
+
+			try
+			{
+				service.ServiceName = name;
+				service.ServicePrice = price;
+				validData = true;
+			}
+			catch
+			{
+				validData = false;
+			}
+
+			//Assert
+			Assert.AreEqual(true, validData);
+
+
+		}
+		[TestMethod]
+		/// <summary>
+		/// Calculates price
+		/// </summary>
+		public void Test_CalculatePrice() {
+
+			ListView listView = new ListView();
+			
+			ComboBox comboBox = new ComboBox();
+
+			comboBox.Items.Add("200.50");
+			comboBox.Items.Add("100.50");
+
+			ListViewItem listItem1 = new ListViewItem();
+			listItem1.SubItems.Add(comboBox.Items[0].ToString());
+			ListViewItem listItem2 = new ListViewItem();
+			listItem2.SubItems.Add(comboBox.Items[1].ToString());
+
+
+			listView.Items.AddRange(new ListViewItem[] {listItem1,listItem2 });
+
+			decimal totalPrice = 301.00m;
+
+			bool validData = false;
+
+			try
+			{
+				if (totalPrice==service.CalculatePrice(listView))
+				{
+					validData = true;
+				}
+			}
+			catch
+			{
+				validData = false;
+			}
+
+			//Assert
+			Assert.AreEqual(true, validData);
+
+		}
+
+
+
+		[TestMethod]
+		/// <summary>
+		/// Calculates Discount
+		/// </summary>
+		public void Test_CalculateDiscount() {
+
+			string currentPrice = "301.00";
+			decimal discountVAL = 20m;
+			decimal totalPrice = 240.80m;
+
+			bool validData = false;
+
+			try
+			{
+				if (totalPrice == service.CalculateDiscountPrice(currentPrice, discountVAL)) {
+
+					validData = true;
+				}
+			}
+			catch
+			{
+				validData = false;
+			}
+			
+			Assert.AreEqual(true, validData);
+		}
+
+
+
+		[TestMethod]
+		/// <summary>
+		/// Calculates VAT
+		/// </summary>
+		public void Test_CalculateVAT() {
+			string currentPrice = "301.00";
+			decimal vat = 20m;
+
+			decimal totalPrice = 361.2m;
+
+			bool validData = false;
+
+			try
+			{
+				if (totalPrice == service.CalculateVAT(currentPrice, vat))
+				{
+
+					validData = true;
+				}
+			}
+			catch
+			{
+				validData = false;
+			}
+
+			Assert.AreEqual(true, validData);
+		}
+
+
+
+		[TestMethod]
+		/// <summary>
+		/// DISCOUNT and VAT
+		/// </summary>
+		public void Test_DiscountVAL() {
+
+			string currentPrice = "301.00";
+			decimal discount = 20m;
+			decimal vat = 20m;
+
+			decimal totalPrice = 288.96m;
+
+			bool validData = false;
+
+			try
+			{
+				if (totalPrice == service.CalculateVAT(service.CalculateDiscountPrice(currentPrice,discount).ToString(),vat))
+				{
+					validData = true;
+				}
+			}
+			catch
+			{
+				validData = false;
+			}
+
+			Assert.AreEqual(true, validData);
+
+		}
+
 
 
 
