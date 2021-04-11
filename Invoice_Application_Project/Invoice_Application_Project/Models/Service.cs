@@ -389,7 +389,7 @@ namespace Invoice_Application_Project.Models
 
 			if (notesPattern.IsMatch(notesInput) != true)
 			{
-				MessageBox.Show("Do not uncommon symbols in the notes", "Invalid text");
+				MessageBox.Show("Do not use uncommon symbols in the notes", "Invalid text");
 				result = true;
 			}
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,8 +133,8 @@ namespace Invoice_Application_Project.Models
 						Paragraph text;
 
 						//Logo Image
-						string imageFile = "../../Resources/smIcon(Transparent).png";
-						ImageData imagedata = ImageDataFactory.Create(imageFile);
+						//string imageFile = "../../Resources/smIcon(Transparent).png";
+						ImageData imagedata = ImageDataFactory.Create(Properties.Resources.smIcon_Transparent_, null);
 						Image image = new Image(imagedata).SetHeight(100).SetWidth(200);
 						document.Add(image);
 
@@ -141,7 +142,7 @@ namespace Invoice_Application_Project.Models
 						text = new Paragraph("Date: "+ InvoiceDate.Day+"/" + InvoiceDate.Month+"/"+ InvoiceDate.Year).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetFontSize(14);
 						document.Add(text);
 						//Title
-						text = new Paragraph(" Invoice").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(30);
+						text = new Paragraph("Invoice ").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(30);
 						document.Add(text);
 						//Line Separator
 						LineSeparator line = new LineSeparator(new SolidLine());

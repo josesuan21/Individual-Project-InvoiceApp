@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-
 using Invoice_Application_Project.Views;
 using Invoice_Application_Project.Presenters;
-using System.Collections;
+
 
 namespace Invoice_Application_Project
 {
@@ -313,11 +306,14 @@ namespace Invoice_Application_Project
 				MessageBox.Show("Invoice not finsihed");
 
 				form_Menu.Show();
+
 			}
 			else
 			{
 				MessageBox.Show("Invoice Saved");
 			}
+
+			
 			
 
 		}
@@ -355,7 +351,7 @@ namespace Invoice_Application_Project
 
 				//reset combo box incase of newly saved service in database
 				comboBox_ChooseService.Items.Clear();
-
+				label_chooseAservice.Visible = true;
 				for (int i = 0; i < servicePresenter.ShowListServices().Count; i++)
 				{
 					
@@ -372,7 +368,6 @@ namespace Invoice_Application_Project
 		public void GetNewService(string newService, decimal newPrice) {
 			newService_Name = newService;
 			newService_Price = newPrice.ToString();
-
 		}
 
 		//Ticket 21.3
@@ -502,7 +497,7 @@ namespace Invoice_Application_Project
 			CustomerPresenter customer = new CustomerPresenter(this);
 
 			if (customer.RegularExpression(2, textBox_Email.Text)) {
-				e.Cancel = true;
+				textBox_Email.Clear();
 				label_Email.ForeColor = Color.Red;
 			}
 			else
@@ -519,7 +514,7 @@ namespace Invoice_Application_Project
 
 			if (customer.RegularExpression(3, textBox_Address.Text))
 			{
-				e.Cancel = true;
+				textBox_Address.Clear();
 				label_Address.ForeColor = Color.Red;
 			}
 			else
@@ -534,13 +529,13 @@ namespace Invoice_Application_Project
 			CustomerPresenter customer = new CustomerPresenter(this);
 			if (customer.RegularExpression(4, textBox_PostCode.Text))
 			{
-				e.Cancel = true;
+				textBox_PostCode.Clear();
 				label_PostCode.ForeColor = Color.Red;
 			}
 			else
 			{
 				label_PostCode.ForeColor = Color.Black;
-				e.Cancel = false;
+				
 			}
 
 		}
@@ -555,9 +550,8 @@ namespace Invoice_Application_Project
 		{
 			ServicePresenter servicePresenter = new ServicePresenter(this);
 			if (servicePresenter.regularExpression_Notes(textBox_InvoiceNotes.Text)) {
-				e.Cancel = true;
+				textBox_InvoiceNotes.Clear();
 				checkBox_Notes.ForeColor = Color.Red;
-
 			}
 			else
 			{
@@ -575,7 +569,6 @@ namespace Invoice_Application_Project
 			{
 				e.Cancel = true;
 				label_DirectTransfer.ForeColor = Color.Red;
-
 			}
 			else
 			{
@@ -600,7 +593,7 @@ namespace Invoice_Application_Project
 				e.Cancel = false;
 			}
 		}
-
+		//Add service focus - Ticket 033
 		private void ComboBox_ChooseService_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			button_ChooseService.Focus();
@@ -608,7 +601,7 @@ namespace Invoice_Application_Project
 
 
 
-		//Add service focus - Ticket 033
+		
 
 
 

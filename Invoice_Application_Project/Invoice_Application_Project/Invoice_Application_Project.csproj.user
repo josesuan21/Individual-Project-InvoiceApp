@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory />
+    <PublishUrlHistory>C:\Users\efren\Desktop\InvoiceApp_TB3\|C:\Users\efren\Desktop\InvoiceApp_Publish_T3\|C:\Users\efren\Desktop\Invoice_Test2\|C:\Users\efren\Desktop\Invoice_Test1\|C:\Users\efren\Desktop\Invoice_Test5\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />
@@ -9,5 +9,9 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
 </Project>

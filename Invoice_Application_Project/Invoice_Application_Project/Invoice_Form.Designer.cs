@@ -659,7 +659,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-			this.ClientSize = new System.Drawing.Size(685, 661);
+			this.ClientSize = new System.Drawing.Size(671, 661);
 			this.Controls.Add(this.header);
 			this.Controls.Add(this.groupBox_Confirmation);
 			this.Controls.Add(this.groupBox_PaymentDetails);
