@@ -99,6 +99,30 @@ Configuring SQL server database connection
 
 
 
+# ✔️How to install the publish project
+
+1. Download the InvoiceApp_TB3 folder. 
+
+
+2. Inside the folder, Click setup:
+
+![](https://i.imgur.com/GQpqnSI.png)
+
+
+3. Accept the agreement
+
+![](https://i.imgur.com/3DwKQgh.png)
+
+
+4. Then click allow and install
+
+
+
+5. After installation the invoice app displays and a shorcut icon on the desktop is created. 
+
+
+
+
 
 # ✔️Contact
 ### If you have any quetions, please contact me using the email below:
