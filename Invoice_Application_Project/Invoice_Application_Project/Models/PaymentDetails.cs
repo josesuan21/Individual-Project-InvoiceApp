@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Text.RegularExpressions;
 
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Invoice_Application_Project.Models
 {
@@ -43,7 +44,8 @@ namespace Invoice_Application_Project.Models
 
 		//Methods
 
-		public string LoadPaymentDetails_1(){
+		public string LoadPaymentDetails_1()
+		{
 
 			connection = new SqlConnection(connectionString);
 			connection.Open();
@@ -63,7 +65,8 @@ namespace Invoice_Application_Project.Models
 		}
 
 
-		public string LoadPaymentDetails_2() {
+		public string LoadPaymentDetails_2()
+		{
 
 			connection = new SqlConnection(connectionString);
 			connection.Open();
@@ -83,6 +86,39 @@ namespace Invoice_Application_Project.Models
 		}
 
 
+		//Regular expression for notes
 
+		public bool regularExpression_PaymentDetails(int textNum, string notesInput)
+		{
+
+			bool result = false;
+
+			Regex paymentDetailsPattern = new Regex(@"^[a-zA-Z0-9\s+\,.!?%£/:+\-]*$");//Matches lower to upper case, space, comma, dot, exclamation, question mark and dash
+
+			switch (textNum) {
+
+			case 1:
+				if (paymentDetailsPattern.IsMatch(notesInput) != true)
+				{
+					MessageBox.Show("Do not use unwanted symbols in the direct transfer", "Invalid text");
+					result = true;
+				}
+			break;
+
+			case 2:
+				if (paymentDetailsPattern.IsMatch(notesInput) != true)
+				{
+					MessageBox.Show("Do not use unwanted symbols in the cheque", "Invalid text");
+					result = true;
+				}
+			break;
+
+			}
+
+			return result;
+
+		}
 	}
+
+
 }

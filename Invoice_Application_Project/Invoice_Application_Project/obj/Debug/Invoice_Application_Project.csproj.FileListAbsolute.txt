@@ -42,3 +42,9 @@ C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\o
 C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.CustomerRecord_Form.resources
 C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.InvoiceRecords_Form.resources
 C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.ServiceRecords_Form.resources
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.CreateService.resources
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Invoice_Application_Project.exe.manifest
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Invoice_Application_Project.application
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.exe.manifest
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.application
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Resources\smIcon(Transparent).png

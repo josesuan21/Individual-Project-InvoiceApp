@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using Invoice_Application_Project.Models;
 using Invoice_Application_Project.Views;
@@ -52,6 +53,21 @@ namespace Invoice_Application_Project.Presenters
 		public void RemoveDefaultAdded_CustomerRecord(){
 
 			customer.RemoveDefaultAdded_CustomerRecord();
+
+		}
+
+		public AutoCompleteStringCollection ProducePredicted_Customer()
+		{
+			return customer.ProducePredicted_Customer();
+		}
+
+		public string[] CustomerFullDetails(string customerDetails)
+		{
+			return customer.CustomerFullDetails(customerDetails);
+		}
+
+		public bool RegularExpression(int textboxNum, string textboxInput) {
+			return customer.RegularExpression(textboxNum, textboxInput);
 
 		}
 

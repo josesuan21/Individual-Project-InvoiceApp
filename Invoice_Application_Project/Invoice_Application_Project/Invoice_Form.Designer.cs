@@ -31,6 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Invoice_Form));
 			this.dateTimePicker_date = new System.Windows.Forms.DateTimePicker();
 			this.groupBox_CustomerDetails = new System.Windows.Forms.GroupBox();
+			this.button_NewCustomer = new System.Windows.Forms.Button();
 			this.textBox_Email = new System.Windows.Forms.TextBox();
 			this.label_Email = new System.Windows.Forms.Label();
 			this.textBox_PostCode = new System.Windows.Forms.TextBox();
@@ -42,6 +43,10 @@
 			this.textBox_InvoiceNum = new System.Windows.Forms.TextBox();
 			this.label_InvoiceNumber = new System.Windows.Forms.Label();
 			this.groupBox_ServicesDetails = new System.Windows.Forms.GroupBox();
+			this.label_chooseAservice = new System.Windows.Forms.Label();
+			this.numericUpDown_vat = new System.Windows.Forms.NumericUpDown();
+			this.checkBox_Vat = new System.Windows.Forms.CheckBox();
+			this.button_CreateService = new System.Windows.Forms.Button();
 			this.button_RemoveService = new System.Windows.Forms.Button();
 			this.checkBox_Notes = new System.Windows.Forms.CheckBox();
 			this.numericUpDown_Discount = new System.Windows.Forms.NumericUpDown();
@@ -70,6 +75,7 @@
 			this.pictureBox_Logo = new System.Windows.Forms.PictureBox();
 			this.groupBox_CustomerDetails.SuspendLayout();
 			this.groupBox_ServicesDetails.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vat)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Discount)).BeginInit();
 			this.groupBox_PaymentDetails.SuspendLayout();
 			this.groupBox_Confirmation.SuspendLayout();
@@ -87,12 +93,14 @@
 			this.dateTimePicker_date.Size = new System.Drawing.Size(169, 24);
 			this.dateTimePicker_date.TabIndex = 100;
 			this.dateTimePicker_date.Value = new System.DateTime(2021, 2, 2, 1, 29, 55, 0);
+			this.dateTimePicker_date.ValueChanged += new System.EventHandler(this.DateTimePicker_date_ValueChanged);
 			// 
 			// groupBox_CustomerDetails
 			// 
 			this.groupBox_CustomerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox_CustomerDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.groupBox_CustomerDetails.Controls.Add(this.button_NewCustomer);
 			this.groupBox_CustomerDetails.Controls.Add(this.textBox_Email);
 			this.groupBox_CustomerDetails.Controls.Add(this.label_Email);
 			this.groupBox_CustomerDetails.Controls.Add(this.textBox_PostCode);
@@ -110,6 +118,18 @@
 			this.groupBox_CustomerDetails.TabStop = false;
 			this.groupBox_CustomerDetails.Text = "Customer Details";
 			// 
+			// button_NewCustomer
+			// 
+			this.button_NewCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_NewCustomer.Location = new System.Drawing.Point(543, 65);
+			this.button_NewCustomer.Name = "button_NewCustomer";
+			this.button_NewCustomer.Size = new System.Drawing.Size(75, 44);
+			this.button_NewCustomer.TabIndex = 8;
+			this.button_NewCustomer.Text = "New Customer";
+			this.button_NewCustomer.UseVisualStyleBackColor = true;
+			this.button_NewCustomer.Visible = false;
+			this.button_NewCustomer.Click += new System.EventHandler(this.Button_NewCustomer_Click);
+			// 
 			// textBox_Email
 			// 
 			this.textBox_Email.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -119,6 +139,7 @@
 			this.textBox_Email.Name = "textBox_Email";
 			this.textBox_Email.Size = new System.Drawing.Size(314, 24);
 			this.textBox_Email.TabIndex = 5;
+			this.textBox_Email.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Email_Validating);
 			// 
 			// label_Email
 			// 
@@ -134,11 +155,13 @@
 			// 
 			this.textBox_PostCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_PostCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.textBox_PostCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox_PostCode.Location = new System.Drawing.Point(213, 144);
 			this.textBox_PostCode.Name = "textBox_PostCode";
 			this.textBox_PostCode.Size = new System.Drawing.Size(84, 24);
 			this.textBox_PostCode.TabIndex = 7;
+			this.textBox_PostCode.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_PostCode_Validating);
 			// 
 			// textBox_Address
 			// 
@@ -151,6 +174,7 @@
 			this.textBox_Address.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox_Address.Size = new System.Drawing.Size(314, 50);
 			this.textBox_Address.TabIndex = 6;
+			this.textBox_Address.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Address_Validating);
 			// 
 			// textBox_CustomerName
 			// 
@@ -159,10 +183,13 @@
 			this.textBox_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox_CustomerName.Location = new System.Drawing.Point(213, 30);
 			this.textBox_CustomerName.MaximumSize = new System.Drawing.Size(500, 50);
+			this.textBox_CustomerName.MaxLength = 70;
 			this.textBox_CustomerName.MinimumSize = new System.Drawing.Size(314, 24);
 			this.textBox_CustomerName.Name = "textBox_CustomerName";
 			this.textBox_CustomerName.Size = new System.Drawing.Size(314, 24);
 			this.textBox_CustomerName.TabIndex = 0;
+			this.textBox_CustomerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_CustomerName_KeyDown);
+			this.textBox_CustomerName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_CustomerName_Validating);
 			// 
 			// label_PostCode
 			// 
@@ -198,6 +225,7 @@
 			// 
 			this.textBox_InvoiceNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_InvoiceNum.Enabled = false;
 			this.textBox_InvoiceNum.Location = new System.Drawing.Point(140, 97);
 			this.textBox_InvoiceNum.MaximumSize = new System.Drawing.Size(140, 20);
 			this.textBox_InvoiceNum.Name = "textBox_InvoiceNum";
@@ -222,6 +250,10 @@
 			this.groupBox_ServicesDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox_ServicesDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.groupBox_ServicesDetails.Controls.Add(this.label_chooseAservice);
+			this.groupBox_ServicesDetails.Controls.Add(this.numericUpDown_vat);
+			this.groupBox_ServicesDetails.Controls.Add(this.checkBox_Vat);
+			this.groupBox_ServicesDetails.Controls.Add(this.button_CreateService);
 			this.groupBox_ServicesDetails.Controls.Add(this.button_RemoveService);
 			this.groupBox_ServicesDetails.Controls.Add(this.checkBox_Notes);
 			this.groupBox_ServicesDetails.Controls.Add(this.numericUpDown_Discount);
@@ -238,10 +270,62 @@
 			this.groupBox_ServicesDetails.Location = new System.Drawing.Point(7, 324);
 			this.groupBox_ServicesDetails.MinimumSize = new System.Drawing.Size(631, 276);
 			this.groupBox_ServicesDetails.Name = "groupBox_ServicesDetails";
-			this.groupBox_ServicesDetails.Size = new System.Drawing.Size(631, 276);
+			this.groupBox_ServicesDetails.Size = new System.Drawing.Size(631, 294);
 			this.groupBox_ServicesDetails.TabIndex = 7;
 			this.groupBox_ServicesDetails.TabStop = false;
 			this.groupBox_ServicesDetails.Text = "Service Details";
+			// 
+			// label_chooseAservice
+			// 
+			this.label_chooseAservice.AutoSize = true;
+			this.label_chooseAservice.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.label_chooseAservice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_chooseAservice.Location = new System.Drawing.Point(12, 48);
+			this.label_chooseAservice.Name = "label_chooseAservice";
+			this.label_chooseAservice.Size = new System.Drawing.Size(124, 18);
+			this.label_chooseAservice.TabIndex = 17;
+			this.label_chooseAservice.Text = "Choose a service";
+			// 
+			// numericUpDown_vat
+			// 
+			this.numericUpDown_vat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.numericUpDown_vat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.numericUpDown_vat.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.numericUpDown_vat.Location = new System.Drawing.Point(573, 235);
+			this.numericUpDown_vat.Name = "numericUpDown_vat";
+			this.numericUpDown_vat.Size = new System.Drawing.Size(43, 24);
+			this.numericUpDown_vat.TabIndex = 16;
+			this.numericUpDown_vat.Visible = false;
+			this.numericUpDown_vat.ValueChanged += new System.EventHandler(this.NumericUpDown_vat_ValueChanged);
+			// 
+			// checkBox_Vat
+			// 
+			this.checkBox_Vat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox_Vat.AutoSize = true;
+			this.checkBox_Vat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox_Vat.Location = new System.Drawing.Point(424, 234);
+			this.checkBox_Vat.Name = "checkBox_Vat";
+			this.checkBox_Vat.Size = new System.Drawing.Size(120, 22);
+			this.checkBox_Vat.TabIndex = 15;
+			this.checkBox_Vat.Text = "Apply VAT (%)";
+			this.checkBox_Vat.UseVisualStyleBackColor = true;
+			this.checkBox_Vat.CheckedChanged += new System.EventHandler(this.CheckBox_Vat_CheckedChanged);
+			// 
+			// button_CreateService
+			// 
+			this.button_CreateService.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_CreateService.Location = new System.Drawing.Point(9, 78);
+			this.button_CreateService.Name = "button_CreateService";
+			this.button_CreateService.Size = new System.Drawing.Size(238, 28);
+			this.button_CreateService.TabIndex = 14;
+			this.button_CreateService.Text = "Create service";
+			this.button_CreateService.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button_CreateService.UseVisualStyleBackColor = true;
+			this.button_CreateService.Click += new System.EventHandler(this.Button_CreateService_Click);
 			// 
 			// button_RemoveService
 			// 
@@ -260,7 +344,7 @@
 			this.checkBox_Notes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkBox_Notes.AutoSize = true;
 			this.checkBox_Notes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox_Notes.Location = new System.Drawing.Point(9, 138);
+			this.checkBox_Notes.Location = new System.Drawing.Point(9, 153);
 			this.checkBox_Notes.Name = "checkBox_Notes";
 			this.checkBox_Notes.Size = new System.Drawing.Size(96, 22);
 			this.checkBox_Notes.TabIndex = 9;
@@ -288,7 +372,7 @@
 			// 
 			this.textBox_TotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_TotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_TotalPrice.Location = new System.Drawing.Point(523, 237);
+			this.textBox_TotalPrice.Location = new System.Drawing.Point(523, 265);
 			this.textBox_TotalPrice.Name = "textBox_TotalPrice";
 			this.textBox_TotalPrice.ReadOnly = true;
 			this.textBox_TotalPrice.Size = new System.Drawing.Size(94, 24);
@@ -299,7 +383,7 @@
 			this.textBox_InvoiceNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_InvoiceNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_InvoiceNotes.Location = new System.Drawing.Point(9, 166);
+			this.textBox_InvoiceNotes.Location = new System.Drawing.Point(9, 181);
 			this.textBox_InvoiceNotes.MaximumSize = new System.Drawing.Size(600, 92);
 			this.textBox_InvoiceNotes.Multiline = true;
 			this.textBox_InvoiceNotes.Name = "textBox_InvoiceNotes";
@@ -307,13 +391,14 @@
 			this.textBox_InvoiceNotes.Size = new System.Drawing.Size(339, 92);
 			this.textBox_InvoiceNotes.TabIndex = 10;
 			this.textBox_InvoiceNotes.Visible = false;
+			this.textBox_InvoiceNotes.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_InvoiceNotes_Validating);
 			// 
 			// label_TotalPrice
 			// 
 			this.label_TotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label_TotalPrice.AutoSize = true;
 			this.label_TotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_TotalPrice.Location = new System.Drawing.Point(422, 240);
+			this.label_TotalPrice.Location = new System.Drawing.Point(422, 268);
 			this.label_TotalPrice.Name = "label_TotalPrice";
 			this.label_TotalPrice.Size = new System.Drawing.Size(79, 18);
 			this.label_TotalPrice.TabIndex = 10;
@@ -324,7 +409,7 @@
 			this.checkBox_ApplyDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox_ApplyDiscount.AutoSize = true;
 			this.checkBox_ApplyDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox_ApplyDiscount.Location = new System.Drawing.Point(424, 205);
+			this.checkBox_ApplyDiscount.Location = new System.Drawing.Point(424, 204);
 			this.checkBox_ApplyDiscount.Name = "checkBox_ApplyDiscount";
 			this.checkBox_ApplyDiscount.Size = new System.Drawing.Size(152, 22);
 			this.checkBox_ApplyDiscount.TabIndex = 11;
@@ -396,6 +481,7 @@
 			this.comboBox_ChooseService.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
 			this.comboBox_ChooseService.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox_ChooseService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox_ChooseService.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.comboBox_ChooseService.FormattingEnabled = true;
 			this.comboBox_ChooseService.ItemHeight = 18;
@@ -411,7 +497,8 @@
 			this.comboBox_ChooseService.Name = "comboBox_ChooseService";
 			this.comboBox_ChooseService.Size = new System.Drawing.Size(238, 26);
 			this.comboBox_ChooseService.TabIndex = 8;
-			this.comboBox_ChooseService.Text = "Choose service";
+			this.comboBox_ChooseService.SelectedIndexChanged += new System.EventHandler(this.ComboBox_ChooseService_SelectedIndexChanged);
+			this.comboBox_ChooseService.DropDownClosed += new System.EventHandler(this.ComboBox_ChooseService_DropDownClosed);
 			// 
 			// groupBox_PaymentDetails
 			// 
@@ -463,6 +550,7 @@
 			this.textBox_ChequePayment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox_ChequePayment.Size = new System.Drawing.Size(267, 120);
 			this.textBox_ChequePayment.TabIndex = 13;
+			this.textBox_ChequePayment.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_ChequePayment_Validating);
 			// 
 			// textBox_PaymentTransfer
 			// 
@@ -474,6 +562,7 @@
 			this.textBox_PaymentTransfer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox_PaymentTransfer.Size = new System.Drawing.Size(258, 120);
 			this.textBox_PaymentTransfer.TabIndex = 12;
+			this.textBox_PaymentTransfer.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_PaymentTransfer_Validating);
 			// 
 			// groupBox_Confirmation
 			// 
@@ -552,6 +641,7 @@
 			this.dateTimePicker_DueDate.Name = "dateTimePicker_DueDate";
 			this.dateTimePicker_DueDate.Size = new System.Drawing.Size(169, 24);
 			this.dateTimePicker_DueDate.TabIndex = 101;
+			this.dateTimePicker_DueDate.ValueChanged += new System.EventHandler(this.DateTimePicker_DueDate_ValueChanged);
 			// 
 			// pictureBox_Logo
 			// 
@@ -569,7 +659,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-			this.ClientSize = new System.Drawing.Size(693, 661);
+			this.ClientSize = new System.Drawing.Size(671, 661);
 			this.Controls.Add(this.header);
 			this.Controls.Add(this.groupBox_Confirmation);
 			this.Controls.Add(this.groupBox_PaymentDetails);
@@ -586,6 +676,7 @@
 			this.groupBox_CustomerDetails.PerformLayout();
 			this.groupBox_ServicesDetails.ResumeLayout(false);
 			this.groupBox_ServicesDetails.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vat)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Discount)).EndInit();
 			this.groupBox_PaymentDetails.ResumeLayout(false);
 			this.groupBox_PaymentDetails.PerformLayout();
@@ -638,6 +729,11 @@
 		private System.Windows.Forms.Label label_Duedate;
 		private System.Windows.Forms.Label label_Date;
 		private System.Windows.Forms.DateTimePicker dateTimePicker_DueDate;
+		private System.Windows.Forms.Button button_CreateService;
+		private System.Windows.Forms.CheckBox checkBox_Vat;
+		private System.Windows.Forms.NumericUpDown numericUpDown_vat;
+		private System.Windows.Forms.Button button_NewCustomer;
+		private System.Windows.Forms.Label label_chooseAservice;
 	}
 
 	

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 using System.Configuration;
 using System.Data.SqlClient;
@@ -17,6 +18,8 @@ namespace Invoice_Application_Project.Models
 		//SQL connection
 		SqlConnection connection;
 		string connectionString = ConfigurationManager.ConnectionStrings["Invoice_Application_Project.Properties.Settings.InvoiceDatabaseConnectionString"].ConnectionString;
+		//string connectionString = ""; //use this for user testing 
+
 
 		//Fields
 		private int id;
@@ -132,7 +135,7 @@ namespace Invoice_Application_Project.Models
 		/// </summary>
 		public void AddRecord_ServiceChosen(int currentCustomer, int currentInvoiceId, ListView items)
 		{
-			//SQL
+			//SQL1
 			connection = new SqlConnection(connectionString);
 			connection.Open();
 
@@ -331,6 +334,71 @@ namespace Invoice_Application_Project.Models
 
 
 		}
+
+
+		//Ticket 20.3
+		public void SaveService_Database(string servicename, decimal price) {
+
+			//Open connection
+			connection = new SqlConnection(connectionString);
+			connection.Open();
+
+			//Selecting recent added id
+			string sqlQuery_Insert = "INSERT INTO Service (serviceName, price) VALUES (@serviceName, @servicePrice);";
+
+			SqlCommand cmd1 = new SqlCommand(sqlQuery_Insert, connection);
+
+			cmd1.Parameters.AddWithValue("@serviceName", servicename);
+
+			cmd1.Parameters.AddWithValue("@servicePrice", price);
+
+			//Insert new service record in database
+			cmd1.ExecuteNonQuery();
+
+			connection.Close(); //Close for cmd
+
+		}
+
+		/// <summary>
+		///  - Apply VAT - Ticket 21.3
+		/// </summary>
+		/// <returns></returns>
+		public decimal CalculateVAT(string inputCurrentPrice, decimal vat_Val)
+		{
+
+			//- Apply VAT
+			decimal totalDiscountedPrice = 0m;
+
+			decimal currentPrice = Convert.ToDecimal(inputCurrentPrice);
+
+			decimal discountValue = vat_Val / 100m;
+
+			totalDiscountedPrice = currentPrice + (currentPrice * discountValue);
+
+			return Math.Round(totalDiscountedPrice, 2);
+		}
+
+
+
+		//Regular expression for notes
+		public bool regularExpression_Notes(string notesInput) {
+
+			bool result = false;
+
+			Regex notesPattern = new Regex(@"^[a-zA-Z0-9\s+\,.!?%£/:+\-]*$");//Matches lower to upper case, space, comma, dot, exclamation, question mark and dash
+
+			if (notesPattern.IsMatch(notesInput) != true)
+			{
+				MessageBox.Show("Do not use uncommon symbols in the notes", "Invalid text");
+				result = true;
+			}
+
+			return result;
+
+		}
+
+
+
 
 
 	}

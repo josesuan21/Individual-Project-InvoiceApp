@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 using System.Configuration;
 using System.Data.SqlClient;
@@ -16,12 +18,33 @@ namespace Invoice_Application_Project.Models
 		SqlConnection connection;
 		string connectionString = ConfigurationManager.ConnectionStrings["Invoice_Application_Project.Properties.Settings.InvoiceDatabaseConnectionString"].ConnectionString;
 
+
 		//Attributes or fields
 		private int id;
 		private string name;
 		private string email;
 		private string address;
 		private string postcode;
+
+
+		//Default Contructor
+		public Customer()
+		{
+
+		}
+
+		public Customer(int inputId, string inputName, string inputEmail, string inputAdd, string inputPostcode)
+		{
+
+			id = inputId;
+			name = inputName;
+			email = inputEmail;
+			address = inputAdd;
+			postcode = inputPostcode;
+
+		}
+		//Static list of customers
+		static List<Customer> customerList = new List<Customer>();
 
 
 		//Properties
@@ -157,6 +180,150 @@ namespace Invoice_Application_Project.Models
 			connection.Close();
 
 		}
+
+		/// <summary>
+		/// Produce list of items in customer details field to suggest to the user -  Ticket 022
+		/// </summary>
+		public AutoCompleteStringCollection ProducePredicted_Customer() {
+
+			//Open connection
+			connection = new SqlConnection(connectionString);
+
+			connection.Open();
+
+			//where system
+			string sqlQuery_ListOfCustomer = "SELECT customerId, customerName, email, address, postCode from Customer";
+
+			SqlCommand cmd = new SqlCommand(sqlQuery_ListOfCustomer, connection);
+
+			//Execute command and get current added customer
+			SqlDataReader reader = cmd.ExecuteReader();
+
+			AutoCompleteStringCollection autoText = new AutoCompleteStringCollection(); //Contains list of names.
+
+			while (reader.Read())
+			{
+				//Name + address + postcode
+				//autoText.Add(reader[1].ToString() +", "+ reader[3].ToString()+", "+reader[4].ToString());
+				customerList.Add(new Customer(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()));
+			}
+
+			for (int i =0; i<customerList.Count; i++) {
+
+				//To show in the suggestion textbox name
+				autoText.Add( customerList[i].CustomerName +", "+ customerList[i].CustomerAddress +", "+ customerList[i].CustomerPostcode);
+
+			}
+
+			connection.Close();
+
+			return autoText;
+		}
+
+
+
+		//Get the id first then we do the return name....
+
+		//Ticket 024
+		public string[] CustomerFullDetails(string customerDetails) {
+
+			//ArrayList customerFullDetails = new ArrayList();
+
+			string[] customerFullDetails = new string[5];
+
+			for (int i = 0; i < customerList.Count; i++) {
+
+				if (customerList[i].CustomerName + ", " + customerList[i].CustomerAddress + ", " + customerList[i].CustomerPostcode == customerDetails) {
+
+					//Assigns to each index's array
+
+					customerFullDetails[0] = customerList[i].CustomerId.ToString();
+					customerFullDetails[1] = customerList[i].CustomerName;
+					customerFullDetails[2] = customerList[i].CustomerEmail; 
+					customerFullDetails[3] = customerList[i].CustomerAddress;
+					customerFullDetails[4] = customerList[i].CustomerPostcode;
+
+					break;
+				}
+
+
+			}
+
+			return customerFullDetails;
+
+
+		}
+
+
+		//Regular Expressions
+
+		public bool RegularExpression(int textboxNum, string textboxInput) {
+
+			//FALSE means nothing violates the expression
+			bool result = false;
+
+			//Checks whether what textbox is using
+			switch (textboxNum) {
+
+				//Name
+				case 1:
+
+					Regex namePattern = new Regex(@"^[a-zA-Z\s+\-]*$");//Matches lower to upper case, space and dash
+					if (namePattern.IsMatch(textboxInput) != true)
+					{
+						MessageBox.Show("Name text only accept: \n 1. Letters \n 2. Numbers \n 3. Signs (@, £, $, €, ¥, #) \n 4. Symbols (full stop, comma, colon, semi-colon, hypen) ","Invalid text name");
+						result = true;
+					}
+
+					break;
+
+				//Email
+				case 2:
+
+					Regex emailPattern = new Regex(@"(@)(.+)$"); //From Microsoft Docs
+
+					if (emailPattern.IsMatch(textboxInput) != true) {
+						MessageBox.Show("Make sure that the email is correct with no spaces","Invalid email");
+						result = true;
+					}
+
+					break;
+
+				//Address
+				case 3:
+
+					Regex addressPattern = new Regex(@"^[a-zA-Z0-9\s+\,.+\-]*$");//Matches lower to upper case, space, comma, dot and dash
+
+					if (addressPattern.IsMatch(textboxInput) != true) {
+						MessageBox.Show("Do not use signs in the address", "Invalid address");
+						result = true;
+					}
+
+					break;
+
+				//Post code
+				case 4:
+
+					Regex postcodePattern = new Regex(@"[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$");// Post code format from wiki
+
+					if (postcodePattern.IsMatch(textboxInput) != true)
+					{
+						MessageBox.Show("Ensure it is a UK Post code. \n e.g. CT1 1QU or CT11QU", "Invalid Post code");
+						result = true;
+					}
+
+					break;
+
+
+
+			}
+
+
+			return result;
+
+		}
+
+
 
 
 

@@ -63,6 +63,18 @@ namespace Invoice_Application_Project.Presenters
 
 		}
 
+		public void SaveNew_Service(string name, decimal price) {
+			service.SaveService_Database(name, price);
+		}
+
+		public decimal CalculateVAT(string inputCurrentPrice, decimal vat_VAL) {
+			return service.CalculateVAT(inputCurrentPrice, vat_VAL);
+		}
+
+		public bool regularExpression_Notes(string notesInput){
+			return service.regularExpression_Notes(notesInput);
+		}
+
 
 
 	}

@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Invoice_Application_Project.Views;
 using Invoice_Application_Project.Presenters;
 
@@ -25,6 +19,9 @@ namespace Invoice_Application_Project
 		//Flag for Save PDF button
 		bool completedInvoice;
 
+		//Flag create service
+		static string newService_Name;
+		static string newService_Price;
 
 		//InvoiceRecord Interface - Ticket 30
 		public int InvoiceId_Text { get {return currentInvoiceId; } set { currentInvoiceId = value; } }
@@ -62,6 +59,7 @@ namespace Invoice_Application_Project
 
 
 		public string PDFdiscountGiven_Text { get { return numericUpDown_Discount.Text; } set { numericUpDown_Discount.Text = value; } }
+		public string PDFvat_Text { get { return numericUpDown_vat.Text; } set { numericUpDown_vat.Text = value; } }
 		public string PDFtotalPrice_Text { get { return textBox_TotalPrice.Text; } set { textBox_TotalPrice.Text = value; } }
 
 		//Payment Details (Observe if needed any use for future tickets)  Ticket 17
@@ -72,6 +70,7 @@ namespace Invoice_Application_Project
 		public Invoice_Form()
 		{
 			InitializeComponent();
+			
 		}
 
 
@@ -103,6 +102,7 @@ namespace Invoice_Application_Project
 			else
 			{
 				textBox_InvoiceNotes.Visible = false;
+				checkBox_Notes.ForeColor = Color.Black;
 			}
 		}
 
@@ -114,8 +114,12 @@ namespace Invoice_Application_Project
 
 			//Current Date
 			dateTimePicker_date.Value = DateTime.Today;
-
+			//Validate date = due date
+			dateTimePicker_date.MaxDate = dateTimePicker_DueDate.Value;
+			//Due date plus 1 day
 			dateTimePicker_DueDate.Value = DateTime.Today.AddDays(1);
+			//Validate due date
+			dateTimePicker_DueDate.MinDate = dateTimePicker_date.Value;
 
 			//Create Invoice Number;
 			InvoiceRecordPresenter invoiceRecordPresenter = new InvoiceRecordPresenter(this);
@@ -133,6 +137,12 @@ namespace Invoice_Application_Project
 				//Assigns and get the current customer Id
 				curentCustomerId = customerPresenter.GetCustomerId();
 
+				//Predict Existing Customer - Ticket 022
+				textBox_CustomerName.AutoCompleteMode = AutoCompleteMode.Suggest;
+				textBox_CustomerName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+				//Do the sorting here
+				textBox_CustomerName.AutoCompleteCustomSource = customerPresenter.ProducePredicted_Customer();
+				 
 
 				//List of services (Service Presenter)
 				comboBox_ChooseService.Items.Clear();
@@ -141,7 +151,7 @@ namespace Invoice_Application_Project
 				for (int i=0; i<servicePresenter.ShowListServices().Count;i++) {
 
 					comboBox_ChooseService.Items.Add(servicePresenter.ShowListServices()[i]);
-
+					
 				}
 
 
@@ -184,8 +194,9 @@ namespace Invoice_Application_Project
 				//Updates total price
 				textBox_TotalPrice.Text = textBox_CurrentPrice.Text;
 
-				//Calculate total price (with discount)
-				textBox_TotalPrice.Text = string.Format("{0:0.00}",servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString());
+				//Calculate total price (Discount and VAT)
+				textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
 			}
 			else
 			{
@@ -193,6 +204,7 @@ namespace Invoice_Application_Project
 				Prompt_NoServices();
 
 			}
+
 		}
 
 		private void Button_SavePDF_Click(object sender, EventArgs e)
@@ -228,14 +240,12 @@ namespace Invoice_Application_Project
 				//BUG 002 - Flag Saving Dialogue Cancel
 				completedInvoice = pdfPresenter.SavePDF(listView_Services);
 
-
 			}
 			else
 			{
 				//No services 
 				Prompt_NoServices();
 			}
-
 
 			//Close invoice and go to main menu
 			Form_Menu openHome = new Form_Menu();
@@ -249,8 +259,10 @@ namespace Invoice_Application_Project
 		{
 			ServicePresenter servicePresenter = new ServicePresenter(this);
 
-			//Calculate total price (with discount)
-			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString());
+			//Calculate total price (Discount and VAT)
+			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
+
 		}
 
 		//Remove selected Service - Ticket 018
@@ -267,8 +279,9 @@ namespace Invoice_Application_Project
 			//Updates total price
 			textBox_TotalPrice.Text = textBox_CurrentPrice.Text;
 
-			//Calculate total price (with discount)
-			textBox_TotalPrice.Text = string.Format("{0:#.00}", servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString());
+			//Calculate total price (Discount and VAT)
+			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
 		}
 
 		//Ticket 026 - Stop Saving record if PDF is not completed
@@ -293,14 +306,305 @@ namespace Invoice_Application_Project
 				MessageBox.Show("Invoice not finsihed");
 
 				form_Menu.Show();
+
 			}
 			else
 			{
 				MessageBox.Show("Invoice Saved");
 			}
+
+			
 			
 
 		}
+
+		private void Button_CreateService_Click(object sender, EventArgs e)
+		{
+			
+			CreateService createServiceForm = new CreateService();
+			ServicePresenter servicePresenter = new ServicePresenter(this);
+
+			createServiceForm.ShowDialog();
+
+			if (newService_Name != null || newService_Price != null)
+			{
+				ListViewItem item = new ListViewItem();
+				item.Text = newService_Name;
+				item.SubItems.Add(newService_Price);
+
+				//Add Custom Service and Price - Ticket 20.1
+				listView_Services.Items.Add(item);
+
+				//Update price
+				//Calculate price (Service presenter)
+				textBox_CurrentPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculatePrice(listView_Services).ToString());
+				//Updates total price
+				textBox_TotalPrice.Text = textBox_CurrentPrice.Text;
+
+				//Calculate total price (Discount and VAT)
+				textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+
+
+				//reset custom service data
+				newService_Name = null;
+				newService_Price = null;
+
+				//reset combo box incase of newly saved service in database
+				comboBox_ChooseService.Items.Clear();
+				label_chooseAservice.Visible = true;
+				for (int i = 0; i < servicePresenter.ShowListServices().Count; i++)
+				{
+					
+					comboBox_ChooseService.Items.Add(servicePresenter.ShowListServices()[i]);
+
+				}
+
+
+			}
+
+
+		}
+		
+		public void GetNewService(string newService, decimal newPrice) {
+			newService_Name = newService;
+			newService_Price = newPrice.ToString();
+		}
+
+		//Ticket 21.3
+		private void CheckBox_Vat_CheckedChanged(object sender, EventArgs e)
+		{
+
+			if (checkBox_Vat.Checked)
+			{
+				numericUpDown_vat.Visible = true;
+				numericUpDown_vat.Value = 20; //standard VAT UK
+			}
+			else
+			{
+				numericUpDown_vat.Visible = false;
+				numericUpDown_vat.Value = 0; //Sets to zero if unchecked
+			}
+
+		}
+
+		private void NumericUpDown_vat_ValueChanged(object sender, EventArgs e)
+		{
+			ServicePresenter servicePresenter = new ServicePresenter(this);
+			//Calculate total price (Discount and VAT)
+			textBox_TotalPrice.Text = string.Format("{0:0.00}", servicePresenter.CalculateVAT(servicePresenter.CalculateDiscountPrice(textBox_CurrentPrice.Text, numericUpDown_Discount.Value).ToString(), numericUpDown_vat.Value));
+		}
+
+		//Ticket 022.1
+		private void TextBox_CustomerName_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyData == Keys.Enter) {
+
+				CustomerPresenter customer = new CustomerPresenter(this);
+				string[] customerDetails = new string[5];
+
+				//*****Get customer name details and Assign textboxes using array
+				customerDetails = customer.CustomerFullDetails(textBox_CustomerName.Text);
+				//BUG 004 creating the if
+				if (customerDetails[0] != null) {
+					//Ticket 022.1
+					//*****Return full details in an arrayList or List
+					//0 - id - Ticket 24
+					curentCustomerId = Convert.ToInt32(customerDetails[0]);
+					//1 - name
+					textBox_CustomerName.Text = customerDetails[1];
+					//2 - email
+					textBox_Email.Text = customerDetails[2];
+					//3 - address
+					textBox_Address.Text = customerDetails[3];
+					//4 - Postcode
+					textBox_PostCode.Text = customerDetails[4];
+
+					//*****Remove created deafault customer
+					customer.RemoveDefaultAdded_CustomerRecord();
+
+					//Disable textboxes
+					textBox_CustomerName.Enabled = false;
+					textBox_Email.Enabled = false;
+					textBox_Address.Enabled = false;
+					textBox_PostCode.Enabled = false;
+
+					//Make button create new customer visible
+					button_NewCustomer.Visible = true;
+
+				}
+				
+			}
+
+		}
+
+		//BUG 004
+		private void Button_NewCustomer_Click(object sender, EventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+			//Create a new non existing customer
+			customer.CreateCustomerId();
+
+			//Assigns and get the current customer Id
+			curentCustomerId = customer.GetCustomerId();
+
+			//Clear textboxes fields
+			textBox_CustomerName.Clear();
+			textBox_Email.Clear();
+			textBox_Address.Clear(); 
+			textBox_PostCode.Clear();
+
+			//Enable textboxes
+			textBox_CustomerName.Enabled = true;
+			textBox_Email.Enabled = true;
+			textBox_Address.Enabled = true;
+			textBox_PostCode.Enabled = true;
+
+			//Make button invisible
+			button_NewCustomer.Visible = false;
+
+		}
+
+		// Validate header input details (date and due date) -  Ticket 38
+		private void DateTimePicker_DueDate_ValueChanged(object sender, EventArgs e)
+		{
+			dateTimePicker_date.MaxDate = dateTimePicker_DueDate.Value;
+		}
+
+		private void DateTimePicker_date_ValueChanged(object sender, EventArgs e)
+		{
+			dateTimePicker_DueDate.MinDate = dateTimePicker_date.Value;
+		}
+
+		// Validation Customer input details - Ticket 38.1
+		private void TextBox_CustomerName_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+
+			if (customer.RegularExpression(1,textBox_CustomerName.Text)) {
+				e.Cancel = true;
+				label_CustomerName.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_CustomerName.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		private void TextBox_Email_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+
+			if (customer.RegularExpression(2, textBox_Email.Text)) {
+				textBox_Email.Clear();
+				label_Email.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_Email.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		private void TextBox_Address_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+
+			if (customer.RegularExpression(3, textBox_Address.Text))
+			{
+				textBox_Address.Clear();
+				label_Address.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_Address.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+		}
+
+		private void TextBox_PostCode_Validating(object sender, CancelEventArgs e)
+		{
+			CustomerPresenter customer = new CustomerPresenter(this);
+			if (customer.RegularExpression(4, textBox_PostCode.Text))
+			{
+				textBox_PostCode.Clear();
+				label_PostCode.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_PostCode.ForeColor = Color.Black;
+				
+			}
+
+		}
+
+		//(Validation) Service input details - Ticket 038.2 
+		private void ComboBox_ChooseService_DropDownClosed(object sender, EventArgs e)
+		{
+			label_chooseAservice.Visible = false;
+		}
+
+		private void TextBox_InvoiceNotes_Validating(object sender, CancelEventArgs e)
+		{
+			ServicePresenter servicePresenter = new ServicePresenter(this);
+			if (servicePresenter.regularExpression_Notes(textBox_InvoiceNotes.Text)) {
+				textBox_InvoiceNotes.Clear();
+				checkBox_Notes.ForeColor = Color.Red;
+			}
+			else
+			{
+				checkBox_Notes.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		//(Validation) Payment input details - Ticket 038.3 
+		private void TextBox_PaymentTransfer_Validating(object sender, CancelEventArgs e)
+		{
+			PaymentDetailsPresenter paymentDetails = new PaymentDetailsPresenter(this);
+			if (paymentDetails.regularExpression_PaymentDetails(1,textBox_PaymentTransfer.Text))
+			{
+				e.Cancel = true;
+				label_DirectTransfer.ForeColor = Color.Red;
+			}
+			else
+			{
+				label_DirectTransfer.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+
+		}
+
+		private void TextBox_ChequePayment_Validating(object sender, CancelEventArgs e)
+		{
+			PaymentDetailsPresenter paymentDetails = new PaymentDetailsPresenter(this);
+			if (paymentDetails.regularExpression_PaymentDetails(2, textBox_ChequePayment.Text))
+			{
+				e.Cancel = true;
+				label_ChequePayment.ForeColor = Color.Red;
+
+			}
+			else
+			{
+				label_ChequePayment.ForeColor = Color.Black;
+				e.Cancel = false;
+			}
+		}
+		//Add service focus - Ticket 033
+		private void ComboBox_ChooseService_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			button_ChooseService.Focus();
+		}
+
+
+
+		
+
+
+
 	}
 
 }

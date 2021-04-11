@@ -19,6 +19,7 @@ namespace Invoice_Application_Project.Views
 		string PDFnotes_PaymentTransfer { get; set; }
 		string PDFnotes_PaymentCheque { get; set; }
 		string PDFdiscountGiven_Text { get; set; }
+		string PDFvat_Text { get; set; }
 		string PDFtotalPrice_Text { get; set; }
 
 
