@@ -221,7 +221,8 @@ namespace Invoice_Application_Project
 
 				//SaveCustomer Details (Customer Presenter)
 				customerPresenter.SaveCustomerDetails();
-
+			
+				
 				//Adding Notes 
 				if (checkBox_Notes.Checked) {
 					
@@ -314,8 +315,6 @@ namespace Invoice_Application_Project
 			}
 
 			
-			
-
 		}
 
 		private void Button_CreateService_Click(object sender, EventArgs e)
@@ -495,7 +494,6 @@ namespace Invoice_Application_Project
 		private void TextBox_Email_Validating(object sender, CancelEventArgs e)
 		{
 			CustomerPresenter customer = new CustomerPresenter(this);
-
 			if (customer.RegularExpression(2, textBox_Email.Text)) {
 				textBox_Email.Clear();
 				label_Email.ForeColor = Color.Red;
@@ -505,6 +503,8 @@ namespace Invoice_Application_Project
 				label_Email.ForeColor = Color.Black;
 				e.Cancel = false;
 			}
+
+
 
 		}
 
@@ -527,6 +527,7 @@ namespace Invoice_Application_Project
 		private void TextBox_PostCode_Validating(object sender, CancelEventArgs e)
 		{
 			CustomerPresenter customer = new CustomerPresenter(this);
+	
 			if (customer.RegularExpression(4, textBox_PostCode.Text))
 			{
 				textBox_PostCode.Clear();
@@ -535,8 +536,9 @@ namespace Invoice_Application_Project
 			else
 			{
 				label_PostCode.ForeColor = Color.Black;
-				
+
 			}
+		  
 
 		}
 
@@ -599,9 +601,6 @@ namespace Invoice_Application_Project
 			button_ChooseService.Focus();
 		}
 
-
-
-		
 
 
 

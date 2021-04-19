@@ -188,7 +188,7 @@ namespace Invoice_Application_Project.Models
 						//Discount Given
 						text = new Paragraph("Discount Given: "+ InvoiceDiscountGiven+"%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
 						document.Add(text);
-						text = new Paragraph("VAT: " + InvoiceDiscountGiven + "%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
+						text = new Paragraph("VAT: " + InvoiceVAT + "%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
 						document.Add(text);
 
 						//Total price
@@ -245,8 +245,6 @@ namespace Invoice_Application_Project.Models
 					successSave = false;
 					MessageBox.Show("Saving unfinished!");
 				}
-
-
 
 			}
 

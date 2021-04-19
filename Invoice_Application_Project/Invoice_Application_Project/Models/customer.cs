@@ -236,7 +236,6 @@ namespace Invoice_Application_Project.Models
 				if (customerList[i].CustomerName + ", " + customerList[i].CustomerAddress + ", " + customerList[i].CustomerPostcode == customerDetails) {
 
 					//Assigns to each index's array
-
 					customerFullDetails[0] = customerList[i].CustomerId.ToString();
 					customerFullDetails[1] = customerList[i].CustomerName;
 					customerFullDetails[2] = customerList[i].CustomerEmail; 
@@ -314,20 +313,11 @@ namespace Invoice_Application_Project.Models
 
 					break;
 
-
-
 			}
-
 
 			return result;
 
 		}
-
-
-
-
-
-
 
 
 	}

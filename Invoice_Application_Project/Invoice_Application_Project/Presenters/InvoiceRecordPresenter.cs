@@ -45,6 +45,7 @@ namespace Invoice_Application_Project.Presenters
 			invoiceRecord.InvoiceId = iinvoiceRecordView.InvoiceId_Text;
 			invoiceRecord.InvoiceTotalPrice = iinvoiceRecordView.InvoiceTotalPrice_Text;
 			invoiceRecord.InvoiceDiscount = iinvoiceRecordView.InvoiceDiscount_Text;
+			
 
 			invoiceRecord.SaveTotalPrice_DisocuntVal();
 
