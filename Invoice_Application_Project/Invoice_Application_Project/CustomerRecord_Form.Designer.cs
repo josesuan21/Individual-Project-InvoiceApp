@@ -46,7 +46,6 @@
 			this.customerBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
 			this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-			this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -70,7 +69,6 @@
 			this.button_Next = new System.Windows.Forms.Button();
 			this.button_backwithpoint = new System.Windows.Forms.Button();
 			this.button_AddData = new System.Windows.Forms.Button();
-			this.button_RemoveData = new System.Windows.Forms.Button();
 			this.button_Done = new System.Windows.Forms.Button();
 			this.button_update = new System.Windows.Forms.Button();
 			this.label_RecordsDetails = new System.Windows.Forms.Label();
@@ -204,7 +202,6 @@
 			this.tableAdapterManager.CustomerTableAdapter = this.customerTableAdapter;
 			this.tableAdapterManager.InvoiceRecordTableAdapter = null;
 			this.tableAdapterManager.PaymentDetailsTableAdapter = null;
-			this.tableAdapterManager.ServiceChosenTableAdapter = null;
 			this.tableAdapterManager.ServiceTableAdapter = null;
 			this.tableAdapterManager.UpdateOrder = Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
 			// 
@@ -213,7 +210,7 @@
 			this.customerBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
 			this.customerBindingNavigator.BindingSource = this.customerBindingSource;
 			this.customerBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-			this.customerBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+			this.customerBindingNavigator.DeleteItem = null;
 			this.customerBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -225,7 +222,6 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
             this.customerBindingNavigatorSaveItem});
 			this.customerBindingNavigator.Location = new System.Drawing.Point(0, 0);
 			this.customerBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
@@ -253,15 +249,6 @@
 			this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
 			this.bindingNavigatorCountItem.Text = "of {0}";
 			this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-			// 
-			// bindingNavigatorDeleteItem
-			// 
-			this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-			this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-			this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorDeleteItem.Text = "Delete";
 			// 
 			// bindingNavigatorMoveFirstItem
 			// 
@@ -346,6 +333,7 @@
 			this.customerDataGridView.DataSource = this.customerBindingSource;
 			this.customerDataGridView.Location = new System.Drawing.Point(317, 108);
 			this.customerDataGridView.Name = "customerDataGridView";
+			this.customerDataGridView.ReadOnly = true;
 			this.customerDataGridView.Size = new System.Drawing.Size(642, 220);
 			this.customerDataGridView.TabIndex = 6;
 			// 
@@ -361,28 +349,33 @@
 			this.dataGridViewTextBoxColumn2.DataPropertyName = "customerName";
 			this.dataGridViewTextBoxColumn2.HeaderText = "Name";
 			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+			this.dataGridViewTextBoxColumn2.ReadOnly = true;
 			// 
 			// dataGridViewTextBoxColumn3
 			// 
 			this.dataGridViewTextBoxColumn3.DataPropertyName = "email";
 			this.dataGridViewTextBoxColumn3.HeaderText = "Email";
 			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
 			// 
 			// dataGridViewTextBoxColumn4
 			// 
 			this.dataGridViewTextBoxColumn4.DataPropertyName = "address";
 			this.dataGridViewTextBoxColumn4.HeaderText = "Address";
 			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+			this.dataGridViewTextBoxColumn4.ReadOnly = true;
 			// 
 			// dataGridViewTextBoxColumn5
 			// 
 			this.dataGridViewTextBoxColumn5.DataPropertyName = "postCode";
 			this.dataGridViewTextBoxColumn5.HeaderText = "Post Code";
 			this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+			this.dataGridViewTextBoxColumn5.ReadOnly = true;
 			// 
 			// customerIdTextBox
 			// 
 			this.customerIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "customerId", true));
+			this.customerIdTextBox.Enabled = false;
 			this.customerIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.customerIdTextBox.Location = new System.Drawing.Point(108, 114);
 			this.customerIdTextBox.Name = "customerIdTextBox";
@@ -457,24 +450,13 @@
 			// button_AddData
 			// 
 			this.button_AddData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_AddData.Location = new System.Drawing.Point(645, 334);
+			this.button_AddData.Location = new System.Drawing.Point(599, 334);
 			this.button_AddData.Name = "button_AddData";
 			this.button_AddData.Size = new System.Drawing.Size(105, 40);
 			this.button_AddData.TabIndex = 18;
 			this.button_AddData.Text = "Add ➕";
 			this.button_AddData.UseVisualStyleBackColor = true;
 			this.button_AddData.Click += new System.EventHandler(this.Button_AddData_Click);
-			// 
-			// button_RemoveData
-			// 
-			this.button_RemoveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_RemoveData.Location = new System.Drawing.Point(523, 334);
-			this.button_RemoveData.Name = "button_RemoveData";
-			this.button_RemoveData.Size = new System.Drawing.Size(105, 40);
-			this.button_RemoveData.TabIndex = 19;
-			this.button_RemoveData.Text = "➖ Remove";
-			this.button_RemoveData.UseVisualStyleBackColor = true;
-			this.button_RemoveData.Click += new System.EventHandler(this.Button_RemoveData_Click);
 			// 
 			// button_Done
 			// 
@@ -512,11 +494,11 @@
 			// textBox_search
 			// 
 			this.textBox_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_search.Location = new System.Drawing.Point(835, 68);
+			this.textBox_search.Location = new System.Drawing.Point(812, 68);
 			this.textBox_search.Name = "textBox_search";
-			this.textBox_search.Size = new System.Drawing.Size(124, 24);
+			this.textBox_search.Size = new System.Drawing.Size(147, 24);
 			this.textBox_search.TabIndex = 25;
-			this.textBox_search.Text = "🔍 Search";
+			this.textBox_search.Text = "🔍 Search Customer";
 			this.textBox_search.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBox_search_MouseClick);
 			this.textBox_search.TextChanged += new System.EventHandler(this.TextBox_search_TextChanged);
 			// 
@@ -530,7 +512,6 @@
 			this.Controls.Add(this.label_RecordsDetails);
 			this.Controls.Add(this.button_update);
 			this.Controls.Add(this.button_Done);
-			this.Controls.Add(this.button_RemoveData);
 			this.Controls.Add(this.button_AddData);
 			this.Controls.Add(this.button_backwithpoint);
 			this.Controls.Add(this.button_Next);
@@ -576,7 +557,6 @@
 		private System.Windows.Forms.BindingNavigator customerBindingNavigator;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
 		private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
 		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
@@ -600,7 +580,6 @@
 		private System.Windows.Forms.Button button_Next;
 		private System.Windows.Forms.Button button_backwithpoint;
 		private System.Windows.Forms.Button button_AddData;
-		private System.Windows.Forms.Button button_RemoveData;
 		private System.Windows.Forms.Button button_Done;
 		private System.Windows.Forms.Button button_update;
 		private System.Windows.Forms.Label label_RecordsDetails;

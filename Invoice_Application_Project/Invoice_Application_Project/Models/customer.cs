@@ -82,8 +82,8 @@ namespace Invoice_Application_Project.Models
 
 			connection.Open();
 
-			//where system
-			string sqlQuery_InsertCustomerId = "INSERT INTO Customer (customerName) VALUES ('New Customer'); SELECT SCOPE_IDENTITY() as RecentId";
+			//Where system
+			string sqlQuery_InsertCustomerId = "INSERT INTO Customer (customerName,email,address,postCode) VALUES ('New Customer','new@email','New Address','XX1 1XX'); SELECT SCOPE_IDENTITY() as RecentId";
 
 			SqlCommand cmd = new SqlCommand(sqlQuery_InsertCustomerId, connection);
 
@@ -267,10 +267,14 @@ namespace Invoice_Application_Project.Models
 				//Name
 				case 1:
 
-					Regex namePattern = new Regex(@"^[a-zA-Z\s+\-]*$");//Matches lower to upper case, space and dash
+					Regex namePattern = new Regex(@"^[a-zA-Z\s+\-|^$]*$");//Matches lower to upper case, space and dash
 					if (namePattern.IsMatch(textboxInput) != true)
 					{
 						MessageBox.Show("Name text only accept: \n 1. Letters \n 2. Numbers \n 3. Signs (@, £, $, €, ¥, #) \n 4. Symbols (full stop, comma, colon, semi-colon, hypen) ","Invalid text name");
+						result = true;
+					}
+					if (textboxInput == "") {
+						MessageBox.Show("Name required!");
 						result = true;
 					}
 
@@ -297,6 +301,11 @@ namespace Invoice_Application_Project.Models
 						MessageBox.Show("Do not use signs in the address", "Invalid address");
 						result = true;
 					}
+					if (textboxInput == "")
+					{
+						MessageBox.Show("Address required!");
+						result = true;
+					}
 
 					break;
 
@@ -308,6 +317,11 @@ namespace Invoice_Application_Project.Models
 					if (postcodePattern.IsMatch(textboxInput) != true)
 					{
 						MessageBox.Show("Ensure it is a UK Post code. \n e.g. CT1 1QU or CT11QU", "Invalid Post code");
+						result = true;
+					}
+					if (textboxInput == "")
+					{
+						MessageBox.Show("Post code required!");
 						result = true;
 					}
 

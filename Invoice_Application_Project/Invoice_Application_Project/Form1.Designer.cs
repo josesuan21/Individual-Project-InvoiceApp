@@ -35,6 +35,7 @@
 			this.button_CreateInvoice = new System.Windows.Forms.Button();
 			this.pictureBox_ComapanyLogo = new System.Windows.Forms.PictureBox();
 			this.button_UpdateRecord = new System.Windows.Forms.Button();
+			this.button_Statistic = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox_ComapanyLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -90,7 +91,7 @@
 			// 
 			// button_UpdateRecord
 			// 
-			this.button_UpdateRecord.Location = new System.Drawing.Point(138, 324);
+			this.button_UpdateRecord.Location = new System.Drawing.Point(138, 312);
 			this.button_UpdateRecord.Name = "button_UpdateRecord";
 			this.button_UpdateRecord.Size = new System.Drawing.Size(139, 51);
 			this.button_UpdateRecord.TabIndex = 5;
@@ -98,11 +99,22 @@
 			this.button_UpdateRecord.UseVisualStyleBackColor = true;
 			this.button_UpdateRecord.Click += new System.EventHandler(this.Button_UpdateRecord_Click);
 			// 
+			// button_Statistic
+			// 
+			this.button_Statistic.Location = new System.Drawing.Point(138, 373);
+			this.button_Statistic.Name = "button_Statistic";
+			this.button_Statistic.Size = new System.Drawing.Size(139, 51);
+			this.button_Statistic.TabIndex = 6;
+			this.button_Statistic.Text = "Statistic Report";
+			this.button_Statistic.UseVisualStyleBackColor = true;
+			this.button_Statistic.Click += new System.EventHandler(this.Button_Statistic_Click);
+			// 
 			// Form_Menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(416, 436);
+			this.ClientSize = new System.Drawing.Size(416, 452);
+			this.Controls.Add(this.button_Statistic);
 			this.Controls.Add(this.button_UpdateRecord);
 			this.Controls.Add(this.pictureBox_ComapanyLogo);
 			this.Controls.Add(this.button_CreateInvoice);
@@ -130,6 +142,7 @@
 		private System.Windows.Forms.Button button_CreateInvoice;
 		private System.Windows.Forms.PictureBox pictureBox_ComapanyLogo;
 		private System.Windows.Forms.Button button_UpdateRecord;
+		private System.Windows.Forms.Button button_Statistic;
 	}
 }
 

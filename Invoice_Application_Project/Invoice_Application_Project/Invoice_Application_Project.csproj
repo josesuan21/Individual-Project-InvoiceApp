@@ -109,6 +109,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -172,11 +173,23 @@
     <Compile Include="Presenters\ServicePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceChosen_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceChosen_Form.Designer.cs">
+      <DependentUpon>ServiceChosen_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServiceRecords_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ServiceRecords_Form.Designer.cs">
       <DependentUpon>ServiceRecords_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticReport_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticReport_Form.Designer.cs">
+      <DependentUpon>StatisticReport_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ICustomer.cs" />
     <Compile Include="Views\IinvoiceRecord.cs" />
@@ -214,8 +227,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ServiceChosen_Form.resx">
+      <DependentUpon>ServiceChosen_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServiceRecords_Form.resx">
       <DependentUpon>ServiceRecords_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticReport_Form.resx">
+      <DependentUpon>StatisticReport_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewUpdate_Form.resx">
       <DependentUpon>ViewUpdate_Form.cs</DependentUpon>

@@ -75,12 +75,6 @@ namespace Invoice_Application_Project
 
 		}
 
-		//To remove data
-		private void Button_RemoveData_Click(object sender, EventArgs e)
-		{
-			this.customerBindingSource.RemoveCurrent();
-			SaveData();
-		}
 
 		//Done 
 		private void Button_Done_Click(object sender, EventArgs e)
@@ -107,18 +101,17 @@ namespace Invoice_Application_Project
 
 			if (result) {
 				button_AddData.Enabled = true;
-				button_RemoveData.Enabled = true;
 				button_Next.Enabled = true;
 				button_backwithpoint.Enabled = true;
 			}
 			else
 			{
 				button_AddData.Enabled = false;
-				button_RemoveData.Enabled = false;
 				button_Next.Enabled = false;
 				button_backwithpoint.Enabled = false;
 			}
 		}
+
 		//Disable Textfields 
 		public void EnableState_TextFields(bool result) {
 
@@ -165,7 +158,6 @@ namespace Invoice_Application_Project
 			}
 
 		}
-
 
 	}
 }

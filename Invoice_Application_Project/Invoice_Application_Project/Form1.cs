@@ -32,5 +32,11 @@ namespace Invoice_Application_Project
 			ViewUpdate_Form viewUpdate = new ViewUpdate_Form();
 			viewUpdate.Show();
 		}
+
+		private void Button_Statistic_Click(object sender, EventArgs e)
+		{
+			StatisticReport_Form report_Form = new StatisticReport_Form();
+			report_Form.Show();
+		}
 	}
 }

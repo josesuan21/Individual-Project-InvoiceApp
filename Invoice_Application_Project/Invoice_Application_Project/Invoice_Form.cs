@@ -221,7 +221,6 @@ namespace Invoice_Application_Project
 
 				//SaveCustomer Details (Customer Presenter)
 				customerPresenter.SaveCustomerDetails();
-			
 				
 				//Adding Notes 
 				if (checkBox_Notes.Checked) {
@@ -232,10 +231,8 @@ namespace Invoice_Application_Project
 				//Save Services (Service Presenter)
 				servicePresenter.AddRecord_ServiceChosen(curentCustomerId, currentInvoiceId, listView_Services);
 
-
 				//Saving total price and discount value (Service Presenter)
 				invoiceRecordPresenter.SaveTotalPrice_Discount();
-
 
 				//Set flag and Saves PDF (Pdf Presenter)
 				//BUG 002 - Flag Saving Dialogue Cancel
@@ -496,11 +493,11 @@ namespace Invoice_Application_Project
 			CustomerPresenter customer = new CustomerPresenter(this);
 			if (customer.RegularExpression(2, textBox_Email.Text)) {
 				textBox_Email.Clear();
-				label_Email.ForeColor = Color.Red;
+				//label_Email.ForeColor = Color.Red; Updated by 034.2
 			}
 			else
 			{
-				label_Email.ForeColor = Color.Black;
+				//label_Email.ForeColor = Color.Black;
 				e.Cancel = false;
 			}
 
@@ -516,6 +513,7 @@ namespace Invoice_Application_Project
 			{
 				textBox_Address.Clear();
 				label_Address.ForeColor = Color.Red;
+				e.Cancel = true;
 			}
 			else
 			{
@@ -532,11 +530,11 @@ namespace Invoice_Application_Project
 			{
 				textBox_PostCode.Clear();
 				label_PostCode.ForeColor = Color.Red;
+				e.Cancel = true;
 			}
 			else
 			{
 				label_PostCode.ForeColor = Color.Black;
-
 			}
 		  
 
@@ -600,7 +598,6 @@ namespace Invoice_Application_Project
 		{
 			button_ChooseService.Focus();
 		}
-
 
 
 

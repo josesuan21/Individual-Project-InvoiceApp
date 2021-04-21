@@ -66,13 +66,6 @@ namespace Invoice_Application_Project
 			EnableState_TextFields(true);
 		}
 
-		private void Button_RemoveData_Click(object sender, EventArgs e)
-		{
-			this.serviceBindingSource.RemoveCurrent();
-			SaveData();
-		}
-
-
 		//Disable major buttons
 		public void EnableState_Buttons(bool result)
 		{
@@ -80,14 +73,12 @@ namespace Invoice_Application_Project
 			if (result)
 			{
 				button_AddData.Enabled = true;
-				button_RemoveData.Enabled = true;
 				button_Next.Enabled = true;
 				button_backwithpoint.Enabled = true;
 			}
 			else
 			{
 				button_AddData.Enabled = false;
-				button_RemoveData.Enabled = false;
 				button_Next.Enabled = false;
 				button_backwithpoint.Enabled = false;
 			}

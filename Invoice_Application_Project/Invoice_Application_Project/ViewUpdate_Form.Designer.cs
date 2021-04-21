@@ -33,6 +33,7 @@
 			this.button_Services = new System.Windows.Forms.Button();
 			this.button_Invoice = new System.Windows.Forms.Button();
 			this.button_Back = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -48,7 +49,7 @@
 			// 
 			// button_Customer
 			// 
-			this.button_Customer.Location = new System.Drawing.Point(127, 99);
+			this.button_Customer.Location = new System.Drawing.Point(127, 83);
 			this.button_Customer.Name = "button_Customer";
 			this.button_Customer.Size = new System.Drawing.Size(139, 51);
 			this.button_Customer.TabIndex = 1;
@@ -58,7 +59,7 @@
 			// 
 			// button_Services
 			// 
-			this.button_Services.Location = new System.Drawing.Point(127, 163);
+			this.button_Services.Location = new System.Drawing.Point(127, 140);
 			this.button_Services.Name = "button_Services";
 			this.button_Services.Size = new System.Drawing.Size(139, 51);
 			this.button_Services.TabIndex = 2;
@@ -68,7 +69,7 @@
 			// 
 			// button_Invoice
 			// 
-			this.button_Invoice.Location = new System.Drawing.Point(127, 231);
+			this.button_Invoice.Location = new System.Drawing.Point(127, 197);
 			this.button_Invoice.Name = "button_Invoice";
 			this.button_Invoice.Size = new System.Drawing.Size(139, 51);
 			this.button_Invoice.TabIndex = 3;
@@ -86,11 +87,22 @@
 			this.button_Back.UseVisualStyleBackColor = true;
 			this.button_Back.Click += new System.EventHandler(this.Button_Back_Click);
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(127, 254);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(139, 52);
+			this.button1.TabIndex = 6;
+			this.button1.Text = "Service Chosen";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1_Click);
+			// 
 			// ViewUpdate_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(408, 397);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.button_Back);
 			this.Controls.Add(this.button_Invoice);
 			this.Controls.Add(this.button_Services);
@@ -115,5 +127,6 @@
 		private System.Windows.Forms.Button button_Services;
 		private System.Windows.Forms.Button button_Invoice;
 		private System.Windows.Forms.Button button_Back;
+		private System.Windows.Forms.Button button1;
 	}
 }

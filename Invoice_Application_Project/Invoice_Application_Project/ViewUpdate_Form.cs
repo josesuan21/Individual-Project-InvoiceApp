@@ -51,5 +51,14 @@ namespace Invoice_Application_Project
 
 			this.Hide();
 		}
+
+		private void Button1_Click(object sender, EventArgs e)
+		{
+			ServiceChosen_Form serviceChosen_Form = new ServiceChosen_Form();
+			serviceChosen_Form.Show();
+
+			this.Hide();
+
+		}
 	}
 }

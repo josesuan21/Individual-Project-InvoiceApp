@@ -47,14 +47,21 @@
 			this.notesTextBox = new System.Windows.Forms.TextBox();
 			this.dateDateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.duedateDateTimePicker = new System.Windows.Forms.DateTimePicker();
-			this.button_update = new System.Windows.Forms.Button();
-			this.button_Done = new System.Windows.Forms.Button();
-			this.button_RemoveData = new System.Windows.Forms.Button();
-			this.button_AddData = new System.Windows.Forms.Button();
 			this.button_backwithpoint = new System.Windows.Forms.Button();
 			this.button_Next = new System.Windows.Forms.Button();
 			this.label_RecordsDetails = new System.Windows.Forms.Label();
 			this.textBox_search = new System.Windows.Forms.TextBox();
+			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+			this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+			this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+			this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.invoiceRecordBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+			this.invoiceRecordBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
 			this.invoiceRecordBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.invoiceDatabaseDataSet1 = new Invoice_Application_Project.InvoiceDatabaseDataSet1();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,19 +72,6 @@
 			this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.invoiceRecordTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.InvoiceRecordTableAdapter();
 			this.tableAdapterManager = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.TableAdapterManager();
-			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-			this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-			this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-			this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-			this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-			this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-			this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-			this.invoiceRecordBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-			this.invoiceRecordBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
 			invoiceRecordIdLabel = new System.Windows.Forms.Label();
 			discountGivenLabel = new System.Windows.Forms.Label();
 			totalPriceLabel = new System.Windows.Forms.Label();
@@ -85,10 +79,10 @@
 			dateLabel = new System.Windows.Forms.Label();
 			duedateLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordDataGridView)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordBindingNavigator)).BeginInit();
 			this.invoiceRecordBindingNavigator.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// invoiceRecordIdLabel
@@ -178,6 +172,7 @@
 			this.invoiceRecordDataGridView.DataSource = this.invoiceRecordBindingSource;
 			this.invoiceRecordDataGridView.Location = new System.Drawing.Point(376, 88);
 			this.invoiceRecordDataGridView.Name = "invoiceRecordDataGridView";
+			this.invoiceRecordDataGridView.ReadOnly = true;
 			this.invoiceRecordDataGridView.Size = new System.Drawing.Size(709, 233);
 			this.invoiceRecordDataGridView.TabIndex = 5;
 			// 
@@ -220,6 +215,7 @@
 			// invoiceRecordIdTextBox
 			// 
 			this.invoiceRecordIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceRecordBindingSource, "invoiceRecordId", true));
+			this.invoiceRecordIdTextBox.Enabled = false;
 			this.invoiceRecordIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.invoiceRecordIdTextBox.Location = new System.Drawing.Point(133, 88);
 			this.invoiceRecordIdTextBox.Name = "invoiceRecordIdTextBox";
@@ -279,51 +275,6 @@
 			this.duedateDateTimePicker.Size = new System.Drawing.Size(163, 24);
 			this.duedateDateTimePicker.TabIndex = 18;
 			// 
-			// button_update
-			// 
-			this.button_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_update.Location = new System.Drawing.Point(170, 337);
-			this.button_update.Name = "button_update";
-			this.button_update.Size = new System.Drawing.Size(94, 30);
-			this.button_update.TabIndex = 35;
-			this.button_update.Text = "Update ✏️";
-			this.button_update.UseVisualStyleBackColor = true;
-			this.button_update.Click += new System.EventHandler(this.Button_update_Click);
-			// 
-			// button_Done
-			// 
-			this.button_Done.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_Done.Location = new System.Drawing.Point(170, 337);
-			this.button_Done.Name = "button_Done";
-			this.button_Done.Size = new System.Drawing.Size(94, 30);
-			this.button_Done.TabIndex = 34;
-			this.button_Done.Text = "Save 💾";
-			this.button_Done.UseVisualStyleBackColor = true;
-			this.button_Done.Visible = false;
-			this.button_Done.Click += new System.EventHandler(this.Button_Done_Click);
-			// 
-			// button_RemoveData
-			// 
-			this.button_RemoveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_RemoveData.Location = new System.Drawing.Point(629, 332);
-			this.button_RemoveData.Name = "button_RemoveData";
-			this.button_RemoveData.Size = new System.Drawing.Size(105, 40);
-			this.button_RemoveData.TabIndex = 33;
-			this.button_RemoveData.Text = "➖ Remove";
-			this.button_RemoveData.UseVisualStyleBackColor = true;
-			this.button_RemoveData.Click += new System.EventHandler(this.Button_RemoveData_Click);
-			// 
-			// button_AddData
-			// 
-			this.button_AddData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_AddData.Location = new System.Drawing.Point(741, 332);
-			this.button_AddData.Name = "button_AddData";
-			this.button_AddData.Size = new System.Drawing.Size(105, 40);
-			this.button_AddData.TabIndex = 32;
-			this.button_AddData.Text = "Add ➕";
-			this.button_AddData.UseVisualStyleBackColor = true;
-			this.button_AddData.Click += new System.EventHandler(this.Button_AddData_Click);
-			// 
 			// button_backwithpoint
 			// 
 			this.button_backwithpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -359,13 +310,119 @@
 			// textBox_search
 			// 
 			this.textBox_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_search.Location = new System.Drawing.Point(961, 58);
+			this.textBox_search.Location = new System.Drawing.Point(932, 58);
 			this.textBox_search.Name = "textBox_search";
-			this.textBox_search.Size = new System.Drawing.Size(124, 24);
+			this.textBox_search.Size = new System.Drawing.Size(153, 24);
 			this.textBox_search.TabIndex = 37;
-			this.textBox_search.Text = "🔍 Search";
+			this.textBox_search.Text = "🔍 Search Invoice No";
+			this.textBox_search.Click += new System.EventHandler(this.TextBox_search_Click);
 			this.textBox_search.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBox_search_MouseClick);
 			this.textBox_search.TextChanged += new System.EventHandler(this.TextBox_search_TextChanged);
+			this.textBox_search.Leave += new System.EventHandler(this.TextBox_search_Leave);
+			// 
+			// bindingNavigatorMoveFirstItem
+			// 
+			this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+			this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+			this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMoveFirstItem.Text = "Move first";
+			// 
+			// bindingNavigatorMovePreviousItem
+			// 
+			this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+			this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+			this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+			// 
+			// bindingNavigatorSeparator
+			// 
+			this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+			this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+			// 
+			// bindingNavigatorPositionItem
+			// 
+			this.bindingNavigatorPositionItem.AccessibleName = "Position";
+			this.bindingNavigatorPositionItem.AutoSize = false;
+			this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+			this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+			this.bindingNavigatorPositionItem.Text = "0";
+			this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+			// 
+			// bindingNavigatorCountItem
+			// 
+			this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+			this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+			this.bindingNavigatorCountItem.Text = "of {0}";
+			this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+			// 
+			// bindingNavigatorSeparator1
+			// 
+			this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+			this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// bindingNavigatorMoveNextItem
+			// 
+			this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+			this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+			this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMoveNextItem.Text = "Move next";
+			// 
+			// bindingNavigatorMoveLastItem
+			// 
+			this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+			this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+			this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMoveLastItem.Text = "Move last";
+			// 
+			// bindingNavigatorSeparator2
+			// 
+			this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+			this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// invoiceRecordBindingNavigatorSaveItem
+			// 
+			this.invoiceRecordBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.invoiceRecordBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("invoiceRecordBindingNavigatorSaveItem.Image")));
+			this.invoiceRecordBindingNavigatorSaveItem.Name = "invoiceRecordBindingNavigatorSaveItem";
+			this.invoiceRecordBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+			this.invoiceRecordBindingNavigatorSaveItem.Text = "Save Data";
+			this.invoiceRecordBindingNavigatorSaveItem.Click += new System.EventHandler(this.InvoiceRecordBindingNavigatorSaveItem_Click);
+			// 
+			// invoiceRecordBindingNavigator
+			// 
+			this.invoiceRecordBindingNavigator.AddNewItem = null;
+			this.invoiceRecordBindingNavigator.BindingSource = this.invoiceRecordBindingSource;
+			this.invoiceRecordBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+			this.invoiceRecordBindingNavigator.DeleteItem = null;
+			this.invoiceRecordBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.invoiceRecordBindingNavigatorSaveItem});
+			this.invoiceRecordBindingNavigator.Location = new System.Drawing.Point(0, 0);
+			this.invoiceRecordBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+			this.invoiceRecordBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+			this.invoiceRecordBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+			this.invoiceRecordBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+			this.invoiceRecordBindingNavigator.Name = "invoiceRecordBindingNavigator";
+			this.invoiceRecordBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+			this.invoiceRecordBindingNavigator.Size = new System.Drawing.Size(1120, 25);
+			this.invoiceRecordBindingNavigator.TabIndex = 5;
+			this.invoiceRecordBindingNavigator.Text = "bindingNavigator1";
 			// 
 			// invoiceRecordBindingSource
 			// 
@@ -424,134 +481,8 @@
 			this.tableAdapterManager.CustomerTableAdapter = null;
 			this.tableAdapterManager.InvoiceRecordTableAdapter = this.invoiceRecordTableAdapter;
 			this.tableAdapterManager.PaymentDetailsTableAdapter = null;
-			this.tableAdapterManager.ServiceChosenTableAdapter = null;
 			this.tableAdapterManager.ServiceTableAdapter = null;
 			this.tableAdapterManager.UpdateOrder = Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-			// 
-			// bindingNavigatorMoveFirstItem
-			// 
-			this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-			this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-			this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorMoveFirstItem.Text = "Move first";
-			// 
-			// bindingNavigatorMovePreviousItem
-			// 
-			this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-			this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-			this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-			// 
-			// bindingNavigatorSeparator
-			// 
-			this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-			this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-			// 
-			// bindingNavigatorPositionItem
-			// 
-			this.bindingNavigatorPositionItem.AccessibleName = "Position";
-			this.bindingNavigatorPositionItem.AutoSize = false;
-			this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-			this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-			this.bindingNavigatorPositionItem.Text = "0";
-			this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-			// 
-			// bindingNavigatorCountItem
-			// 
-			this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-			this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-			this.bindingNavigatorCountItem.Text = "of {0}";
-			this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-			// 
-			// bindingNavigatorSeparator1
-			// 
-			this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-			this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-			// 
-			// bindingNavigatorMoveNextItem
-			// 
-			this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-			this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-			this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorMoveNextItem.Text = "Move next";
-			// 
-			// bindingNavigatorMoveLastItem
-			// 
-			this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-			this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-			this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorMoveLastItem.Text = "Move last";
-			// 
-			// bindingNavigatorSeparator2
-			// 
-			this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-			this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-			// 
-			// bindingNavigatorAddNewItem
-			// 
-			this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-			this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-			this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorAddNewItem.Text = "Add new";
-			// 
-			// bindingNavigatorDeleteItem
-			// 
-			this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-			this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-			this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorDeleteItem.Text = "Delete";
-			// 
-			// invoiceRecordBindingNavigatorSaveItem
-			// 
-			this.invoiceRecordBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.invoiceRecordBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("invoiceRecordBindingNavigatorSaveItem.Image")));
-			this.invoiceRecordBindingNavigatorSaveItem.Name = "invoiceRecordBindingNavigatorSaveItem";
-			this.invoiceRecordBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-			this.invoiceRecordBindingNavigatorSaveItem.Text = "Save Data";
-			this.invoiceRecordBindingNavigatorSaveItem.Click += new System.EventHandler(this.InvoiceRecordBindingNavigatorSaveItem_Click);
-			// 
-			// invoiceRecordBindingNavigator
-			// 
-			this.invoiceRecordBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-			this.invoiceRecordBindingNavigator.BindingSource = this.invoiceRecordBindingSource;
-			this.invoiceRecordBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-			this.invoiceRecordBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-			this.invoiceRecordBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.invoiceRecordBindingNavigatorSaveItem});
-			this.invoiceRecordBindingNavigator.Location = new System.Drawing.Point(0, 0);
-			this.invoiceRecordBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-			this.invoiceRecordBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-			this.invoiceRecordBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-			this.invoiceRecordBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-			this.invoiceRecordBindingNavigator.Name = "invoiceRecordBindingNavigator";
-			this.invoiceRecordBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-			this.invoiceRecordBindingNavigator.Size = new System.Drawing.Size(1120, 25);
-			this.invoiceRecordBindingNavigator.TabIndex = 5;
-			this.invoiceRecordBindingNavigator.Text = "bindingNavigator1";
 			// 
 			// InvoiceRecords_Form
 			// 
@@ -560,10 +491,6 @@
 			this.ClientSize = new System.Drawing.Size(1120, 477);
 			this.Controls.Add(this.textBox_search);
 			this.Controls.Add(this.label_RecordsDetails);
-			this.Controls.Add(this.button_update);
-			this.Controls.Add(this.button_Done);
-			this.Controls.Add(this.button_RemoveData);
-			this.Controls.Add(this.button_AddData);
 			this.Controls.Add(this.button_backwithpoint);
 			this.Controls.Add(this.button_Next);
 			this.Controls.Add(invoiceRecordIdLabel);
@@ -588,11 +515,11 @@
 			this.Text = "Invoice Records";
 			this.Load += new System.EventHandler(this.InvoiceRecords_Form_Load);
 			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordDataGridView)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordBindingNavigator)).EndInit();
 			this.invoiceRecordBindingNavigator.ResumeLayout(false);
 			this.invoiceRecordBindingNavigator.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.invoiceRecordBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -621,10 +548,6 @@
 		private System.Windows.Forms.TextBox notesTextBox;
 		private System.Windows.Forms.DateTimePicker dateDateTimePicker;
 		private System.Windows.Forms.DateTimePicker duedateDateTimePicker;
-		private System.Windows.Forms.Button button_update;
-		private System.Windows.Forms.Button button_Done;
-		private System.Windows.Forms.Button button_RemoveData;
-		private System.Windows.Forms.Button button_AddData;
 		private System.Windows.Forms.Button button_backwithpoint;
 		private System.Windows.Forms.Button button_Next;
 		private System.Windows.Forms.Label label_RecordsDetails;
@@ -638,8 +561,6 @@
 		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
 		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
 		private System.Windows.Forms.ToolStripButton invoiceRecordBindingNavigatorSaveItem;
 		private System.Windows.Forms.BindingNavigator invoiceRecordBindingNavigator;
 	}

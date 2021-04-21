@@ -34,9 +34,9 @@ namespace Invoice_Application_Project {
         
         private ServiceChosenDataTable tableServiceChosen;
         
-        private global::System.Data.DataRelation relationcustomerFK;
-        
         private global::System.Data.DataRelation relationinvoiceRecordFK;
+        
+        private global::System.Data.DataRelation relationcustomerFK;
         
         private global::System.Data.DataRelation relationserviceFK;
         
@@ -296,8 +296,8 @@ namespace Invoice_Application_Project {
                     this.tableServiceChosen.InitVars();
                 }
             }
-            this.relationcustomerFK = this.Relations["customerFK"];
             this.relationinvoiceRecordFK = this.Relations["invoiceRecordFK"];
+            this.relationcustomerFK = this.Relations["customerFK"];
             this.relationserviceFK = this.Relations["serviceFK"];
         }
         
@@ -319,14 +319,14 @@ namespace Invoice_Application_Project {
             base.Tables.Add(this.tableService);
             this.tableServiceChosen = new ServiceChosenDataTable();
             base.Tables.Add(this.tableServiceChosen);
-            this.relationcustomerFK = new global::System.Data.DataRelation("customerFK", new global::System.Data.DataColumn[] {
-                        this.tableCustomer.customerIdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableServiceChosen.customerIdColumn}, false);
-            this.Relations.Add(this.relationcustomerFK);
             this.relationinvoiceRecordFK = new global::System.Data.DataRelation("invoiceRecordFK", new global::System.Data.DataColumn[] {
                         this.tableInvoiceRecord.invoiceRecordIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableServiceChosen.invoiceRecordIdColumn}, false);
             this.Relations.Add(this.relationinvoiceRecordFK);
+            this.relationcustomerFK = new global::System.Data.DataRelation("customerFK", new global::System.Data.DataColumn[] {
+                        this.tableCustomer.customerIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableServiceChosen.customerIdColumn}, false);
+            this.Relations.Add(this.relationcustomerFK);
             this.relationserviceFK = new global::System.Data.DataRelation("serviceFK", new global::System.Data.DataColumn[] {
                         this.tableService.serviceIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableServiceChosen.serviceIdColumn}, false);
@@ -1665,11 +1665,11 @@ namespace Invoice_Application_Project {
             
             private global::System.Data.DataColumn columnserviceChosenId;
             
+            private global::System.Data.DataColumn columninvoiceRecordId;
+            
             private global::System.Data.DataColumn columnserviceId;
             
             private global::System.Data.DataColumn columncustomerId;
-            
-            private global::System.Data.DataColumn columninvoiceRecordId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1714,6 +1714,14 @@ namespace Invoice_Application_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn invoiceRecordIdColumn {
+                get {
+                    return this.columninvoiceRecordId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn serviceIdColumn {
                 get {
                     return this.columnserviceId;
@@ -1725,14 +1733,6 @@ namespace Invoice_Application_Project {
             public global::System.Data.DataColumn customerIdColumn {
                 get {
                     return this.columncustomerId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn invoiceRecordIdColumn {
-                get {
-                    return this.columninvoiceRecordId;
                 }
             }
             
@@ -1773,21 +1773,21 @@ namespace Invoice_Application_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ServiceChosenRow AddServiceChosenRow(ServiceRow parentServiceRowByserviceFK, CustomerRow parentCustomerRowBycustomerFK, InvoiceRecordRow parentInvoiceRecordRowByinvoiceRecordFK) {
+            public ServiceChosenRow AddServiceChosenRow(InvoiceRecordRow parentInvoiceRecordRowByinvoiceRecordFK, ServiceRow parentServiceRowByserviceFK, CustomerRow parentCustomerRowBycustomerFK) {
                 ServiceChosenRow rowServiceChosenRow = ((ServiceChosenRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
                         null};
+                if ((parentInvoiceRecordRowByinvoiceRecordFK != null)) {
+                    columnValuesArray[1] = parentInvoiceRecordRowByinvoiceRecordFK[0];
+                }
                 if ((parentServiceRowByserviceFK != null)) {
-                    columnValuesArray[1] = parentServiceRowByserviceFK[0];
+                    columnValuesArray[2] = parentServiceRowByserviceFK[0];
                 }
                 if ((parentCustomerRowBycustomerFK != null)) {
-                    columnValuesArray[2] = parentCustomerRowBycustomerFK[0];
-                }
-                if ((parentInvoiceRecordRowByinvoiceRecordFK != null)) {
-                    columnValuesArray[3] = parentInvoiceRecordRowByinvoiceRecordFK[0];
+                    columnValuesArray[3] = parentCustomerRowBycustomerFK[0];
                 }
                 rowServiceChosenRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowServiceChosenRow);
@@ -1819,9 +1819,9 @@ namespace Invoice_Application_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columnserviceChosenId = base.Columns["serviceChosenId"];
+                this.columninvoiceRecordId = base.Columns["invoiceRecordId"];
                 this.columnserviceId = base.Columns["serviceId"];
                 this.columncustomerId = base.Columns["customerId"];
-                this.columninvoiceRecordId = base.Columns["invoiceRecordId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1829,12 +1829,12 @@ namespace Invoice_Application_Project {
             private void InitClass() {
                 this.columnserviceChosenId = new global::System.Data.DataColumn("serviceChosenId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnserviceChosenId);
+                this.columninvoiceRecordId = new global::System.Data.DataColumn("invoiceRecordId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columninvoiceRecordId);
                 this.columnserviceId = new global::System.Data.DataColumn("serviceId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnserviceId);
                 this.columncustomerId = new global::System.Data.DataColumn("customerId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncustomerId);
-                this.columninvoiceRecordId = new global::System.Data.DataColumn("invoiceRecordId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columninvoiceRecordId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnserviceChosenId}, true));
                 this.columnserviceChosenId.AutoIncrement = true;
@@ -1843,9 +1843,9 @@ namespace Invoice_Application_Project {
                 this.columnserviceChosenId.AllowDBNull = false;
                 this.columnserviceChosenId.ReadOnly = true;
                 this.columnserviceChosenId.Unique = true;
+                this.columninvoiceRecordId.AllowDBNull = false;
                 this.columnserviceId.AllowDBNull = false;
                 this.columncustomerId.AllowDBNull = false;
-                this.columninvoiceRecordId.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2404,6 +2404,17 @@ namespace Invoice_Application_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int invoiceRecordId {
+                get {
+                    return ((int)(this[this.tableServiceChosen.invoiceRecordIdColumn]));
+                }
+                set {
+                    this[this.tableServiceChosen.invoiceRecordIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int serviceId {
                 get {
                     return ((int)(this[this.tableServiceChosen.serviceIdColumn]));
@@ -2426,12 +2437,12 @@ namespace Invoice_Application_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int invoiceRecordId {
+            public InvoiceRecordRow InvoiceRecordRow {
                 get {
-                    return ((int)(this[this.tableServiceChosen.invoiceRecordIdColumn]));
+                    return ((InvoiceRecordRow)(this.GetParentRow(this.Table.ParentRelations["invoiceRecordFK"])));
                 }
                 set {
-                    this[this.tableServiceChosen.invoiceRecordIdColumn] = value;
+                    this.SetParentRow(value, this.Table.ParentRelations["invoiceRecordFK"]);
                 }
             }
             
@@ -2443,17 +2454,6 @@ namespace Invoice_Application_Project {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["customerFK"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public InvoiceRecordRow InvoiceRecordRow {
-                get {
-                    return ((InvoiceRecordRow)(this.GetParentRow(this.Table.ParentRelations["invoiceRecordFK"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["invoiceRecordFK"]);
                 }
             }
             
@@ -4327,41 +4327,10 @@ SELECT serviceId, serviceName, price FROM Service WHERE (serviceId = @serviceId)
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ServiceChosen";
             tableMapping.ColumnMappings.Add("serviceChosenId", "serviceChosenId");
+            tableMapping.ColumnMappings.Add("invoiceRecordId", "invoiceRecordId");
             tableMapping.ColumnMappings.Add("serviceId", "serviceId");
             tableMapping.ColumnMappings.Add("customerId", "customerId");
-            tableMapping.ColumnMappings.Add("invoiceRecordId", "invoiceRecordId");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ServiceChosen] WHERE (([serviceChosenId] = @Original_serviceCh" +
-                "osenId) AND ([serviceId] = @Original_serviceId) AND ([customerId] = @Original_cu" +
-                "stomerId) AND ([invoiceRecordId] = @Original_invoiceRecordId))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serviceChosenId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serviceChosenId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serviceId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serviceId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_customerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "customerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_invoiceRecordId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "invoiceRecordId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ServiceChosen] ([serviceId], [customerId], [invoiceRecordId]) VALUES (@serviceId, @customerId, @invoiceRecordId);
-SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChosen WHERE (serviceChosenId = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serviceId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@customerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "customerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@invoiceRecordId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "invoiceRecordId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ServiceChosen] SET [serviceId] = @serviceId, [customerId] = @customerId, [invoiceRecordId] = @invoiceRecordId WHERE (([serviceChosenId] = @Original_serviceChosenId) AND ([serviceId] = @Original_serviceId) AND ([customerId] = @Original_customerId) AND ([invoiceRecordId] = @Original_invoiceRecordId));
-SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChosen WHERE (serviceChosenId = @serviceChosenId)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serviceId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@customerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "customerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@invoiceRecordId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "invoiceRecordId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serviceChosenId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serviceChosenId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serviceId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serviceId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_customerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "customerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_invoiceRecordId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "invoiceRecordId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceChosenId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "serviceChosenId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4374,12 +4343,18 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM dbo.ServiceCh" +
-                "osen";
+            this._commandCollection[0].CommandText = "SELECT serviceChosenId, invoiceRecordId, serviceId, customerId\r\nFROM ServiceChose" +
+                "n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        serviceChosenId, invoiceRecordId, serviceId, customerId\r\nFROM      " +
+                "      ServiceChosen\r\nWHERE        (customerId LIKE @idCustomer)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idCustomer", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "customerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4409,116 +4384,15 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(InvoiceDatabaseDataSet1.ServiceChosenDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(InvoiceDatabaseDataSet1 dataSet) {
-            return this.Adapter.Update(dataSet, "ServiceChosen");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_serviceChosenId, int Original_serviceId, int Original_customerId, int Original_invoiceRecordId) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_serviceChosenId));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_serviceId));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_customerId));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_invoiceRecordId));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int SearchInvoiceId(InvoiceDatabaseDataSet1.ServiceChosenDataTable dataTable, int idCustomer) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(idCustomer));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
             }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int serviceId, int customerId, int invoiceRecordId) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(serviceId));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(customerId));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(invoiceRecordId));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int serviceId, int customerId, int invoiceRecordId, int Original_serviceChosenId, int Original_serviceId, int Original_customerId, int Original_invoiceRecordId, int serviceChosenId) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(serviceId));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(customerId));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(invoiceRecordId));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_serviceChosenId));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_serviceId));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_customerId));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_invoiceRecordId));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(serviceChosenId));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int serviceId, int customerId, int invoiceRecordId, int Original_serviceChosenId, int Original_serviceId, int Original_customerId, int Original_invoiceRecordId) {
-            return this.Update(serviceId, customerId, invoiceRecordId, Original_serviceChosenId, Original_serviceId, Original_customerId, Original_invoiceRecordId, Original_serviceChosenId);
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
     }
     
@@ -4541,8 +4415,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
         private PaymentDetailsTableAdapter _paymentDetailsTableAdapter;
         
         private ServiceTableAdapter _serviceTableAdapter;
-        
-        private ServiceChosenTableAdapter _serviceChosenTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -4617,20 +4489,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public ServiceChosenTableAdapter ServiceChosenTableAdapter {
-            get {
-                return this._serviceChosenTableAdapter;
-            }
-            set {
-                this._serviceChosenTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -4664,10 +4522,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                             && (this._serviceTableAdapter.Connection != null))) {
                     return this._serviceTableAdapter.Connection;
                 }
-                if (((this._serviceChosenTableAdapter != null) 
-                            && (this._serviceChosenTableAdapter.Connection != null))) {
-                    return this._serviceChosenTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -4691,9 +4545,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                     count = (count + 1);
                 }
                 if ((this._serviceTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._serviceChosenTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -4743,15 +4594,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._serviceChosenTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.ServiceChosen.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._serviceChosenTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -4794,14 +4636,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._serviceChosenTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.ServiceChosen.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._serviceChosenTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -4812,14 +4646,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(InvoiceDatabaseDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._serviceChosenTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.ServiceChosen.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._serviceChosenTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._paymentDetailsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.PaymentDetails.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -4911,11 +4737,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._serviceChosenTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._serviceChosenTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -4982,15 +4803,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                     if (this._serviceTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._serviceTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._serviceTableAdapter.Adapter);
-                    }
-                }
-                if ((this._serviceChosenTableAdapter != null)) {
-                    revertConnections.Add(this._serviceChosenTableAdapter, this._serviceChosenTableAdapter.Connection);
-                    this._serviceChosenTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._serviceChosenTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._serviceChosenTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._serviceChosenTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._serviceChosenTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -5066,10 +4878,6 @@ SELECT serviceChosenId, serviceId, customerId, invoiceRecordId FROM ServiceChose
                 if ((this._serviceTableAdapter != null)) {
                     this._serviceTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._serviceTableAdapter]));
                     this._serviceTableAdapter.Transaction = null;
-                }
-                if ((this._serviceChosenTableAdapter != null)) {
-                    this._serviceChosenTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._serviceChosenTableAdapter]));
-                    this._serviceChosenTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
