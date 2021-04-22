@@ -19,6 +19,15 @@ namespace Invoice_Application_Project
 
 		private void Button_Back_Click(object sender, EventArgs e)
 		{
+			foreach (Form form in System.Windows.Forms.Application.OpenForms)
+			{
+
+				if (form is Form_Menu)
+				{
+					form.Show();
+					break;
+				}
+			}
 
 			this.Close();
 			
@@ -28,9 +37,7 @@ namespace Invoice_Application_Project
 		{
 			CustomerRecord_Form customerRecord_Form = new CustomerRecord_Form();
 
-			customerRecord_Form.Show();
-
-			this.Hide();
+			customerRecord_Form.ShowDialog();
 
 		}
 
@@ -38,27 +45,35 @@ namespace Invoice_Application_Project
 		{
 			ServiceRecords_Form serviceRecords = new ServiceRecords_Form();
 
-			serviceRecords.Show();
-
-			this.Hide();
+			serviceRecords.ShowDialog();
 
 		}
 
 		private void Button_Invoice_Click(object sender, EventArgs e)
 		{
 			InvoiceRecords_Form invoiceRecords_Form = new InvoiceRecords_Form();
-			invoiceRecords_Form.Show();
+			invoiceRecords_Form.ShowDialog();
 
-			this.Hide();
 		}
 
 		private void Button1_Click(object sender, EventArgs e)
 		{
 			ServiceChosen_Form serviceChosen_Form = new ServiceChosen_Form();
-			serviceChosen_Form.Show();
+			serviceChosen_Form.ShowDialog();
 
-			this.Hide();
+		}
 
+		private void ViewUpdate_Form_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			foreach (Form form in System.Windows.Forms.Application.OpenForms)
+			{
+
+				if (form is Form_Menu)
+				{
+					form.Show();
+					break;
+				}
+			}
 		}
 	}
 }

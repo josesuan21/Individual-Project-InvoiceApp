@@ -62,6 +62,7 @@
 			this.button_ChooseService = new System.Windows.Forms.Button();
 			this.comboBox_ChooseService = new System.Windows.Forms.ComboBox();
 			this.groupBox_PaymentDetails = new System.Windows.Forms.GroupBox();
+			this.checkBox_PaymentDetails = new System.Windows.Forms.CheckBox();
 			this.label_ChequePayment = new System.Windows.Forms.Label();
 			this.label_DirectTransfer = new System.Windows.Forms.Label();
 			this.textBox_ChequePayment = new System.Windows.Forms.TextBox();
@@ -505,6 +506,7 @@
 			this.groupBox_PaymentDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox_PaymentDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.groupBox_PaymentDetails.Controls.Add(this.checkBox_PaymentDetails);
 			this.groupBox_PaymentDetails.Controls.Add(this.label_ChequePayment);
 			this.groupBox_PaymentDetails.Controls.Add(this.label_DirectTransfer);
 			this.groupBox_PaymentDetails.Controls.Add(this.textBox_ChequePayment);
@@ -513,10 +515,23 @@
 			this.groupBox_PaymentDetails.Location = new System.Drawing.Point(6, 614);
 			this.groupBox_PaymentDetails.MinimumSize = new System.Drawing.Size(631, 105);
 			this.groupBox_PaymentDetails.Name = "groupBox_PaymentDetails";
-			this.groupBox_PaymentDetails.Size = new System.Drawing.Size(631, 181);
+			this.groupBox_PaymentDetails.Size = new System.Drawing.Size(631, 205);
 			this.groupBox_PaymentDetails.TabIndex = 8;
 			this.groupBox_PaymentDetails.TabStop = false;
 			this.groupBox_PaymentDetails.Text = "Payment Details";
+			// 
+			// checkBox_PaymentDetails
+			// 
+			this.checkBox_PaymentDetails.AutoSize = true;
+			this.checkBox_PaymentDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox_PaymentDetails.ForeColor = System.Drawing.Color.Blue;
+			this.checkBox_PaymentDetails.Location = new System.Drawing.Point(10, 177);
+			this.checkBox_PaymentDetails.Name = "checkBox_PaymentDetails";
+			this.checkBox_PaymentDetails.Size = new System.Drawing.Size(123, 22);
+			this.checkBox_PaymentDetails.TabIndex = 14;
+			this.checkBox_PaymentDetails.Text = "Update Details";
+			this.checkBox_PaymentDetails.UseVisualStyleBackColor = true;
+			this.checkBox_PaymentDetails.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
 			// 
 			// label_ChequePayment
 			// 
@@ -547,6 +562,7 @@
 			this.textBox_ChequePayment.Location = new System.Drawing.Point(323, 50);
 			this.textBox_ChequePayment.Multiline = true;
 			this.textBox_ChequePayment.Name = "textBox_ChequePayment";
+			this.textBox_ChequePayment.ReadOnly = true;
 			this.textBox_ChequePayment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox_ChequePayment.Size = new System.Drawing.Size(267, 120);
 			this.textBox_ChequePayment.TabIndex = 13;
@@ -559,8 +575,9 @@
 			this.textBox_PaymentTransfer.Location = new System.Drawing.Point(37, 50);
 			this.textBox_PaymentTransfer.Multiline = true;
 			this.textBox_PaymentTransfer.Name = "textBox_PaymentTransfer";
+			this.textBox_PaymentTransfer.ReadOnly = true;
 			this.textBox_PaymentTransfer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox_PaymentTransfer.Size = new System.Drawing.Size(258, 120);
+			this.textBox_PaymentTransfer.Size = new System.Drawing.Size(262, 120);
 			this.textBox_PaymentTransfer.TabIndex = 12;
 			this.textBox_PaymentTransfer.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_PaymentTransfer_Validating);
 			// 
@@ -571,10 +588,10 @@
 			this.groupBox_Confirmation.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.groupBox_Confirmation.Controls.Add(this.button_SavePDF);
 			this.groupBox_Confirmation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox_Confirmation.Location = new System.Drawing.Point(6, 801);
+			this.groupBox_Confirmation.Location = new System.Drawing.Point(6, 822);
 			this.groupBox_Confirmation.MinimumSize = new System.Drawing.Size(631, 105);
 			this.groupBox_Confirmation.Name = "groupBox_Confirmation";
-			this.groupBox_Confirmation.Size = new System.Drawing.Size(631, 105);
+			this.groupBox_Confirmation.Size = new System.Drawing.Size(631, 119);
 			this.groupBox_Confirmation.TabIndex = 9;
 			this.groupBox_Confirmation.TabStop = false;
 			this.groupBox_Confirmation.Text = "Confirmation";
@@ -659,7 +676,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-			this.ClientSize = new System.Drawing.Size(671, 661);
+			this.ClientSize = new System.Drawing.Size(671, 693);
 			this.Controls.Add(this.header);
 			this.Controls.Add(this.groupBox_Confirmation);
 			this.Controls.Add(this.groupBox_PaymentDetails);
@@ -734,6 +751,7 @@
 		private System.Windows.Forms.NumericUpDown numericUpDown_vat;
 		private System.Windows.Forms.Button button_NewCustomer;
 		private System.Windows.Forms.Label label_chooseAservice;
+		private System.Windows.Forms.CheckBox checkBox_PaymentDetails;
 	}
 
 	

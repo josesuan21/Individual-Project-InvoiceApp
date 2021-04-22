@@ -40,6 +40,12 @@ namespace Invoice_Application_Project.Presenters
 			return paymentDetails.regularExpression_PaymentDetails(textNum,notesInput);
 		}
 
+		public void UpdatePaymentDetails(bool answer, string directTransfer, string chequePayment) {
+
+			paymentDetails.UpdatePaymentDetails(answer, directTransfer, chequePayment);
+
+		}
+
 
 	}
 }

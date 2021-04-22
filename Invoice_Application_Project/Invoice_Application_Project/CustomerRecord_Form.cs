@@ -35,8 +35,6 @@ namespace Invoice_Application_Project
 
 		private void Button1_Click(object sender, EventArgs e)
 		{
-			ViewUpdate_Form viewUpdate_Form = new ViewUpdate_Form();
-			viewUpdate_Form.Show();
 			this.Close();
 		}
 

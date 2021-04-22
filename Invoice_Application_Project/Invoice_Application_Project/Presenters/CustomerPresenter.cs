@@ -71,6 +71,11 @@ namespace Invoice_Application_Project.Presenters
 
 		}
 
+		public bool CheckCustomerDetails(string name, string address, string postcode) {
+
+			return customer.CheckCustomerDetails(name,address,postcode);
+		}
+
 
 	}
 

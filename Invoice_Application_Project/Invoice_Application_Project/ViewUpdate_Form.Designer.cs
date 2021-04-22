@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewUpdate_Form));
 			this.label1 = new System.Windows.Forms.Label();
 			this.button_Customer = new System.Windows.Forms.Button();
 			this.button_Services = new System.Windows.Forms.Button();
@@ -59,7 +60,7 @@
 			// 
 			// button_Services
 			// 
-			this.button_Services.Location = new System.Drawing.Point(127, 140);
+			this.button_Services.Location = new System.Drawing.Point(127, 143);
 			this.button_Services.Name = "button_Services";
 			this.button_Services.Size = new System.Drawing.Size(139, 51);
 			this.button_Services.TabIndex = 2;
@@ -69,7 +70,7 @@
 			// 
 			// button_Invoice
 			// 
-			this.button_Invoice.Location = new System.Drawing.Point(127, 197);
+			this.button_Invoice.Location = new System.Drawing.Point(127, 203);
 			this.button_Invoice.Name = "button_Invoice";
 			this.button_Invoice.Size = new System.Drawing.Size(139, 51);
 			this.button_Invoice.TabIndex = 3;
@@ -89,7 +90,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(127, 254);
+			this.button1.Location = new System.Drawing.Point(127, 262);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(139, 52);
 			this.button1.TabIndex = 6;
@@ -109,12 +110,14 @@
 			this.Controls.Add(this.button_Customer);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ViewUpdate_Form";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "View and Update Records";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewUpdate_Form_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

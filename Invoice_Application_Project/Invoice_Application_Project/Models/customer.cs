@@ -135,49 +135,57 @@ namespace Invoice_Application_Project.Models
 		/// </summary>
 		public void RemoveDefaultAdded_CustomerRecord()
 		{
-			//Open connection
-			connection = new SqlConnection(connectionString);
+			try
+			{
 
-			connection.Open();
+				//Open connection
+				connection = new SqlConnection(connectionString);
 
-			//Reseed
-			string sqlQuery_Reseed = "DBCC CHECKIDENT ('Customer',reseed,@reseedVal)";
+				connection.Open();
 
-			//Selecting recent added id
-			string sqlQuery_recentId = "SELECT IDENT_CURRENT ('Customer') as RecentId";
+				//Reseed
+				string sqlQuery_Reseed = "DBCC CHECKIDENT ('Customer',reseed,@reseedVal)";
 
-			//Removing recent added record
-			string sqlQuery_removeRecent = "DELETE FROM Customer WHERE customerId = @recentId";
+				//Selecting recent added id
+				string sqlQuery_recentId = "SELECT IDENT_CURRENT ('Customer') as RecentId";
 
-
-			SqlCommand cmd1 = new SqlCommand(sqlQuery_Reseed, connection);
-			SqlCommand cmd2 = new SqlCommand(sqlQuery_recentId, connection);
-			SqlCommand cmd3 = new SqlCommand(sqlQuery_removeRecent, connection);
+				//Removing recent added record
+				string sqlQuery_removeRecent = "DELETE FROM Customer WHERE customerId = @recentId";
 
 
-			//Getting the recent added Id
-			SqlDataReader reader = cmd2.ExecuteReader();
-			reader.Read();
-			int recentId = Convert.ToInt32(reader.GetValue(0));
-
-			connection.Close();
+				SqlCommand cmd1 = new SqlCommand(sqlQuery_Reseed, connection);
+				SqlCommand cmd2 = new SqlCommand(sqlQuery_recentId, connection);
+				SqlCommand cmd3 = new SqlCommand(sqlQuery_removeRecent, connection);
 
 
-			//Deleting the record
-			connection.Open();
-			cmd3.Parameters.AddWithValue("@recentId", recentId);
-			cmd3.ExecuteNonQuery();
+				//Getting the recent added Id
+				SqlDataReader reader = cmd2.ExecuteReader();
+				reader.Read();
+				int recentId = Convert.ToInt32(reader.GetValue(0));
 
-			connection.Close();
+				connection.Close();
 
 
-			//Reseeding record
+				//Deleting the record
+				connection.Open();
+				cmd3.Parameters.AddWithValue("@recentId", recentId);
+				cmd3.ExecuteNonQuery();
 
-			connection.Open();
-			cmd1.Parameters.AddWithValue("@reseedVal", recentId - 1);
-			cmd1.ExecuteNonQuery();
+				connection.Close();
 
-			connection.Close();
+
+				//Reseeding record
+
+				connection.Open();
+				cmd1.Parameters.AddWithValue("@reseedVal", recentId - 1);
+				cmd1.ExecuteNonQuery();
+
+				connection.Close();
+			}
+			catch
+			{
+
+			}
 
 		}
 
@@ -333,6 +341,36 @@ namespace Invoice_Application_Project.Models
 
 		}
 
+		//BUG 009 
+		public bool CheckCustomerDetails(string name, string address, string postcode) {
+
+
+			bool result = false;
+
+			string[] customerDetails = new string[3];
+			customerDetails[0] = name;
+			//email is not included because its optional
+			customerDetails[1] = address;
+			customerDetails[2] = postcode;
+
+			for (int i = 0; i < customerDetails.Length; i++)
+			{
+
+				if (customerDetails[i] != "")
+				{
+					result = true;
+				}
+				else
+				{
+					result = false;
+					break;
+				}
+
+			}
+
+			return result;
+			
+		}
 
 	}
 

@@ -34,8 +34,6 @@ namespace Invoice_Application_Project
 
 		private void Button_Back_Click(object sender, EventArgs e)
 		{
-			ViewUpdate_Form viewUpdate_Form = new ViewUpdate_Form();
-			viewUpdate_Form.Show();
 			this.Close();
 		}
 
@@ -104,6 +102,14 @@ namespace Invoice_Application_Project
 		//Save method
 		public void SaveData()
 		{
+			//Ticket 042 - Save old service price details in the archive storage
+			
+			//Get the id of the current one and get the details
+
+			//INSERT that copy of the id in the new table
+
+
+			//Saves
 			this.Validate();
 			this.serviceBindingSource.EndEdit();
 			this.tableAdapterManager.UpdateAll(this.invoiceDatabaseDataSet1);
