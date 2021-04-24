@@ -3,23 +3,18 @@ README
 
 # Individual-Project-InvoiceApp
  This project is to create a simple invoice application that will help my father's business and potentially for other small businesses. The business struggles to create invoices as the user uses traditional hand-written style with formatted template document. This consumes time and creates risk of writing wrong details in the invoice that decreases the business' performance.
- 
+  The creation for this application is an opportunity to be used for my final year study project and be able to learn and understand all the factors involved for software engineering. 
  
  # ✔️Repository Contents
+ 
+  * **Invoice_Application_Project**
+     * The program which contains the project files and other resource and prerequisites.
  
  * **List of tickets**
      * Contains all tickets for all timeboxes
 
-
- * **Invoice_Application_Project.zip**
-     * The program which contains the project files and other files to make it run
-
-
-* **Task board link**
-    * The link for the task board which uses Trello
-
 * **Sprint Retrospective**
-     * Inside the folder contains all sprint retrospective for all timeboxes
+     * Inside the folder contains all sprint retrospective for all finished timeboxes/sprint.
 
 # ✔️Versions
 * IDE
@@ -31,6 +26,10 @@ README
   * Version 4.8.04084
   * 2019
 
+* Packages
+    * itext7 by (iText Software) v7.1.14
+
+
  ### "**We recommend**: To use the latest version stated above to ensure well functionality when running the program."  
  
 
@@ -39,6 +38,7 @@ README
 * Invoice-App-(Finishing 1-Milestone)
 * Invoice-App-(Finishing 2-Milestone)
 * Invoice-App-(Finishing 3-Milestone)
+* Invoice-App-(Finishing 4-Milestone)
   
 
 # ✔️How to open the project
@@ -101,26 +101,34 @@ Configuring SQL server database connection
 
 # ✔️How to install the publish project
 
-1. Download the InvoiceApp_TB3 folder. 
+1. Download the InvoiceApp_TB4 folder. 
 
 
-2. Inside the folder, Click setup:
+2. Inside the folder, run and install first "SqlLocalDB" 
 
-![](https://i.imgur.com/GQpqnSI.png)
+![](https://i.imgur.com/7LypdZT.png)
 
 
-3. Accept the agreement
+
+3. Then after installing the SqlLocalDB package, Click and run setup:
+
+![](https://i.imgur.com/EniuFho.png)
+
+
+
+4. Accept the agreement
 
 ![](https://i.imgur.com/3DwKQgh.png)
 
 
-4. Then click allow and install
+5. Then click allow and install
 
 
 
-5. After installation the invoice app displays and a shorcut icon on the desktop is created. 
+6. After installation, the invoice app displays and a shorcut icon created on your desktop. 
 
 
+7. Enjoy creating Invoice! 
 
 
 
