@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\efren\Desktop\invoiceTestSQLserverLocalDb\|C:\Users\efren\Desktop\invoiceTest_SQLlocalDb2017\|C:\Users\efren\Desktop\invoiceTest_SQLlocalDb2016\|C:\Users\efren\Desktop\invoiceTestSQLServer\|C:\Users\efren\Desktop\invoiceTest\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Users\efren\Desktop\InvoiceApp_TB4\|C:\Users\efren\Desktop\invoiceTestSQLserverLocalDb\|C:\Users\efren\Desktop\invoiceTest_SQLlocalDb2017\|C:\Users\efren\Desktop\invoiceTest_SQLlocalDb2016\|C:\Users\efren\Desktop\invoiceTestSQLServer\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />

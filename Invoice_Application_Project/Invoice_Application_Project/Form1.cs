@@ -39,5 +39,20 @@ namespace Invoice_Application_Project
 			StatisticReport_Form report_Form = new StatisticReport_Form();
 			report_Form.ShowDialog();
 		}
+
+		private void Label1_Click(object sender, EventArgs e)
+		{
+			button_CreateInvoice.PerformClick(); ;
+		}
+
+		private void Label2_Click(object sender, EventArgs e)
+		{
+			button_UpdateRecord.PerformClick();
+		}
+
+		private void Label3_Click(object sender, EventArgs e)
+		{
+			button_Statistic.PerformClick();
+		}
 	}
 }

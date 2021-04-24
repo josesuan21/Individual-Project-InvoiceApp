@@ -629,8 +629,10 @@ namespace Invoice_Application_Project
 
 		}
 
-		
-
+		private void PictureBox_PDF_Click(object sender, EventArgs e)
+		{
+			button_SavePDF.PerformClick();
+		}
 	}
 
 }

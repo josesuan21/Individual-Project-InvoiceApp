@@ -50,3 +50,4 @@ C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\o
 C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\bin\Debug\Resources\smIcon(Transparent).png
 C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.ServiceChosen_Form.resources
 C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.StatisticReport_Form.resources
+C:\Users\efren\Desktop\Invoice_Application_Project\Invoice_Application_Project\obj\Debug\Invoice_Application_Project.OldServices_Form.resources

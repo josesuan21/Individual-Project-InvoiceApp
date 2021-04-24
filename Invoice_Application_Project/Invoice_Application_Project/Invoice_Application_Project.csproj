@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\efren\Desktop\invoiceTestSQLserverLocalDb\</PublishUrl>
+    <PublishUrl>C:\Users\efren\Desktop\InvoiceApp_TB4\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <TargetCulture>en-GB</TargetCulture>
     <ProductName>Invoice Application</ProductName>
     <PublisherName>Jose Suan</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -166,6 +166,12 @@
     <Compile Include="Models\PaymentDetails.cs" />
     <Compile Include="Models\Pdf.cs" />
     <Compile Include="Models\Service.cs" />
+    <Compile Include="OldServices_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OldServices_Form.Designer.cs">
+      <DependentUpon>OldServices_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presenters\CustomerPresenter.cs" />
     <Compile Include="Presenters\InvoiceRecordPresenter.cs" />
     <Compile Include="Presenters\PaymentDetailsPresenter.cs" />
@@ -216,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice_Form.resx">
       <DependentUpon>Invoice_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldServices_Form.resx">
+      <DependentUpon>OldServices_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -286,6 +295,7 @@
       <DependentUpon>InvoiceDatabase.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\PDF.png" />
     <EmbeddedResource Include="Resources\smIcon%28Transparent%29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -300,16 +310,6 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.Express.11.0">
-      <Visible>False</Visible>
-      <ProductName>SQL Server 2012 Express</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.11.1">
-      <Visible>False</Visible>
-      <ProductName>SQL Server 2012 Express LocalDB</ProductName>
-      <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />

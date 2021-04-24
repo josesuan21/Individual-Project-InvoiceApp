@@ -144,22 +144,6 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1019, 21</value>
   </metadata>
-  <data name="label_Help.ToolTip" xml:space="preserve">
-    <value> To Add Records
-1.Select the plus ➕ icon below the table.
-2.Add details.
-3.Click save 💾 icon below the table.
-
-To Delete
-1. Select a row with the * icon
-2. Click the cross ❌ icon below the table
-
-To Update details
-1. Select a field of a chosen row
-2. Click save 💾 icon below the table.
- 
-</value>
-  </data>
   <metadata name="invoiceRecordTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>414, 15</value>
   </metadata>

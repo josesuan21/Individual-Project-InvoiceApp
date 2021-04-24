@@ -82,15 +82,17 @@
 			// 
 			// chart1
 			// 
+			this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.chart1.BorderlineColor = System.Drawing.SystemColors.ActiveBorder;
 			this.chart1.BorderlineWidth = 0;
 			chartArea1.Name = "ChartArea1";
 			this.chart1.ChartAreas.Add(chartArea1);
 			this.chart1.DataSource = this.serviceNameTotalBindingSource;
-			this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
 			legend1.Name = "Legend1";
 			this.chart1.Legends.Add(legend1);
-			this.chart1.Location = new System.Drawing.Point(0, 24);
+			this.chart1.Location = new System.Drawing.Point(4, 30);
 			this.chart1.Name = "chart1";
 			series1.BorderWidth = 0;
 			series1.ChartArea = "ChartArea1";
@@ -102,7 +104,7 @@
 			series1.XValueMember = "serviceName";
 			series1.YValueMembers = "Total Service Used";
 			this.chart1.Series.Add(series1);
-			this.chart1.Size = new System.Drawing.Size(358, 315);
+			this.chart1.Size = new System.Drawing.Size(351, 299);
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
 			// 
@@ -147,7 +149,7 @@
 			this.chart2.DataSource = this.popularAreaBindingSource;
 			legend2.Name = "Legend1";
 			this.chart2.Legends.Add(legend2);
-			this.chart2.Location = new System.Drawing.Point(3, 27);
+			this.chart2.Location = new System.Drawing.Point(4, 27);
 			this.chart2.Name = "chart2";
 			series2.ChartArea = "ChartArea1";
 			series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -156,7 +158,7 @@
 			series2.XValueMember = "postCode";
 			series2.YValueMembers = "Total";
 			this.chart2.Series.Add(series2);
-			this.chart2.Size = new System.Drawing.Size(364, 309);
+			this.chart2.Size = new System.Drawing.Size(363, 299);
 			this.chart2.TabIndex = 3;
 			this.chart2.Text = "chart2";
 			// 
@@ -200,13 +202,15 @@
 			// 
 			// chart3
 			// 
+			this.chart3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			chartArea3.Name = "ChartArea1";
 			this.chart3.ChartAreas.Add(chartArea3);
 			this.chart3.DataSource = this.incomeCurrentYearBindingSource;
-			this.chart3.Dock = System.Windows.Forms.DockStyle.Fill;
 			legend3.Name = "Legend1";
 			this.chart3.Legends.Add(legend3);
-			this.chart3.Location = new System.Drawing.Point(0, 24);
+			this.chart3.Location = new System.Drawing.Point(4, 24);
 			this.chart3.Name = "chart3";
 			series3.ChartArea = "ChartArea1";
 			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -215,7 +219,7 @@
 			series3.XValueMember = "date";
 			series3.YValueMembers = "Total Income";
 			this.chart3.Series.Add(series3);
-			this.chart3.Size = new System.Drawing.Size(1095, 232);
+			this.chart3.Size = new System.Drawing.Size(1088, 226);
 			this.chart3.TabIndex = 9;
 			this.chart3.Text = "chart3";
 			// 
@@ -238,13 +242,15 @@
 			// 
 			// chart4
 			// 
+			this.chart4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			chartArea4.Name = "ChartArea1";
 			this.chart4.ChartAreas.Add(chartArea4);
 			this.chart4.DataSource = this.loyalCustomersBindingSource;
-			this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
 			legend4.Name = "Legend1";
 			this.chart4.Legends.Add(legend4);
-			this.chart4.Location = new System.Drawing.Point(0, 24);
+			this.chart4.Location = new System.Drawing.Point(4, 24);
 			this.chart4.Name = "chart4";
 			series4.ChartArea = "ChartArea1";
 			series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -254,7 +260,7 @@
 			series4.XValueMember = "Customer Name(ID)";
 			series4.YValueMembers = "TotalServiceMade";
 			this.chart4.Series.Add(series4);
-			this.chart4.Size = new System.Drawing.Size(354, 309);
+			this.chart4.Size = new System.Drawing.Size(347, 305);
 			this.chart4.TabIndex = 10;
 			this.chart4.Text = "chart4";
 			// 
@@ -269,6 +275,7 @@
 			// 
 			// panel_MostUsedService
 			// 
+			this.panel_MostUsedService.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.panel_MostUsedService.Controls.Add(this.chart1);
 			this.panel_MostUsedService.Controls.Add(this.label1);
 			this.panel_MostUsedService.Location = new System.Drawing.Point(43, 40);
@@ -280,22 +287,24 @@
 			// 
 			this.panel_PopularAreas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel_PopularAreas.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.panel_PopularAreas.Controls.Add(this.label_PopularAreas);
 			this.panel_PopularAreas.Controls.Add(this.chart2);
-			this.panel_PopularAreas.Location = new System.Drawing.Point(408, 43);
+			this.panel_PopularAreas.Location = new System.Drawing.Point(408, 40);
 			this.panel_PopularAreas.Name = "panel_PopularAreas";
-			this.panel_PopularAreas.Size = new System.Drawing.Size(370, 336);
+			this.panel_PopularAreas.Size = new System.Drawing.Size(370, 339);
 			this.panel_PopularAreas.TabIndex = 12;
 			// 
 			// panel_LolayCustomers
 			// 
 			this.panel_LolayCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel_LolayCustomers.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.panel_LolayCustomers.Controls.Add(this.label2);
 			this.panel_LolayCustomers.Controls.Add(this.chart4);
 			this.panel_LolayCustomers.Controls.Add(this.label4);
-			this.panel_LolayCustomers.Location = new System.Drawing.Point(784, 46);
+			this.panel_LolayCustomers.Location = new System.Drawing.Point(784, 40);
 			this.panel_LolayCustomers.Name = "panel_LolayCustomers";
-			this.panel_LolayCustomers.Size = new System.Drawing.Size(354, 333);
+			this.panel_LolayCustomers.Size = new System.Drawing.Size(354, 339);
 			this.panel_LolayCustomers.TabIndex = 13;
 			// 
 			// label2
@@ -315,9 +324,10 @@
 			this.panel_Income.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel_Income.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.panel_Income.Controls.Add(this.chart3);
 			this.panel_Income.Controls.Add(this.label3);
-			this.panel_Income.Location = new System.Drawing.Point(43, 388);
+			this.panel_Income.Location = new System.Drawing.Point(43, 394);
 			this.panel_Income.Name = "panel_Income";
 			this.panel_Income.Size = new System.Drawing.Size(1095, 256);
 			this.panel_Income.TabIndex = 14;
@@ -327,6 +337,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1184, 656);
 			this.Controls.Add(this.panel_Income);
 			this.Controls.Add(this.panel_LolayCustomers);

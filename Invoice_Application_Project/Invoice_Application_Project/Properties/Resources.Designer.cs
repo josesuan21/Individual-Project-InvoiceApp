@@ -63,6 +63,16 @@ namespace Invoice_Application_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PDF {
+            get {
+                object obj = ResourceManager.GetObject("PDF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap smIcon_Transparent_ {
             get {
                 object obj = ResourceManager.GetObject("smIcon(Transparent)", resourceCulture);

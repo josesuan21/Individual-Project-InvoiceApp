@@ -54,19 +54,24 @@
 			this.button_Done = new System.Windows.Forms.Button();
 			this.label_RecordsDetails = new System.Windows.Forms.Label();
 			this.textBox_search = new System.Windows.Forms.TextBox();
+			this.label_OldServices = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
 			serviceIdLabel = new System.Windows.Forms.Label();
 			serviceNameLabel = new System.Windows.Forms.Label();
 			priceLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.serviceDataGridView)).BeginInit();
+			this.panel1.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// serviceIdLabel
 			// 
 			serviceIdLabel.AutoSize = true;
 			serviceIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			serviceIdLabel.Location = new System.Drawing.Point(87, 115);
+			serviceIdLabel.Location = new System.Drawing.Point(79, 19);
 			serviceIdLabel.Name = "serviceIdLabel";
 			serviceIdLabel.Size = new System.Drawing.Size(26, 18);
 			serviceIdLabel.TabIndex = 8;
@@ -76,7 +81,7 @@
 			// 
 			serviceNameLabel.AutoSize = true;
 			serviceNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			serviceNameLabel.Location = new System.Drawing.Point(12, 148);
+			serviceNameLabel.Location = new System.Drawing.Point(4, 52);
 			serviceNameLabel.Name = "serviceNameLabel";
 			serviceNameLabel.Size = new System.Drawing.Size(105, 18);
 			serviceNameLabel.TabIndex = 10;
@@ -86,7 +91,7 @@
 			// 
 			priceLabel.AutoSize = true;
 			priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			priceLabel.Location = new System.Drawing.Point(67, 203);
+			priceLabel.Location = new System.Drawing.Point(59, 107);
 			priceLabel.Name = "priceLabel";
 			priceLabel.Size = new System.Drawing.Size(46, 18);
 			priceLabel.TabIndex = 12;
@@ -94,9 +99,10 @@
 			// 
 			// label_ServiceRecords
 			// 
+			this.label_ServiceRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label_ServiceRecords.AutoSize = true;
 			this.label_ServiceRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_ServiceRecords.Location = new System.Drawing.Point(474, 56);
+			this.label_ServiceRecords.Location = new System.Drawing.Point(474, 62);
 			this.label_ServiceRecords.Name = "label_ServiceRecords";
 			this.label_ServiceRecords.Size = new System.Drawing.Size(164, 24);
 			this.label_ServiceRecords.TabIndex = 3;
@@ -121,12 +127,16 @@
 			this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
 			this.tableAdapterManager.CustomerTableAdapter = null;
 			this.tableAdapterManager.InvoiceRecordTableAdapter = null;
+			this.tableAdapterManager.Old_ServiceRecordTableAdapter = null;
 			this.tableAdapterManager.PaymentDetailsTableAdapter = null;
 			this.tableAdapterManager.ServiceTableAdapter = this.serviceTableAdapter;
 			this.tableAdapterManager.UpdateOrder = Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
 			// 
 			// serviceDataGridView
 			// 
+			this.serviceDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.serviceDataGridView.AutoGenerateColumns = false;
 			this.serviceDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.serviceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -134,7 +144,7 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
 			this.serviceDataGridView.DataSource = this.serviceBindingSource;
-			this.serviceDataGridView.Location = new System.Drawing.Point(311, 92);
+			this.serviceDataGridView.Location = new System.Drawing.Point(12, 7);
 			this.serviceDataGridView.Name = "serviceDataGridView";
 			this.serviceDataGridView.ReadOnly = true;
 			this.serviceDataGridView.Size = new System.Drawing.Size(489, 229);
@@ -160,13 +170,14 @@
 			// button_Back
 			// 
 			this.button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_Back.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.button_Back.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_Back.Location = new System.Drawing.Point(12, 417);
+			this.button_Back.Location = new System.Drawing.Point(4, 432);
 			this.button_Back.Name = "button_Back";
 			this.button_Back.Size = new System.Drawing.Size(103, 32);
 			this.button_Back.TabIndex = 5;
 			this.button_Back.Text = "Other Records";
-			this.button_Back.UseVisualStyleBackColor = true;
+			this.button_Back.UseVisualStyleBackColor = false;
 			this.button_Back.Click += new System.EventHandler(this.Button_Back_Click);
 			// 
 			// label_Help
@@ -177,17 +188,19 @@
 			this.label_Help.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label_Help.Cursor = System.Windows.Forms.Cursors.Help;
 			this.label_Help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_Help.Location = new System.Drawing.Point(799, 5);
+			this.label_Help.Location = new System.Drawing.Point(801, 5);
 			this.label_Help.Name = "label_Help";
 			this.label_Help.Size = new System.Drawing.Size(48, 22);
 			this.label_Help.TabIndex = 8;
 			this.label_Help.Text = "Help";
 			this.toolTip1.SetToolTip(this.label_Help, resources.GetString("label_Help.ToolTip"));
+			this.label_Help.Click += new System.EventHandler(this.Label_Help_Click);
 			// 
 			// toolTip1
 			// 
 			this.toolTip1.AutoPopDelay = 10000;
-			this.toolTip1.InitialDelay = 500;
+			this.toolTip1.InitialDelay = 100;
+			this.toolTip1.IsBalloon = true;
 			this.toolTip1.ReshowDelay = 100;
 			this.toolTip1.ShowAlways = true;
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
@@ -198,7 +211,7 @@
 			this.serviceIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serviceBindingSource, "serviceId", true));
 			this.serviceIdTextBox.Enabled = false;
 			this.serviceIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.serviceIdTextBox.Location = new System.Drawing.Point(119, 114);
+			this.serviceIdTextBox.Location = new System.Drawing.Point(109, 18);
 			this.serviceIdTextBox.Name = "serviceIdTextBox";
 			this.serviceIdTextBox.Size = new System.Drawing.Size(100, 24);
 			this.serviceIdTextBox.TabIndex = 9;
@@ -208,7 +221,7 @@
 			this.serviceNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serviceBindingSource, "serviceName", true));
 			this.serviceNameTextBox.Enabled = false;
 			this.serviceNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.serviceNameTextBox.Location = new System.Drawing.Point(119, 149);
+			this.serviceNameTextBox.Location = new System.Drawing.Point(109, 53);
 			this.serviceNameTextBox.Multiline = true;
 			this.serviceNameTextBox.Name = "serviceNameTextBox";
 			this.serviceNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -220,64 +233,72 @@
 			this.priceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serviceBindingSource, "price", true));
 			this.priceTextBox.Enabled = false;
 			this.priceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.priceTextBox.Location = new System.Drawing.Point(119, 203);
+			this.priceTextBox.Location = new System.Drawing.Point(109, 107);
 			this.priceTextBox.Name = "priceTextBox";
 			this.priceTextBox.Size = new System.Drawing.Size(100, 24);
 			this.priceTextBox.TabIndex = 13;
 			// 
 			// button_AddData
 			// 
+			this.button_AddData.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.button_AddData.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.button_AddData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_AddData.Location = new System.Drawing.Point(511, 329);
+			this.button_AddData.Location = new System.Drawing.Point(212, 242);
 			this.button_AddData.Name = "button_AddData";
 			this.button_AddData.Size = new System.Drawing.Size(105, 40);
 			this.button_AddData.TabIndex = 24;
 			this.button_AddData.Text = "Add ➕";
-			this.button_AddData.UseVisualStyleBackColor = true;
+			this.button_AddData.UseVisualStyleBackColor = false;
 			this.button_AddData.Click += new System.EventHandler(this.Button_AddData_Click);
 			// 
 			// button_backwithpoint
 			// 
+			this.button_backwithpoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_backwithpoint.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.button_backwithpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_backwithpoint.Location = new System.Drawing.Point(312, 329);
+			this.button_backwithpoint.Location = new System.Drawing.Point(12, 243);
 			this.button_backwithpoint.Name = "button_backwithpoint";
 			this.button_backwithpoint.Size = new System.Drawing.Size(92, 40);
 			this.button_backwithpoint.TabIndex = 23;
 			this.button_backwithpoint.Text = "<- Back";
-			this.button_backwithpoint.UseVisualStyleBackColor = true;
+			this.button_backwithpoint.UseVisualStyleBackColor = false;
 			this.button_backwithpoint.Click += new System.EventHandler(this.Button_backwithpoint_Click);
 			// 
 			// button_Next
 			// 
+			this.button_Next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_Next.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.button_Next.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_Next.Location = new System.Drawing.Point(709, 329);
+			this.button_Next.Location = new System.Drawing.Point(410, 242);
 			this.button_Next.Name = "button_Next";
 			this.button_Next.Size = new System.Drawing.Size(92, 40);
 			this.button_Next.TabIndex = 22;
 			this.button_Next.Text = "Next ->";
-			this.button_Next.UseVisualStyleBackColor = true;
+			this.button_Next.UseVisualStyleBackColor = false;
 			this.button_Next.Click += new System.EventHandler(this.Button_Next_Click);
 			// 
 			// button_update
 			// 
+			this.button_update.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.button_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_update.Location = new System.Drawing.Point(125, 249);
+			this.button_update.Location = new System.Drawing.Point(111, 158);
 			this.button_update.Name = "button_update";
 			this.button_update.Size = new System.Drawing.Size(94, 30);
 			this.button_update.TabIndex = 29;
 			this.button_update.Text = "Update ✏️";
-			this.button_update.UseVisualStyleBackColor = true;
+			this.button_update.UseVisualStyleBackColor = false;
 			this.button_update.Click += new System.EventHandler(this.Button_update_Click);
 			// 
 			// button_Done
 			// 
+			this.button_Done.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.button_Done.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_Done.Location = new System.Drawing.Point(125, 249);
+			this.button_Done.Location = new System.Drawing.Point(110, 158);
 			this.button_Done.Name = "button_Done";
 			this.button_Done.Size = new System.Drawing.Size(94, 30);
 			this.button_Done.TabIndex = 28;
 			this.button_Done.Text = "Save 💾";
-			this.button_Done.UseVisualStyleBackColor = true;
+			this.button_Done.UseVisualStyleBackColor = false;
 			this.button_Done.Visible = false;
 			this.button_Done.Click += new System.EventHandler(this.Button_Done_Click);
 			// 
@@ -285,7 +306,7 @@
 			// 
 			this.label_RecordsDetails.AutoSize = true;
 			this.label_RecordsDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_RecordsDetails.Location = new System.Drawing.Point(86, 56);
+			this.label_RecordsDetails.Location = new System.Drawing.Point(86, 62);
 			this.label_RecordsDetails.Name = "label_RecordsDetails";
 			this.label_RecordsDetails.Size = new System.Drawing.Size(148, 24);
 			this.label_RecordsDetails.TabIndex = 30;
@@ -293,8 +314,9 @@
 			// 
 			// textBox_search
 			// 
+			this.textBox_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_search.Location = new System.Drawing.Point(676, 57);
+			this.textBox_search.Location = new System.Drawing.Point(695, 63);
 			this.textBox_search.Name = "textBox_search";
 			this.textBox_search.Size = new System.Drawing.Size(124, 24);
 			this.textBox_search.TabIndex = 31;
@@ -302,29 +324,67 @@
 			this.textBox_search.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBox_search_MouseClick);
 			this.textBox_search.TextChanged += new System.EventHandler(this.TextBox_search_TextChanged);
 			// 
+			// label_OldServices
+			// 
+			this.label_OldServices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.label_OldServices.AutoSize = true;
+			this.label_OldServices.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.label_OldServices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_OldServices.ForeColor = System.Drawing.Color.Blue;
+			this.label_OldServices.Location = new System.Drawing.Point(725, 438);
+			this.label_OldServices.Name = "label_OldServices";
+			this.label_OldServices.Size = new System.Drawing.Size(128, 18);
+			this.label_OldServices.TabIndex = 32;
+			this.label_OldServices.Text = "ℹ️ Old Services";
+			this.label_OldServices.Click += new System.EventHandler(this.Label_OldServices_Click);
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.panel1.Controls.Add(this.serviceIdTextBox);
+			this.panel1.Controls.Add(this.priceTextBox);
+			this.panel1.Controls.Add(priceLabel);
+			this.panel1.Controls.Add(this.serviceNameTextBox);
+			this.panel1.Controls.Add(this.button_Done);
+			this.panel1.Controls.Add(this.button_update);
+			this.panel1.Controls.Add(serviceNameLabel);
+			this.panel1.Controls.Add(serviceIdLabel);
+			this.panel1.Location = new System.Drawing.Point(21, 92);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(272, 201);
+			this.panel1.TabIndex = 33;
+			// 
+			// panel2
+			// 
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.panel2.Controls.Add(this.serviceDataGridView);
+			this.panel2.Controls.Add(this.button_AddData);
+			this.panel2.Controls.Add(this.button_Next);
+			this.panel2.Controls.Add(this.button_backwithpoint);
+			this.panel2.Location = new System.Drawing.Point(309, 92);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(510, 286);
+			this.panel2.TabIndex = 34;
+			// 
 			// ServiceRecords_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(854, 461);
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(856, 469);
+			this.Controls.Add(this.panel2);
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.label_OldServices);
 			this.Controls.Add(this.textBox_search);
 			this.Controls.Add(this.label_RecordsDetails);
-			this.Controls.Add(this.button_update);
-			this.Controls.Add(this.button_Done);
-			this.Controls.Add(this.button_AddData);
-			this.Controls.Add(this.button_backwithpoint);
-			this.Controls.Add(this.button_Next);
-			this.Controls.Add(serviceIdLabel);
-			this.Controls.Add(this.serviceIdTextBox);
-			this.Controls.Add(serviceNameLabel);
-			this.Controls.Add(this.serviceNameTextBox);
-			this.Controls.Add(priceLabel);
-			this.Controls.Add(this.priceTextBox);
 			this.Controls.Add(this.label_Help);
 			this.Controls.Add(this.button_Back);
-			this.Controls.Add(this.serviceDataGridView);
 			this.Controls.Add(this.label_ServiceRecords);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MinimumSize = new System.Drawing.Size(872, 508);
 			this.Name = "ServiceRecords_Form";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Service Records";
@@ -332,6 +392,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.serviceDataGridView)).EndInit();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -360,5 +423,8 @@
 		private System.Windows.Forms.Button button_Done;
 		private System.Windows.Forms.Label label_RecordsDetails;
 		private System.Windows.Forms.TextBox textBox_search;
+		private System.Windows.Forms.Label label_OldServices;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panel2;
 	}
 }

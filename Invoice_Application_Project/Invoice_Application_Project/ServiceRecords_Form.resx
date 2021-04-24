@@ -143,18 +143,18 @@
   </metadata>
   <data name="label_Help.ToolTip" xml:space="preserve">
     <value> To Add Records
-1.Select the plus ➕ icon below the table.
-2.Add details.
-3.Click save 💾 icon below the table.
-
-To Delete
-1. Select a row with the * icon
-2. Click the cross ❌ icon below the table
+1.Select the plus Add button with this icon ➕ .
+2.Enter the details.
+3.Click save button with an icon 💾.
 
 To Update details
-1. Select a field of a chosen row
-2. Click save 💾 icon below the table.
+1. Select the update button with an icon ✏️.
+2. Then, click save button. 
+
+To Search
+1. Click the search box and type the name of the service
  
+
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
