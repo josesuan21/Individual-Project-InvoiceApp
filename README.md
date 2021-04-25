@@ -106,26 +106,33 @@ Configuring SQL server database connection
 
 2. Inside the folder, run and install first "SqlLocalDB" 
 
-![](https://i.imgur.com/7LypdZT.png)
+![](https://i.imgur.com/fadt6Cl.png)
 
 
 
-3. Then after installing the SqlLocalDB package, Click and run setup:
+3. Then run and install "Net Framework 4.7.2"
 
-![](https://i.imgur.com/EniuFho.png)
+![](https://i.imgur.com/Dbt6U2K.png)
 
-
-
-4. Accept the agreement
-
-![](https://i.imgur.com/3DwKQgh.png)
-
-
-5. Then click allow and install
+(If the installation can't be made this means that Net Framework 4.7.2 is already installed in your computer) Simply close and continue next steps.
+![](https://i.imgur.com/b0zwjNc.png)
 
 
 
-6. After installation, the invoice app displays and a shorcut icon created on your desktop. 
+
+4. Click and run setup:
+
+![](https://i.imgur.com/wOxVQzf.png)
+
+
+
+5. Then click install
+
+![](https://i.imgur.com/4ViiDS7.png)
+
+
+
+6. After installation, the invoice app automatically opens and a shorcut icon created on your desktop. 
 
 
 7. Enjoy creating Invoice! 
