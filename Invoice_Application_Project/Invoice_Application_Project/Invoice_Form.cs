@@ -176,7 +176,7 @@ namespace Invoice_Application_Project
 			//Takes the item in the combo box text
 			ListViewItem item = new ListViewItem(comboBox_ChooseService.Text);
 
-			if (item.Text != "Choose service" && item.Text != null)
+			if (item.Text != "" && item.Text != null)
 			{
 
 				ServicePresenter servicePresenter = new ServicePresenter(this);
@@ -229,6 +229,9 @@ namespace Invoice_Application_Project
 
 				//Saving total price and discount value (Service Presenter)
 				invoiceRecordPresenter.SaveTotalPrice_Discount();
+
+				//BUG 011 - Updating invoice dates 
+				invoiceRecordPresenter.UpdateInvoiceDates();
 
 				//Ticket 31.1 - Update changes to databse if answerPaymentdetails is True (Payment Details)
 				paymentDetails.UpdatePaymentDetails(answerPaymentdetails,textBox_PaymentTransfer.Text,textBox_ChequePayment.Text);
@@ -543,7 +546,8 @@ namespace Invoice_Application_Project
 		//(Validation) Service input details - Ticket 038.2 
 		private void ComboBox_ChooseService_DropDownClosed(object sender, EventArgs e)
 		{
-			label_chooseAservice.Visible = false;
+			if (comboBox_ChooseService.Text != "") { label_chooseAservice.Visible = false; }
+			
 		}
 
 		private void TextBox_InvoiceNotes_Validating(object sender, CancelEventArgs e)
@@ -595,7 +599,7 @@ namespace Invoice_Application_Project
 		}
 		//Add service focus - Ticket 033
 		private void ComboBox_ChooseService_SelectedIndexChanged(object sender, EventArgs e)
-		{
+		{	
 			button_ChooseService.Focus();
 		}
 
@@ -633,6 +637,8 @@ namespace Invoice_Application_Project
 		{
 			button_SavePDF.PerformClick();
 		}
+
+		
 	}
 
 }

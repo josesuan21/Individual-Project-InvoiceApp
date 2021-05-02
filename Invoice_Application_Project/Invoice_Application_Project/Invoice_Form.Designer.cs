@@ -176,6 +176,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox_Address.Location = new System.Drawing.Point(213, 89);
+			this.textBox_Address.MaxLength = 75;
 			this.textBox_Address.Multiline = true;
 			this.textBox_Address.Name = "textBox_Address";
 			this.textBox_Address.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -731,7 +732,7 @@
 			this.Controls.Add(this.groupBox_ServicesDetails);
 			this.Controls.Add(this.groupBox_CustomerDetails);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MinimumSize = new System.Drawing.Size(675, 700);
+			this.MinimumSize = new System.Drawing.Size(675, 678);
 			this.Name = "Invoice_Form";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoice Form";

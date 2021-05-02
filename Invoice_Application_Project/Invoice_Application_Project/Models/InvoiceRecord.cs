@@ -306,6 +306,29 @@ namespace Invoice_Application_Project.Models
 
 		}
 
+		//BUG 011 - Update Invoice Date and Due date
+		public void UpdateDates() {
+			//Open connection
+			connection = new SqlConnection(connectionString);
+
+			connection.Open();
+
+			//where system
+			string sqlQuery_UpdateDates = "UPDATE InvoiceRecord SET date = @date, duedate = @duedate WHERE invoiceRecordId = @currentInvoiceId;";
+
+			SqlCommand cmd = new SqlCommand(sqlQuery_UpdateDates, connection);
+
+			//Adding values from form
+			cmd.Parameters.AddWithValue("@date", InvoiceDate);
+			cmd.Parameters.AddWithValue("@duedate", InvoiceDueDate);
+			cmd.Parameters.AddWithValue("@currentInvoiceId", InvoiceId);
+
+			//Execute command
+			cmd.ExecuteNonQuery();
+
+			//Close connection
+			connection.Close();
+		}
 
 	}
 

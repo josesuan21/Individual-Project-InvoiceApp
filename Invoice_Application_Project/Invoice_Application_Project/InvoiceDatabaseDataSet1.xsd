@@ -366,10 +366,10 @@ WHERE        (c.customerName LIKE @Name + '%')</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ServiceName_TotalTableAdapter" GeneratorDataComponentClassName="ServiceName_TotalTableAdapter" Name="ServiceName_Total" UserDataComponentName="ServiceName_TotalTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="InvoiceDatabaseConnectionString (Settings)" DbObjectName="dbo.Service" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="InvoiceDatabaseConnectionString (Settings)" DbObjectName="dbo.Service" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT s.serviceId,s.serviceName, COUNT(sc.serviceId) AS 'Total Service Used'
+                    <CommandText>SELECT TOP 5 s.serviceId,s.serviceName, COUNT(sc.serviceId) AS 'Total Service Used'
 
 FROM Service s
 
@@ -377,7 +377,9 @@ INNER JOIN ServiceChosen sc
 
 ON s.serviceId = sc.serviceId
 
-GROUP BY s.serviceId,s.serviceName;</CommandText>
+GROUP BY s.serviceId,s.serviceName
+
+ORDER BY COUNT(sc.serviceId) DESC;</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -392,10 +394,10 @@ GROUP BY s.serviceId,s.serviceName;</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Popular_AreaTableAdapter" GeneratorDataComponentClassName="Popular_AreaTableAdapter" Name="Popular_Area" UserDataComponentName="Popular_AreaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="InvoiceDatabaseConnectionString (Settings)" DbObjectName="dbo.Customer" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="InvoiceDatabaseConnectionString (Settings)" DbObjectName="dbo.Customer" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT c.postCode, Count(c.customerId) as 'Total'
+                    <CommandText>SELECT TOP 10 c.postCode, COUNT(c.customerId) as 'Total'
 
 FROM ServiceChosen sc
 
@@ -403,7 +405,9 @@ INNER JOIN Customer c
 
 ON c.customerId = sc.customerId
 
-GROUP BY c.postCode;</CommandText>
+GROUP BY c.postCode
+
+ORDER BY COUNT(c.customerId) DESC;</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -424,7 +428,7 @@ GROUP BY c.postCode;</CommandText>
 
 FROM InvoiceRecord ir
 
-WHERE YEAR(ir.date) = YEAR(GETDATE())
+WHERE ir.date BETWEEN CONVERT(datetime,'04/06/'+ CONVERT(varchar, YEAR(GETDATE()))) AND CONVERT(datetime,'04/05/'+ CONVERT( varchar ,YEAR(GETDATE())+1))
 
 GROUP BY ir.date;</CommandText>
                     <Parameters />
@@ -443,7 +447,7 @@ GROUP BY ir.date;</CommandText>
               <DbSource ConnectionRef="InvoiceDatabaseConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT CONCAT(c.customerName,'(',c.customerId,')') AS 'Customer Name(ID)', COUNT(sc.customerId) AS 'TotalServiceMade'
+                    <CommandText>SELECT TOP 5 CONCAT(c.customerName,'(',c.customerId,')') AS 'Customer Name(ID)', COUNT(sc.customerId) AS 'TotalServiceMade'
 
 FROM Customer c
 
@@ -451,7 +455,9 @@ INNER JOIN ServiceChosen sc
 
 ON sc.customerId = c.customerId
 
-GROUP BY CONCAT(c.customerName,'(',c.customerId,')');</CommandText>
+GROUP BY CONCAT(c.customerName,'(',c.customerId,')')
+
+ORDER BY COUNT(sc.customerId) DESC;</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -534,7 +540,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
   <xs:element name="InvoiceDatabaseDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="InvoiceDatabaseDataSet1" msprop:Generator_UserDSName="InvoiceDatabaseDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Customer" msprop:Generator_TableClassName="CustomerDataTable" msprop:Generator_TableVarName="tableCustomer" msprop:Generator_TablePropName="Customer" msprop:Generator_RowDeletingName="CustomerRowDeleting" msprop:Generator_RowChangingName="CustomerRowChanging" msprop:Generator_RowEvHandlerName="CustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomerRowDeleted" msprop:Generator_UserTableName="Customer" msprop:Generator_RowChangedName="CustomerRowChanged" msprop:Generator_RowEvArgName="CustomerRowChangeEvent" msprop:Generator_RowClassName="CustomerRow">
+        <xs:element name="Customer" msprop:Generator_TableClassName="CustomerDataTable" msprop:Generator_TableVarName="tableCustomer" msprop:Generator_RowChangedName="CustomerRowChanged" msprop:Generator_TablePropName="Customer" msprop:Generator_RowDeletingName="CustomerRowDeleting" msprop:Generator_RowChangingName="CustomerRowChanging" msprop:Generator_RowEvHandlerName="CustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomerRowDeleted" msprop:Generator_RowClassName="CustomerRow" msprop:Generator_UserTableName="Customer" msprop:Generator_RowEvArgName="CustomerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="customerId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncustomerId" msprop:Generator_ColumnPropNameInRow="customerId" msprop:Generator_ColumnPropNameInTable="customerIdColumn" msprop:Generator_UserColumnName="customerId" type="xs:int" />
@@ -555,7 +561,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
               <xs:element name="address" msprop:Generator_ColumnVarNameInTable="columnaddress" msprop:Generator_ColumnPropNameInRow="address" msprop:Generator_ColumnPropNameInTable="addressColumn" msprop:Generator_UserColumnName="address" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="35" />
+                    <xs:maxLength value="70" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -569,7 +575,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="InvoiceRecord" msprop:Generator_TableClassName="InvoiceRecordDataTable" msprop:Generator_TableVarName="tableInvoiceRecord" msprop:Generator_TablePropName="InvoiceRecord" msprop:Generator_RowDeletingName="InvoiceRecordRowDeleting" msprop:Generator_RowChangingName="InvoiceRecordRowChanging" msprop:Generator_RowEvHandlerName="InvoiceRecordRowChangeEventHandler" msprop:Generator_RowDeletedName="InvoiceRecordRowDeleted" msprop:Generator_UserTableName="InvoiceRecord" msprop:Generator_RowChangedName="InvoiceRecordRowChanged" msprop:Generator_RowEvArgName="InvoiceRecordRowChangeEvent" msprop:Generator_RowClassName="InvoiceRecordRow">
+        <xs:element name="InvoiceRecord" msprop:Generator_TableClassName="InvoiceRecordDataTable" msprop:Generator_TableVarName="tableInvoiceRecord" msprop:Generator_RowChangedName="InvoiceRecordRowChanged" msprop:Generator_TablePropName="InvoiceRecord" msprop:Generator_RowDeletingName="InvoiceRecordRowDeleting" msprop:Generator_RowChangingName="InvoiceRecordRowChanging" msprop:Generator_RowEvHandlerName="InvoiceRecordRowChangeEventHandler" msprop:Generator_RowDeletedName="InvoiceRecordRowDeleted" msprop:Generator_RowClassName="InvoiceRecordRow" msprop:Generator_UserTableName="InvoiceRecord" msprop:Generator_RowEvArgName="InvoiceRecordRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="invoiceRecordId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columninvoiceRecordId" msprop:Generator_ColumnPropNameInRow="invoiceRecordId" msprop:Generator_ColumnPropNameInTable="invoiceRecordIdColumn" msprop:Generator_UserColumnName="invoiceRecordId" type="xs:int" />
@@ -587,7 +593,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PaymentDetails" msprop:Generator_TableClassName="PaymentDetailsDataTable" msprop:Generator_TableVarName="tablePaymentDetails" msprop:Generator_TablePropName="PaymentDetails" msprop:Generator_RowDeletingName="PaymentDetailsRowDeleting" msprop:Generator_RowChangingName="PaymentDetailsRowChanging" msprop:Generator_RowEvHandlerName="PaymentDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentDetailsRowDeleted" msprop:Generator_UserTableName="PaymentDetails" msprop:Generator_RowChangedName="PaymentDetailsRowChanged" msprop:Generator_RowEvArgName="PaymentDetailsRowChangeEvent" msprop:Generator_RowClassName="PaymentDetailsRow">
+        <xs:element name="PaymentDetails" msprop:Generator_TableClassName="PaymentDetailsDataTable" msprop:Generator_TableVarName="tablePaymentDetails" msprop:Generator_RowChangedName="PaymentDetailsRowChanged" msprop:Generator_TablePropName="PaymentDetails" msprop:Generator_RowDeletingName="PaymentDetailsRowDeleting" msprop:Generator_RowChangingName="PaymentDetailsRowChanging" msprop:Generator_RowEvHandlerName="PaymentDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentDetailsRowDeleted" msprop:Generator_RowClassName="PaymentDetailsRow" msprop:Generator_UserTableName="PaymentDetails" msprop:Generator_RowEvArgName="PaymentDetailsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -601,7 +607,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Service" msprop:Generator_TableClassName="ServiceDataTable" msprop:Generator_TableVarName="tableService" msprop:Generator_TablePropName="Service" msprop:Generator_RowDeletingName="ServiceRowDeleting" msprop:Generator_RowChangingName="ServiceRowChanging" msprop:Generator_RowEvHandlerName="ServiceRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceRowDeleted" msprop:Generator_UserTableName="Service" msprop:Generator_RowChangedName="ServiceRowChanged" msprop:Generator_RowEvArgName="ServiceRowChangeEvent" msprop:Generator_RowClassName="ServiceRow">
+        <xs:element name="Service" msprop:Generator_TableClassName="ServiceDataTable" msprop:Generator_TableVarName="tableService" msprop:Generator_RowChangedName="ServiceRowChanged" msprop:Generator_TablePropName="Service" msprop:Generator_RowDeletingName="ServiceRowDeleting" msprop:Generator_RowChangingName="ServiceRowChanging" msprop:Generator_RowEvHandlerName="ServiceRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceRowDeleted" msprop:Generator_RowClassName="ServiceRow" msprop:Generator_UserTableName="Service" msprop:Generator_RowEvArgName="ServiceRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="serviceId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnserviceId" msprop:Generator_ColumnPropNameInRow="serviceId" msprop:Generator_ColumnPropNameInTable="serviceIdColumn" msprop:Generator_UserColumnName="serviceId" type="xs:int" />
@@ -616,7 +622,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ServiceChosen" msprop:Generator_TableClassName="ServiceChosenDataTable" msprop:Generator_TableVarName="tableServiceChosen" msprop:Generator_TablePropName="ServiceChosen" msprop:Generator_RowDeletingName="ServiceChosenRowDeleting" msprop:Generator_RowChangingName="ServiceChosenRowChanging" msprop:Generator_RowEvHandlerName="ServiceChosenRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceChosenRowDeleted" msprop:Generator_UserTableName="ServiceChosen" msprop:Generator_RowChangedName="ServiceChosenRowChanged" msprop:Generator_RowEvArgName="ServiceChosenRowChangeEvent" msprop:Generator_RowClassName="ServiceChosenRow">
+        <xs:element name="ServiceChosen" msprop:Generator_TableClassName="ServiceChosenDataTable" msprop:Generator_TableVarName="tableServiceChosen" msprop:Generator_RowChangedName="ServiceChosenRowChanged" msprop:Generator_TablePropName="ServiceChosen" msprop:Generator_RowDeletingName="ServiceChosenRowDeleting" msprop:Generator_RowChangingName="ServiceChosenRowChanging" msprop:Generator_RowEvHandlerName="ServiceChosenRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceChosenRowDeleted" msprop:Generator_RowClassName="ServiceChosenRow" msprop:Generator_UserTableName="ServiceChosen" msprop:Generator_RowEvArgName="ServiceChosenRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="serviceChosenId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnserviceChosenId" msprop:Generator_ColumnPropNameInRow="serviceChosenId" msprop:Generator_ColumnPropNameInTable="serviceChosenIdColumn" msprop:Generator_UserColumnName="serviceChosenId" type="xs:int" />
@@ -626,7 +632,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ServiceChosen_InnerJoin" msprop:Generator_TableClassName="ServiceChosen_InnerJoinDataTable" msprop:Generator_TableVarName="tableServiceChosen_InnerJoin" msprop:Generator_RowChangedName="ServiceChosen_InnerJoinRowChanged" msprop:Generator_TablePropName="ServiceChosen_InnerJoin" msprop:Generator_RowDeletingName="ServiceChosen_InnerJoinRowDeleting" msprop:Generator_RowChangingName="ServiceChosen_InnerJoinRowChanging" msprop:Generator_RowEvHandlerName="ServiceChosen_InnerJoinRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceChosen_InnerJoinRowDeleted" msprop:Generator_RowClassName="ServiceChosen_InnerJoinRow" msprop:Generator_UserTableName="ServiceChosen_InnerJoin" msprop:Generator_RowEvArgName="ServiceChosen_InnerJoinRowChangeEvent">
+        <xs:element name="ServiceChosen_InnerJoin" msprop:Generator_TableClassName="ServiceChosen_InnerJoinDataTable" msprop:Generator_TableVarName="tableServiceChosen_InnerJoin" msprop:Generator_TablePropName="ServiceChosen_InnerJoin" msprop:Generator_RowDeletingName="ServiceChosen_InnerJoinRowDeleting" msprop:Generator_RowChangingName="ServiceChosen_InnerJoinRowChanging" msprop:Generator_RowEvHandlerName="ServiceChosen_InnerJoinRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceChosen_InnerJoinRowDeleted" msprop:Generator_UserTableName="ServiceChosen_InnerJoin" msprop:Generator_RowChangedName="ServiceChosen_InnerJoinRowChanged" msprop:Generator_RowEvArgName="ServiceChosen_InnerJoinRowChangeEvent" msprop:Generator_RowClassName="ServiceChosen_InnerJoinRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -648,7 +654,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ServiceName_Total" msprop:Generator_TableClassName="ServiceName_TotalDataTable" msprop:Generator_TableVarName="tableServiceName_Total" msprop:Generator_TablePropName="ServiceName_Total" msprop:Generator_RowDeletingName="ServiceName_TotalRowDeleting" msprop:Generator_RowChangingName="ServiceName_TotalRowChanging" msprop:Generator_RowEvHandlerName="ServiceName_TotalRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceName_TotalRowDeleted" msprop:Generator_UserTableName="ServiceName_Total" msprop:Generator_RowChangedName="ServiceName_TotalRowChanged" msprop:Generator_RowEvArgName="ServiceName_TotalRowChangeEvent" msprop:Generator_RowClassName="ServiceName_TotalRow">
+        <xs:element name="ServiceName_Total" msprop:Generator_TableClassName="ServiceName_TotalDataTable" msprop:Generator_TableVarName="tableServiceName_Total" msprop:Generator_RowChangedName="ServiceName_TotalRowChanged" msprop:Generator_TablePropName="ServiceName_Total" msprop:Generator_RowDeletingName="ServiceName_TotalRowDeleting" msprop:Generator_RowChangingName="ServiceName_TotalRowChanging" msprop:Generator_RowEvHandlerName="ServiceName_TotalRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceName_TotalRowDeleted" msprop:Generator_RowClassName="ServiceName_TotalRow" msprop:Generator_UserTableName="ServiceName_Total" msprop:Generator_RowEvArgName="ServiceName_TotalRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="serviceId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnserviceId" msprop:Generator_ColumnPropNameInRow="serviceId" msprop:Generator_ColumnPropNameInTable="serviceIdColumn" msprop:Generator_UserColumnName="serviceId" type="xs:int" />
@@ -663,7 +669,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Popular_Area" msprop:Generator_TableClassName="Popular_AreaDataTable" msprop:Generator_TableVarName="tablePopular_Area" msprop:Generator_TablePropName="Popular_Area" msprop:Generator_RowDeletingName="Popular_AreaRowDeleting" msprop:Generator_RowChangingName="Popular_AreaRowChanging" msprop:Generator_RowEvHandlerName="Popular_AreaRowChangeEventHandler" msprop:Generator_RowDeletedName="Popular_AreaRowDeleted" msprop:Generator_UserTableName="Popular_Area" msprop:Generator_RowChangedName="Popular_AreaRowChanged" msprop:Generator_RowEvArgName="Popular_AreaRowChangeEvent" msprop:Generator_RowClassName="Popular_AreaRow">
+        <xs:element name="Popular_Area" msprop:Generator_TableClassName="Popular_AreaDataTable" msprop:Generator_TableVarName="tablePopular_Area" msprop:Generator_RowChangedName="Popular_AreaRowChanged" msprop:Generator_TablePropName="Popular_Area" msprop:Generator_RowDeletingName="Popular_AreaRowDeleting" msprop:Generator_RowChangingName="Popular_AreaRowChanging" msprop:Generator_RowEvHandlerName="Popular_AreaRowChangeEventHandler" msprop:Generator_RowDeletedName="Popular_AreaRowDeleted" msprop:Generator_RowClassName="Popular_AreaRow" msprop:Generator_UserTableName="Popular_Area" msprop:Generator_RowEvArgName="Popular_AreaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="postCode" msprop:Generator_ColumnVarNameInTable="columnpostCode" msprop:Generator_ColumnPropNameInRow="postCode" msprop:Generator_ColumnPropNameInTable="postCodeColumn" msprop:Generator_UserColumnName="postCode">
@@ -677,7 +683,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Income_CurrentYear" msprop:Generator_TableClassName="Income_CurrentYearDataTable" msprop:Generator_TableVarName="tableIncome_CurrentYear" msprop:Generator_TablePropName="Income_CurrentYear" msprop:Generator_RowDeletingName="Income_CurrentYearRowDeleting" msprop:Generator_RowChangingName="Income_CurrentYearRowChanging" msprop:Generator_RowEvHandlerName="Income_CurrentYearRowChangeEventHandler" msprop:Generator_RowDeletedName="Income_CurrentYearRowDeleted" msprop:Generator_UserTableName="Income_CurrentYear" msprop:Generator_RowChangedName="Income_CurrentYearRowChanged" msprop:Generator_RowEvArgName="Income_CurrentYearRowChangeEvent" msprop:Generator_RowClassName="Income_CurrentYearRow">
+        <xs:element name="Income_CurrentYear" msprop:Generator_TableClassName="Income_CurrentYearDataTable" msprop:Generator_TableVarName="tableIncome_CurrentYear" msprop:Generator_RowChangedName="Income_CurrentYearRowChanged" msprop:Generator_TablePropName="Income_CurrentYear" msprop:Generator_RowDeletingName="Income_CurrentYearRowDeleting" msprop:Generator_RowChangingName="Income_CurrentYearRowChanging" msprop:Generator_RowEvHandlerName="Income_CurrentYearRowChangeEventHandler" msprop:Generator_RowDeletedName="Income_CurrentYearRowDeleted" msprop:Generator_RowClassName="Income_CurrentYearRow" msprop:Generator_UserTableName="Income_CurrentYear" msprop:Generator_RowEvArgName="Income_CurrentYearRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="date" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_UserColumnName="date" type="xs:dateTime" />
@@ -685,7 +691,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LoyalCustomers" msprop:Generator_TableClassName="LoyalCustomersDataTable" msprop:Generator_TableVarName="tableLoyalCustomers" msprop:Generator_TablePropName="LoyalCustomers" msprop:Generator_RowDeletingName="LoyalCustomersRowDeleting" msprop:Generator_RowChangingName="LoyalCustomersRowChanging" msprop:Generator_RowEvHandlerName="LoyalCustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="LoyalCustomersRowDeleted" msprop:Generator_UserTableName="LoyalCustomers" msprop:Generator_RowChangedName="LoyalCustomersRowChanged" msprop:Generator_RowEvArgName="LoyalCustomersRowChangeEvent" msprop:Generator_RowClassName="LoyalCustomersRow">
+        <xs:element name="LoyalCustomers" msprop:Generator_TableClassName="LoyalCustomersDataTable" msprop:Generator_TableVarName="tableLoyalCustomers" msprop:Generator_RowChangedName="LoyalCustomersRowChanged" msprop:Generator_TablePropName="LoyalCustomers" msprop:Generator_RowDeletingName="LoyalCustomersRowDeleting" msprop:Generator_RowChangingName="LoyalCustomersRowChanging" msprop:Generator_RowEvHandlerName="LoyalCustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="LoyalCustomersRowDeleted" msprop:Generator_RowClassName="LoyalCustomersRow" msprop:Generator_UserTableName="LoyalCustomers" msprop:Generator_RowEvArgName="LoyalCustomersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TotalServiceMade" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalServiceMade" msprop:Generator_ColumnPropNameInRow="TotalServiceMade" msprop:Generator_ColumnPropNameInTable="TotalServiceMadeColumn" msprop:Generator_UserColumnName="TotalServiceMade" type="xs:int" minOccurs="0" />
@@ -699,7 +705,7 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Old_ServiceRecord" msprop:Generator_TableClassName="Old_ServiceRecordDataTable" msprop:Generator_TableVarName="tableOld_ServiceRecord" msprop:Generator_TablePropName="Old_ServiceRecord" msprop:Generator_RowDeletingName="Old_ServiceRecordRowDeleting" msprop:Generator_RowChangingName="Old_ServiceRecordRowChanging" msprop:Generator_RowEvHandlerName="Old_ServiceRecordRowChangeEventHandler" msprop:Generator_RowDeletedName="Old_ServiceRecordRowDeleted" msprop:Generator_UserTableName="Old_ServiceRecord" msprop:Generator_RowChangedName="Old_ServiceRecordRowChanged" msprop:Generator_RowEvArgName="Old_ServiceRecordRowChangeEvent" msprop:Generator_RowClassName="Old_ServiceRecordRow">
+        <xs:element name="Old_ServiceRecord" msprop:Generator_TableClassName="Old_ServiceRecordDataTable" msprop:Generator_TableVarName="tableOld_ServiceRecord" msprop:Generator_RowChangedName="Old_ServiceRecordRowChanged" msprop:Generator_TablePropName="Old_ServiceRecord" msprop:Generator_RowDeletingName="Old_ServiceRecordRowDeleting" msprop:Generator_RowChangingName="Old_ServiceRecordRowChanging" msprop:Generator_RowEvHandlerName="Old_ServiceRecordRowChangeEventHandler" msprop:Generator_RowDeletedName="Old_ServiceRecordRowDeleted" msprop:Generator_RowClassName="Old_ServiceRecordRow" msprop:Generator_UserTableName="Old_ServiceRecord" msprop:Generator_RowEvArgName="Old_ServiceRecordRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -753,10 +759,10 @@ SELECT Id, previousId, serviceName, servicePrice, dateAdded FROM Old_ServiceReco
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="invoiceRecordFK" msdata:parent="InvoiceRecord" msdata:child="ServiceChosen" msdata:parentkey="invoiceRecordId" msdata:childkey="invoiceRecordId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="invoiceRecordFK" msprop:Generator_ParentPropName="InvoiceRecordRow" msprop:Generator_RelationVarName="relationinvoiceRecordFK" msprop:Generator_UserParentTable="InvoiceRecord" />
-      <msdata:Relationship name="customerFK" msdata:parent="Customer" msdata:child="ServiceChosen" msdata:parentkey="customerId" msdata:childkey="customerId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="customerFK" msprop:Generator_RelationVarName="relationcustomerFK" msprop:Generator_UserParentTable="Customer" msprop:Generator_ParentPropName="CustomerRow" />
-      <msdata:Relationship name="serviceFK" msdata:parent="Service" msdata:child="ServiceChosen" msdata:parentkey="serviceId" msdata:childkey="serviceId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="serviceFK" msprop:Generator_RelationVarName="relationserviceFK" msprop:Generator_UserParentTable="Service" msprop:Generator_ParentPropName="ServiceRow" />
-      <msdata:Relationship name="serviceFK1" msdata:parent="ServiceName_Total" msdata:child="ServiceChosen" msdata:parentkey="serviceId" msdata:childkey="serviceId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="serviceFK1" msprop:Generator_RelationVarName="relationserviceFK1" msprop:Generator_UserParentTable="ServiceName_Total" msprop:Generator_ParentPropName="ServiceName_TotalRow" />
+      <msdata:Relationship name="invoiceRecordFK" msdata:parent="InvoiceRecord" msdata:child="ServiceChosen" msdata:parentkey="invoiceRecordId" msdata:childkey="invoiceRecordId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="invoiceRecordFK" msprop:Generator_RelationVarName="relationinvoiceRecordFK" msprop:Generator_UserParentTable="InvoiceRecord" msprop:Generator_ParentPropName="InvoiceRecordRow" />
+      <msdata:Relationship name="customerFK" msdata:parent="Customer" msdata:child="ServiceChosen" msdata:parentkey="customerId" msdata:childkey="customerId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="customerFK" msprop:Generator_ParentPropName="CustomerRow" msprop:Generator_RelationVarName="relationcustomerFK" msprop:Generator_UserParentTable="Customer" />
+      <msdata:Relationship name="serviceFK" msdata:parent="Service" msdata:child="ServiceChosen" msdata:parentkey="serviceId" msdata:childkey="serviceId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="serviceFK" msprop:Generator_ParentPropName="ServiceRow" msprop:Generator_RelationVarName="relationserviceFK" msprop:Generator_UserParentTable="Service" />
+      <msdata:Relationship name="serviceFK1" msdata:parent="ServiceName_Total" msdata:child="ServiceChosen" msdata:parentkey="serviceId" msdata:childkey="serviceId" msprop:Generator_UserChildTable="ServiceChosen" msprop:Generator_ChildPropName="GetServiceChosenRows" msprop:Generator_UserRelationName="serviceFK1" msprop:Generator_ParentPropName="ServiceName_TotalRow" msprop:Generator_RelationVarName="relationserviceFK1" msprop:Generator_UserParentTable="ServiceName_Total" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

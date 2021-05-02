@@ -121,7 +121,7 @@
 			this.MinimizeBox = false;
 			this.Name = "ViewUpdate_Form";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "View and Update Records";
+			this.Text = "View Records";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewUpdate_Form_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();

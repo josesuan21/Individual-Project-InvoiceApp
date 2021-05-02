@@ -845,7 +845,7 @@ namespace Invoice_Application_Project {
                 this.columncustomerName.AllowDBNull = false;
                 this.columncustomerName.MaxLength = 70;
                 this.columnemail.MaxLength = 255;
-                this.columnaddress.MaxLength = 35;
+                this.columnaddress.MaxLength = 70;
                 this.columnpostCode.MaxLength = 8;
             }
             
@@ -7299,9 +7299,10 @@ WHERE        (c.customerName LIKE @Name + '%')";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT s.serviceId,s.serviceName, COUNT(sc.serviceId) AS \'Total Service Used\'\r\n\r\n" +
-                "FROM Service s\r\n\r\nINNER JOIN ServiceChosen sc\r\n\r\nON s.serviceId = sc.serviceId\r\n" +
-                "\r\nGROUP BY s.serviceId,s.serviceName;";
+            this._commandCollection[0].CommandText = "SELECT TOP 5 s.serviceId,s.serviceName, COUNT(sc.serviceId) AS \'Total Service Use" +
+                "d\'\r\n\r\nFROM Service s\r\n\r\nINNER JOIN ServiceChosen sc\r\n\r\nON s.serviceId = sc.servi" +
+                "ceId\r\n\r\nGROUP BY s.serviceId,s.serviceName\r\n\r\nORDER BY COUNT(sc.serviceId) DESC;" +
+                "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7469,8 +7470,9 @@ WHERE        (c.customerName LIKE @Name + '%')";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT c.postCode, Count(c.customerId) as \'Total\'\r\n\r\nFROM ServiceChosen sc\r\n\r\nINN" +
-                "ER JOIN Customer c\r\n\r\nON c.customerId = sc.customerId\r\n\r\nGROUP BY c.postCode;";
+            this._commandCollection[0].CommandText = "SELECT TOP 10 c.postCode, COUNT(c.customerId) as \'Total\'\r\n\r\nFROM ServiceChosen sc" +
+                "\r\n\r\nINNER JOIN Customer c\r\n\r\nON c.customerId = sc.customerId\r\n\r\nGROUP BY c.postC" +
+                "ode\r\n\r\nORDER BY COUNT(c.customerId) DESC;";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7639,7 +7641,9 @@ WHERE        (c.customerName LIKE @Name + '%')";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ir.date, SUM(ir.totalPrice) AS \'Total Income\'\r\n\r\nFROM InvoiceRecord ir\r\n\r\n" +
-                "WHERE YEAR(ir.date) = YEAR(GETDATE())\r\n\r\nGROUP BY ir.date;";
+                "WHERE ir.date BETWEEN CONVERT(datetime,\'04/06/\'+ CONVERT(varchar, YEAR(GETDATE()" +
+                "))) AND CONVERT(datetime,\'04/05/\'+ CONVERT( varchar ,YEAR(GETDATE())+1))\r\n\r\nGROU" +
+                "P BY ir.date;";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7807,7 +7811,7 @@ WHERE        (c.customerName LIKE @Name + '%')";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT CONCAT(c.customerName,'(',c.customerId,')') AS 'Customer Name(ID)', COUNT(sc.customerId) AS 'TotalServiceMade'
+            this._commandCollection[0].CommandText = @"SELECT TOP 5 CONCAT(c.customerName,'(',c.customerId,')') AS 'Customer Name(ID)', COUNT(sc.customerId) AS 'TotalServiceMade'
 
 FROM Customer c
 
@@ -7815,7 +7819,9 @@ INNER JOIN ServiceChosen sc
 
 ON sc.customerId = c.customerId
 
-GROUP BY CONCAT(c.customerName,'(',c.customerId,')');";
+GROUP BY CONCAT(c.customerName,'(',c.customerId,')')
+
+ORDER BY COUNT(sc.customerId) DESC;";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

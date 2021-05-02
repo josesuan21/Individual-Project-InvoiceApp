@@ -57,6 +57,14 @@ namespace Invoice_Application_Project.Presenters
 			invoiceRecord.RemoveDefaultAdded_InvoiceRecord();
 		}
 
+		public void UpdateInvoiceDates() {
+			//To get the dates from UI form
+			invoiceRecord.InvoiceDate = iinvoiceRecordView.InvoiceDate_Text;
+			invoiceRecord.InvoiceDueDate = iinvoiceRecordView.InvoiceDueDate_Text;
+
+			invoiceRecord.UpdateDates();
+		}
+
 	}
 
 }

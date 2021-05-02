@@ -371,7 +371,7 @@
 			this.MinimumSize = new System.Drawing.Size(995, 498);
 			this.Name = "ServiceChosen_Form";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Service Chosen";
+			this.Text = "Service Chosen Records";
 			this.Load += new System.EventHandler(this.ServiceChosen_Form_Load);
 			((System.ComponentModel.ISupportInitialize)(this.serviceChosenInnerJoinBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.serviceChosen_InnerJoinDataGridView)).EndInit();

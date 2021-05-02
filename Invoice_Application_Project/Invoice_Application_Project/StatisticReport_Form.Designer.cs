@@ -43,41 +43,41 @@
 			System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticReport_Form));
 			this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.serviceNameTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.invoiceDatabaseDataSet1 = new Invoice_Application_Project.InvoiceDatabaseDataSet1();
 			this.label_Statistics = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.popularAreaBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label_PopularAreas = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.incomeCurrentYearBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.serviceName_TotalTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.ServiceName_TotalTableAdapter();
-			this.popular_AreaTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.Popular_AreaTableAdapter();
-			this.income_CurrentYearTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.Income_CurrentYearTableAdapter();
 			this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.loyalCustomersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.loyalCustomersTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.LoyalCustomersTableAdapter();
 			this.panel_MostUsedService = new System.Windows.Forms.Panel();
 			this.panel_PopularAreas = new System.Windows.Forms.Panel();
 			this.panel_LolayCustomers = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.panel_Income = new System.Windows.Forms.Panel();
+			this.incomeCurrentYearBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.invoiceDatabaseDataSet1 = new Invoice_Application_Project.InvoiceDatabaseDataSet1();
+			this.loyalCustomersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.popularAreaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.serviceNameTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.serviceName_TotalTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.ServiceName_TotalTableAdapter();
+			this.popular_AreaTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.Popular_AreaTableAdapter();
+			this.income_CurrentYearTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.Income_CurrentYearTableAdapter();
+			this.loyalCustomersTableAdapter = new Invoice_Application_Project.InvoiceDatabaseDataSet1TableAdapters.LoyalCustomersTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.serviceNameTotalBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.popularAreaBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.incomeCurrentYearBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.loyalCustomersBindingSource)).BeginInit();
 			this.panel_MostUsedService.SuspendLayout();
 			this.panel_PopularAreas.SuspendLayout();
 			this.panel_LolayCustomers.SuspendLayout();
 			this.panel_Income.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.incomeCurrentYearBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.loyalCustomersBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.popularAreaBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.serviceNameTotalBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// chart1
@@ -108,16 +108,6 @@
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
 			// 
-			// serviceNameTotalBindingSource
-			// 
-			this.serviceNameTotalBindingSource.DataMember = "ServiceName_Total";
-			this.serviceNameTotalBindingSource.DataSource = this.invoiceDatabaseDataSet1;
-			// 
-			// invoiceDatabaseDataSet1
-			// 
-			this.invoiceDatabaseDataSet1.DataSetName = "InvoiceDatabaseDataSet1";
-			this.invoiceDatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// label_Statistics
 			// 
 			this.label_Statistics.AutoSize = true;
@@ -136,9 +126,9 @@
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(194, 24);
+			this.label1.Size = new System.Drawing.Size(268, 24);
 			this.label1.TabIndex = 2;
-			this.label1.Text = "Most Used Services";
+			this.label1.Text = "Most Used Services (Top 5)";
 			// 
 			// chart2
 			// 
@@ -152,6 +142,7 @@
 			this.chart2.Location = new System.Drawing.Point(4, 27);
 			this.chart2.Name = "chart2";
 			series2.ChartArea = "ChartArea1";
+			series2.Color = System.Drawing.Color.Green;
 			series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			series2.Legend = "Legend1";
 			series2.Name = "PostCode";
@@ -162,11 +153,6 @@
 			this.chart2.TabIndex = 3;
 			this.chart2.Text = "chart2";
 			// 
-			// popularAreaBindingSource
-			// 
-			this.popularAreaBindingSource.DataMember = "Popular_Area";
-			this.popularAreaBindingSource.DataSource = this.invoiceDatabaseDataSet1;
-			// 
 			// label_PopularAreas
 			// 
 			this.label_PopularAreas.AutoSize = true;
@@ -174,9 +160,9 @@
 			this.label_PopularAreas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label_PopularAreas.Location = new System.Drawing.Point(0, 0);
 			this.label_PopularAreas.Name = "label_PopularAreas";
-			this.label_PopularAreas.Size = new System.Drawing.Size(142, 24);
+			this.label_PopularAreas.Size = new System.Drawing.Size(227, 24);
 			this.label_PopularAreas.TabIndex = 4;
-			this.label_PopularAreas.Text = "Popular Areas";
+			this.label_PopularAreas.Text = "Popular Areas (Top 10)";
 			// 
 			// label3
 			// 
@@ -185,9 +171,9 @@
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.Location = new System.Drawing.Point(0, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(218, 24);
+			this.label3.Size = new System.Drawing.Size(383, 24);
 			this.label3.TabIndex = 6;
-			this.label3.Text = "Current Yearly Income";
+			this.label3.Text = "Current Tax Year Income (06/04 - 05/04)";
 			// 
 			// label4
 			// 
@@ -196,9 +182,9 @@
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.Location = new System.Drawing.Point(0, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(164, 24);
+			this.label4.Size = new System.Drawing.Size(238, 24);
 			this.label4.TabIndex = 8;
-			this.label4.Text = "Loyal Customers";
+			this.label4.Text = "Loyal Customers (Top 5)";
 			// 
 			// chart3
 			// 
@@ -214,6 +200,7 @@
 			this.chart3.Name = "chart3";
 			series3.ChartArea = "ChartArea1";
 			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			series3.Legend = "Legend1";
 			series3.Name = "Income";
 			series3.XValueMember = "date";
@@ -222,23 +209,6 @@
 			this.chart3.Size = new System.Drawing.Size(1088, 226);
 			this.chart3.TabIndex = 9;
 			this.chart3.Text = "chart3";
-			// 
-			// incomeCurrentYearBindingSource
-			// 
-			this.incomeCurrentYearBindingSource.DataMember = "Income_CurrentYear";
-			this.incomeCurrentYearBindingSource.DataSource = this.invoiceDatabaseDataSet1;
-			// 
-			// serviceName_TotalTableAdapter
-			// 
-			this.serviceName_TotalTableAdapter.ClearBeforeFill = true;
-			// 
-			// popular_AreaTableAdapter
-			// 
-			this.popular_AreaTableAdapter.ClearBeforeFill = true;
-			// 
-			// income_CurrentYearTableAdapter
-			// 
-			this.income_CurrentYearTableAdapter.ClearBeforeFill = true;
 			// 
 			// chart4
 			// 
@@ -263,15 +233,6 @@
 			this.chart4.Size = new System.Drawing.Size(347, 305);
 			this.chart4.TabIndex = 10;
 			this.chart4.Text = "chart4";
-			// 
-			// loyalCustomersBindingSource
-			// 
-			this.loyalCustomersBindingSource.DataMember = "LoyalCustomers";
-			this.loyalCustomersBindingSource.DataSource = this.invoiceDatabaseDataSet1;
-			// 
-			// loyalCustomersTableAdapter
-			// 
-			this.loyalCustomersTableAdapter.ClearBeforeFill = true;
 			// 
 			// panel_MostUsedService
 			// 
@@ -332,6 +293,47 @@
 			this.panel_Income.Size = new System.Drawing.Size(1095, 256);
 			this.panel_Income.TabIndex = 14;
 			// 
+			// incomeCurrentYearBindingSource
+			// 
+			this.incomeCurrentYearBindingSource.DataMember = "Income_CurrentYear";
+			this.incomeCurrentYearBindingSource.DataSource = this.invoiceDatabaseDataSet1;
+			// 
+			// invoiceDatabaseDataSet1
+			// 
+			this.invoiceDatabaseDataSet1.DataSetName = "InvoiceDatabaseDataSet1";
+			this.invoiceDatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// loyalCustomersBindingSource
+			// 
+			this.loyalCustomersBindingSource.DataMember = "LoyalCustomers";
+			this.loyalCustomersBindingSource.DataSource = this.invoiceDatabaseDataSet1;
+			// 
+			// popularAreaBindingSource
+			// 
+			this.popularAreaBindingSource.DataMember = "Popular_Area";
+			this.popularAreaBindingSource.DataSource = this.invoiceDatabaseDataSet1;
+			// 
+			// serviceNameTotalBindingSource
+			// 
+			this.serviceNameTotalBindingSource.DataMember = "ServiceName_Total";
+			this.serviceNameTotalBindingSource.DataSource = this.invoiceDatabaseDataSet1;
+			// 
+			// serviceName_TotalTableAdapter
+			// 
+			this.serviceName_TotalTableAdapter.ClearBeforeFill = true;
+			// 
+			// popular_AreaTableAdapter
+			// 
+			this.popular_AreaTableAdapter.ClearBeforeFill = true;
+			// 
+			// income_CurrentYearTableAdapter
+			// 
+			this.income_CurrentYearTableAdapter.ClearBeforeFill = true;
+			// 
+			// loyalCustomersTableAdapter
+			// 
+			this.loyalCustomersTableAdapter.ClearBeforeFill = true;
+			// 
 			// StatisticReport_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,14 +353,9 @@
 			this.Text = "Statistic Report";
 			this.Load += new System.EventHandler(this.StatisticReport_Form_Load);
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.serviceNameTotalBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.popularAreaBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.incomeCurrentYearBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.loyalCustomersBindingSource)).EndInit();
 			this.panel_MostUsedService.ResumeLayout(false);
 			this.panel_MostUsedService.PerformLayout();
 			this.panel_PopularAreas.ResumeLayout(false);
@@ -367,6 +364,11 @@
 			this.panel_LolayCustomers.PerformLayout();
 			this.panel_Income.ResumeLayout(false);
 			this.panel_Income.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.incomeCurrentYearBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.invoiceDatabaseDataSet1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.loyalCustomersBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.popularAreaBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.serviceNameTotalBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

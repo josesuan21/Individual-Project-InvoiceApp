@@ -292,6 +292,7 @@
 			this.addressTextBox.Enabled = false;
 			this.addressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.addressTextBox.Location = new System.Drawing.Point(94, 123);
+			this.addressTextBox.MaxLength = 70;
 			this.addressTextBox.Multiline = true;
 			this.addressTextBox.Name = "addressTextBox";
 			this.addressTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;

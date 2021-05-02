@@ -115,8 +115,11 @@ namespace Invoice_Application_Project.Models
 			//Save PDF with chosen directory and file name - 027
 			using (SaveFileDialog sfd= new SaveFileDialog() { Filter="PDF file|*.pdf",ValidateNames = true })
 			{
+				//BUG 013
+				string addressClean = InvoiceAddress.Replace("\n", "").Replace("\r","");
+
 				//default file name
-				sfd.FileName = InvoiceId +" "+InvoiceAddress;
+				sfd.FileName = InvoiceId +" "+ addressClean;
 
 				//If the save button is clicked
 				if (sfd.ShowDialog()==DialogResult.OK)
