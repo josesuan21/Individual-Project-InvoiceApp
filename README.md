@@ -102,6 +102,7 @@ Configuring SQL server database connection
 # ✔️How to install the publish project
 
 1. Download the InvoiceApp_TB4 folder. 
+  (Click this link to get the folder: https://drive.google.com/drive/folders/1hAuvBznMMZ2MgMMcgUQmAKnYqrtlwVX2?usp=sharing)
 
 
 2. Inside the folder, run and install first "SqlLocalDB" 
