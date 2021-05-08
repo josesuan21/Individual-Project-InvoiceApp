@@ -115,8 +115,11 @@ namespace Invoice_Application_Project.Models
 			//Save PDF with chosen directory and file name - 027
 			using (SaveFileDialog sfd= new SaveFileDialog() { Filter="PDF file|*.pdf",ValidateNames = true })
 			{
+				//BUG 013
+				string addressClean = InvoiceAddress.Replace("\n", "").Replace("\r","");
+
 				//default file name
-				sfd.FileName = InvoiceId +" "+InvoiceAddress;
+				sfd.FileName = InvoiceId +" "+ addressClean;
 
 				//If the save button is clicked
 				if (sfd.ShowDialog()==DialogResult.OK)
@@ -135,7 +138,7 @@ namespace Invoice_Application_Project.Models
 						//Logo Image
 						//string imageFile = "../../Resources/smIcon(Transparent).png";
 						ImageData imagedata = ImageDataFactory.Create(Properties.Resources.smIcon_Transparent_, null);
-						Image image = new Image(imagedata).SetHeight(100).SetWidth(200);
+						Image image = new Image(imagedata).SetHeight(80).SetWidth(180);
 						document.Add(image);
 
 						//Date
@@ -188,7 +191,7 @@ namespace Invoice_Application_Project.Models
 						//Discount Given
 						text = new Paragraph("Discount Given: "+ InvoiceDiscountGiven+"%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
 						document.Add(text);
-						text = new Paragraph("VAT: " + InvoiceDiscountGiven + "%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
+						text = new Paragraph("VAT: " + InvoiceVAT + "%").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14);
 						document.Add(text);
 
 						//Total price
@@ -211,24 +214,24 @@ namespace Invoice_Application_Project.Models
 						text = new Paragraph("Payment Details").SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetFontSize(14).SetBold();
 						document.Add(text);
 
-						//Direct Transfer
-						text = new Paragraph("---Direct Transfer---").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(14);
-						document.Add(text);
-						text = new Paragraph(InvoicePaymentDetails_1).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
-						document.Add(text);
-						//Cheque Payment
-						text = new Paragraph("---Cheque Payment---").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(14);
-						document.Add(text);
-						text = new Paragraph(InvoicePaymentDetails_2).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
-						document.Add(text);
+						Table tablePayment = new Table(2);
+
+						tablePayment.AddCell(new Paragraph("Direct Transfer").SetWidth(250));
+						tablePayment.AddCell(new Paragraph("Cheque Payment").SetWidth(200));
+
+						tablePayment.AddCell(new Paragraph(InvoicePaymentDetails_1).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+						tablePayment.AddCell(new Paragraph(InvoicePaymentDetails_2).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+						document.Add(tablePayment);
+
 
 						//Line Separator
 						line = new LineSeparator(new SolidLine());
 						document.Add(line);
 
-						text = new Paragraph("THANK YOU FOR CHOOSING SHINE MASTER.").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
+						text = new Paragraph("THANK YOU FOR CHOOSING SHINE MASTER.").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(10);
 						document.Add(text);
-						text = new Paragraph("PAYMENT SHOULD BE MADE UPON THE COMPLETION OF SERVICE.").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
+						text = new Paragraph("PAYMENT SHOULD BE MADE UPON THE COMPLETION OF SERVICE.").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(10);
 						document.Add(text);
 
 
@@ -245,8 +248,6 @@ namespace Invoice_Application_Project.Models
 					successSave = false;
 					MessageBox.Show("Saving unfinished!");
 				}
-
-
 
 			}
 

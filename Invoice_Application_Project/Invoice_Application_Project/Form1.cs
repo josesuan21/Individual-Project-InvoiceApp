@@ -23,14 +23,36 @@ namespace Invoice_Application_Project
 		{
 			//Initialised form
 			Invoice_Form invoice_Form = new Invoice_Form();
-			this.Hide();
-			invoice_Form.Show();
+			//Ticket 042
+			invoice_Form.ShowDialog();
 		}
 
 		private void Button_UpdateRecord_Click(object sender, EventArgs e)
 		{
 			ViewUpdate_Form viewUpdate = new ViewUpdate_Form();
 			viewUpdate.Show();
+			this.Hide();
+		}
+
+		private void Button_Statistic_Click(object sender, EventArgs e)
+		{
+			StatisticReport_Form report_Form = new StatisticReport_Form();
+			report_Form.ShowDialog();
+		}
+
+		private void Label1_Click(object sender, EventArgs e)
+		{
+			button_CreateInvoice.PerformClick(); ;
+		}
+
+		private void Label2_Click(object sender, EventArgs e)
+		{
+			button_UpdateRecord.PerformClick();
+		}
+
+		private void Label3_Click(object sender, EventArgs e)
+		{
+			button_Statistic.PerformClick();
 		}
 	}
 }

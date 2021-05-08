@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+
 using Invoice_Application_Project.Views;
 using Invoice_Application_Project.Presenters;
-
 
 namespace Invoice_Application_Project
 {
@@ -22,6 +22,9 @@ namespace Invoice_Application_Project
 		//Flag create service
 		static string newService_Name;
 		static string newService_Price;
+
+		//Flag udapte payment details
+		static bool answerPaymentdetails;
 
 		//InvoiceRecord Interface - Ticket 30
 		public int InvoiceId_Text { get {return currentInvoiceId; } set { currentInvoiceId = value; } }
@@ -73,12 +76,10 @@ namespace Invoice_Application_Project
 			
 		}
 
-
 		private void TextBox1_TextChanged(object sender, EventArgs e)
 		{
 
 		}
-
 
 		private void CheckBox_ApplyDiscount_CheckedChanged(object sender, EventArgs e)
 		{
@@ -154,15 +155,12 @@ namespace Invoice_Application_Project
 					
 				}
 
-
 			}
 
 			//Show payment details - Ticket 017.1
 			PaymentDetailsPresenter paymentDetails = new PaymentDetailsPresenter(this);
 			textBox_PaymentTransfer.Text = paymentDetails.GetDirectTransfer();
 			textBox_ChequePayment.Text = paymentDetails.GetChequePayment();
-
-			
 
 		}
 
@@ -179,7 +177,7 @@ namespace Invoice_Application_Project
 			//Takes the item in the combo box text
 			ListViewItem item = new ListViewItem(comboBox_ChooseService.Text);
 
-			if (item.Text != "Choose service" && item.Text != null)
+			if (item.Text != "" && item.Text != null)
 			{
 
 				ServicePresenter servicePresenter = new ServicePresenter(this);
@@ -206,7 +204,6 @@ namespace Invoice_Application_Project
 			}
 
 		}
-
 		private void Button_SavePDF_Click(object sender, EventArgs e)
 		{	
 
@@ -215,13 +212,13 @@ namespace Invoice_Application_Project
 			CustomerPresenter customerPresenter = new CustomerPresenter(this);
 			ServicePresenter servicePresenter = new ServicePresenter(this);
 			PdfPresenter pdfPresenter = new PdfPresenter(this);
-			
+			PaymentDetailsPresenter paymentDetails = new PaymentDetailsPresenter(this);
 
-			if (listView_Services.Items.Count != 0) {
+			if (listView_Services.Items.Count != 0 && customerPresenter.CheckCustomerDetails(textBox_CustomerName.Text,textBox_Address.Text,textBox_PostCode.Text)) {
 
 				//SaveCustomer Details (Customer Presenter)
 				customerPresenter.SaveCustomerDetails();
-
+				
 				//Adding Notes 
 				if (checkBox_Notes.Checked) {
 					
@@ -231,27 +228,32 @@ namespace Invoice_Application_Project
 				//Save Services (Service Presenter)
 				servicePresenter.AddRecord_ServiceChosen(curentCustomerId, currentInvoiceId, listView_Services);
 
-
 				//Saving total price and discount value (Service Presenter)
 				invoiceRecordPresenter.SaveTotalPrice_Discount();
 
+				//BUG 011 - Updating invoice dates 
+				invoiceRecordPresenter.UpdateInvoiceDates();
+
+				//Ticket 31.1 - Update changes to databse if answerPaymentdetails is True (Payment Details)
+				paymentDetails.UpdatePaymentDetails(answerPaymentdetails,textBox_PaymentTransfer.Text,textBox_ChequePayment.Text);
 
 				//Set flag and Saves PDF (Pdf Presenter)
 				//BUG 002 - Flag Saving Dialogue Cancel
 				completedInvoice = pdfPresenter.SavePDF(listView_Services);
 
+				//Close
+				this.Close();
+
 			}
 			else
 			{
 				//No services 
-				Prompt_NoServices();
+				MessageBox.Show("Ensure \n 1. Customer Details (Name, Address and Postcode) are filled \n\n 2. Service Details (List of services table) must not be empty","Missing Details Found");
 			}
 
 			//Close invoice and go to main menu
-			Form_Menu openHome = new Form_Menu();
-
-			openHome.Show();
-			this.Close();
+			//Form_Menu openHome = new Form_Menu();
+			//openHome.Show();
 
 		}
 
@@ -287,6 +289,7 @@ namespace Invoice_Application_Project
 		//Ticket 026 - Stop Saving record if PDF is not completed
 		private void Invoice_Form_FormClosing(object sender, FormClosingEventArgs e)
 		{
+
 			//If the invoice is not finished by not clicking the save pdf button
 			if (completedInvoice == false) {
 
@@ -303,9 +306,8 @@ namespace Invoice_Application_Project
 				//Customer record remove default added
 				customer.RemoveDefaultAdded_CustomerRecord();
 
-				MessageBox.Show("Invoice not finsihed");
 
-				form_Menu.Show();
+				//form_Menu.Show();
 
 			}
 			else
@@ -314,8 +316,6 @@ namespace Invoice_Application_Project
 			}
 
 			
-			
-
 		}
 
 		private void Button_CreateService_Click(object sender, EventArgs e)
@@ -495,16 +495,17 @@ namespace Invoice_Application_Project
 		private void TextBox_Email_Validating(object sender, CancelEventArgs e)
 		{
 			CustomerPresenter customer = new CustomerPresenter(this);
-
 			if (customer.RegularExpression(2, textBox_Email.Text)) {
 				textBox_Email.Clear();
-				label_Email.ForeColor = Color.Red;
+				//label_Email.ForeColor = Color.Red; Updated by 034.2
 			}
 			else
 			{
-				label_Email.ForeColor = Color.Black;
+				//label_Email.ForeColor = Color.Black;
 				e.Cancel = false;
 			}
+
+
 
 		}
 
@@ -516,6 +517,7 @@ namespace Invoice_Application_Project
 			{
 				textBox_Address.Clear();
 				label_Address.ForeColor = Color.Red;
+				e.Cancel = true;
 			}
 			else
 			{
@@ -527,23 +529,26 @@ namespace Invoice_Application_Project
 		private void TextBox_PostCode_Validating(object sender, CancelEventArgs e)
 		{
 			CustomerPresenter customer = new CustomerPresenter(this);
+	
 			if (customer.RegularExpression(4, textBox_PostCode.Text))
 			{
 				textBox_PostCode.Clear();
 				label_PostCode.ForeColor = Color.Red;
+				e.Cancel = true;
 			}
 			else
 			{
 				label_PostCode.ForeColor = Color.Black;
-				
 			}
+		  
 
 		}
 
 		//(Validation) Service input details - Ticket 038.2 
 		private void ComboBox_ChooseService_DropDownClosed(object sender, EventArgs e)
 		{
-			label_chooseAservice.Visible = false;
+			if (comboBox_ChooseService.Text != "") { label_chooseAservice.Visible = false; }
+			
 		}
 
 		private void TextBox_InvoiceNotes_Validating(object sender, CancelEventArgs e)
@@ -595,16 +600,46 @@ namespace Invoice_Application_Project
 		}
 		//Add service focus - Ticket 033
 		private void ComboBox_ChooseService_SelectedIndexChanged(object sender, EventArgs e)
-		{
+		{	
 			button_ChooseService.Focus();
 		}
 
+		//Ticket 031 - Save Payment Details if there are changes
+		private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+		{
+			if (checkBox_PaymentDetails.Checked) {
 
+				DialogResult dialogResult = MessageBox.Show("Would you like to save this update in the future?", "Update Payment Details", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.Yes)
+				{
+					answerPaymentdetails = true;
+				}
+				else if (dialogResult == DialogResult.No)
+				{
+					answerPaymentdetails = false;
+				}
+
+				textBox_PaymentTransfer.ReadOnly = false;
+				textBox_ChequePayment.ReadOnly = false;
+
+			}
+			else
+			{
+				textBox_PaymentTransfer.ReadOnly = true;
+				textBox_ChequePayment.ReadOnly = true;
+				answerPaymentdetails = false;
+			}
+
+
+
+		}
+
+		private void PictureBox_PDF_Click(object sender, EventArgs e)
+		{
+			button_SavePDF.PerformClick();
+		}
 
 		
-
-
-
 	}
 
 }

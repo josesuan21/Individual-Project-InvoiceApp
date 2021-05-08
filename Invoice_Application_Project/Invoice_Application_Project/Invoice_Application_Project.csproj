@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\efren\Desktop\InvoiceApp_TB3\</PublishUrl>
+    <PublishUrl>C:\Users\efren\Desktop\InvoiceApp_TB4.v3\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -108,6 +108,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -164,6 +166,12 @@
     <Compile Include="Models\PaymentDetails.cs" />
     <Compile Include="Models\Pdf.cs" />
     <Compile Include="Models\Service.cs" />
+    <Compile Include="OldServices_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OldServices_Form.Designer.cs">
+      <DependentUpon>OldServices_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presenters\CustomerPresenter.cs" />
     <Compile Include="Presenters\InvoiceRecordPresenter.cs" />
     <Compile Include="Presenters\PaymentDetailsPresenter.cs" />
@@ -171,11 +179,23 @@
     <Compile Include="Presenters\ServicePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceChosen_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceChosen_Form.Designer.cs">
+      <DependentUpon>ServiceChosen_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServiceRecords_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ServiceRecords_Form.Designer.cs">
       <DependentUpon>ServiceRecords_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticReport_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticReport_Form.Designer.cs">
+      <DependentUpon>StatisticReport_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ICustomer.cs" />
     <Compile Include="Views\IinvoiceRecord.cs" />
@@ -203,6 +223,9 @@
     <EmbeddedResource Include="Invoice_Form.resx">
       <DependentUpon>Invoice_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OldServices_Form.resx">
+      <DependentUpon>OldServices_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -213,8 +236,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ServiceChosen_Form.resx">
+      <DependentUpon>ServiceChosen_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServiceRecords_Form.resx">
       <DependentUpon>ServiceRecords_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticReport_Form.resx">
+      <DependentUpon>StatisticReport_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewUpdate_Form.resx">
       <DependentUpon>ViewUpdate_Form.cs</DependentUpon>
@@ -266,16 +295,12 @@
       <DependentUpon>InvoiceDatabase.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\PDF.png" />
     <EmbeddedResource Include="Resources\smIcon%28Transparent%29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>

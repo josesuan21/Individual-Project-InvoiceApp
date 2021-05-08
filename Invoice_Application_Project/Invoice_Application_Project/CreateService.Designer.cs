@@ -28,14 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateService));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBox_SaveService = new System.Windows.Forms.CheckBox();
+			this.numericUpDown_Price = new System.Windows.Forms.NumericUpDown();
 			this.textBox_Name = new System.Windows.Forms.TextBox();
 			this.label_ServicePrice = new System.Windows.Forms.Label();
 			this.label_ServiceName = new System.Windows.Forms.Label();
 			this.button_CreateServiceAdd = new System.Windows.Forms.Button();
 			this.label_CreateServiceTitle = new System.Windows.Forms.Label();
-			this.numericUpDown_Price = new System.Windows.Forms.NumericUpDown();
-			this.checkBox_SaveService = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Price)).BeginInit();
 			this.SuspendLayout();
@@ -53,6 +54,31 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(315, 302);
 			this.panel1.TabIndex = 0;
+			// 
+			// checkBox_SaveService
+			// 
+			this.checkBox_SaveService.AutoSize = true;
+			this.checkBox_SaveService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox_SaveService.Location = new System.Drawing.Point(76, 190);
+			this.checkBox_SaveService.Name = "checkBox_SaveService";
+			this.checkBox_SaveService.Size = new System.Drawing.Size(113, 20);
+			this.checkBox_SaveService.TabIndex = 7;
+			this.checkBox_SaveService.Text = "Save service?";
+			this.checkBox_SaveService.UseVisualStyleBackColor = true;
+			// 
+			// numericUpDown_Price
+			// 
+			this.numericUpDown_Price.DecimalPlaces = 2;
+			this.numericUpDown_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.numericUpDown_Price.Location = new System.Drawing.Point(76, 147);
+			this.numericUpDown_Price.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+			this.numericUpDown_Price.Name = "numericUpDown_Price";
+			this.numericUpDown_Price.Size = new System.Drawing.Size(126, 26);
+			this.numericUpDown_Price.TabIndex = 6;
 			// 
 			// textBox_Name
 			// 
@@ -104,37 +130,13 @@
 			this.label_CreateServiceTitle.TabIndex = 0;
 			this.label_CreateServiceTitle.Text = "Create Service";
 			// 
-			// numericUpDown_Price
-			// 
-			this.numericUpDown_Price.DecimalPlaces = 2;
-			this.numericUpDown_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.numericUpDown_Price.Location = new System.Drawing.Point(76, 147);
-			this.numericUpDown_Price.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-			this.numericUpDown_Price.Name = "numericUpDown_Price";
-			this.numericUpDown_Price.Size = new System.Drawing.Size(126, 26);
-			this.numericUpDown_Price.TabIndex = 6;
-			// 
-			// checkBox_SaveService
-			// 
-			this.checkBox_SaveService.AutoSize = true;
-			this.checkBox_SaveService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox_SaveService.Location = new System.Drawing.Point(76, 190);
-			this.checkBox_SaveService.Name = "checkBox_SaveService";
-			this.checkBox_SaveService.Size = new System.Drawing.Size(113, 20);
-			this.checkBox_SaveService.TabIndex = 7;
-			this.checkBox_SaveService.Text = "Save service?";
-			this.checkBox_SaveService.UseVisualStyleBackColor = true;
-			// 
 			// CreateService
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(339, 326);
 			this.Controls.Add(this.panel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "CreateService";

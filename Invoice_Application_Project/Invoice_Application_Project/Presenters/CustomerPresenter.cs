@@ -17,17 +17,15 @@ namespace Invoice_Application_Project.Presenters
 
 		Customer customer = new Customer();
 
-		//constructor
 
+		//Constructor
 		public CustomerPresenter(ICustomer view) {
 
 			customerView = view;
 
 		}
 
-
 		//Methods
-
 		public void CreateCustomerId() {
 			//Execute customer method to create Id
 			customer.createCustomerId();
@@ -69,6 +67,11 @@ namespace Invoice_Application_Project.Presenters
 		public bool RegularExpression(int textboxNum, string textboxInput) {
 			return customer.RegularExpression(textboxNum, textboxInput);
 
+		}
+
+		public bool CheckCustomerDetails(string name, string address, string postcode) {
+
+			return customer.CheckCustomerDetails(name,address,postcode);
 		}
 
 

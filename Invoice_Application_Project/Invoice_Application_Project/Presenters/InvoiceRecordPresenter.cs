@@ -45,6 +45,7 @@ namespace Invoice_Application_Project.Presenters
 			invoiceRecord.InvoiceId = iinvoiceRecordView.InvoiceId_Text;
 			invoiceRecord.InvoiceTotalPrice = iinvoiceRecordView.InvoiceTotalPrice_Text;
 			invoiceRecord.InvoiceDiscount = iinvoiceRecordView.InvoiceDiscount_Text;
+			
 
 			invoiceRecord.SaveTotalPrice_DisocuntVal();
 
@@ -54,6 +55,14 @@ namespace Invoice_Application_Project.Presenters
 		public void RemoveDefaultAdded_InvoiceRecord()
 		{
 			invoiceRecord.RemoveDefaultAdded_InvoiceRecord();
+		}
+
+		public void UpdateInvoiceDates() {
+			//To get the dates from UI form
+			invoiceRecord.InvoiceDate = iinvoiceRecordView.InvoiceDate_Text;
+			invoiceRecord.InvoiceDueDate = iinvoiceRecordView.InvoiceDueDate_Text;
+
+			invoiceRecord.UpdateDates();
 		}
 
 	}

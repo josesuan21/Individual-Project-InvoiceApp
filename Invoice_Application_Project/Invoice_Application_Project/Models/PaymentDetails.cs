@@ -87,7 +87,6 @@ namespace Invoice_Application_Project.Models
 
 
 		//Regular expression for notes
-
 		public bool regularExpression_PaymentDetails(int textNum, string notesInput)
 		{
 
@@ -118,6 +117,48 @@ namespace Invoice_Application_Project.Models
 			return result;
 
 		}
+
+		//Ticket 31.1 Update changes to database
+		public void UpdatePaymentDetails(bool answer, string directTransfer, string chequePayment) {
+
+			//If the user wanted to save the payment details in the future
+			if (answer == true) {
+
+				connection = new SqlConnection(connectionString);
+				string sqlQuery_UpdateDirectTransDetail = "UPDATE PaymentDetails SET Details = @NewDetails WHERE Id = 1;";
+				string sqlQuery_UpdateChequeDetail = "UPDATE PaymentDetails SET Details = @NewDetails WHERE Id = 2;";
+
+				connection.Open();
+				SqlCommand cmd = new SqlCommand(sqlQuery_UpdateDirectTransDetail, connection);
+				SqlCommand cmd1 = new SqlCommand(sqlQuery_UpdateChequeDetail, connection);
+
+				//Adding values from form
+				cmd.Parameters.AddWithValue("@NewDetails", directTransfer);
+
+				//Execute command
+				cmd.ExecuteNonQuery();
+
+				//Close connection
+				connection.Close();
+
+				connection.Open();
+				//Adding values from form
+				cmd1.Parameters.AddWithValue("@NewDetails", chequePayment);
+
+				//Execute command
+				cmd.ExecuteNonQuery();
+
+				//Close connection
+				connection.Close();
+
+			}
+			else
+			{
+				//Do nothing
+			}
+
+		}
+
 	}
 
 

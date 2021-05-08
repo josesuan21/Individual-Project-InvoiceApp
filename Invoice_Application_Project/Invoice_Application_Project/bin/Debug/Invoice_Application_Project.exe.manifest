@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice_Application_Project.exe" size="1752032">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Invoice_Application_Project.exe" size="3582944">
       <assemblyIdentity name="Invoice_Application_Project" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TBK6OkqQV2upgaAT5RilnDi4ZIBBCx/xJ5jpcj3NXgo=</dsig:DigestValue>
+        <dsig:DigestValue>u7X4N1MaViFoLuR9f3k4dhChsBs5d562Gg7eLdGqg44=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -222,7 +222,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>4Y2kjCI80rVvNwd6EJKnfLPkW4vpkui7PtWF14fCJoc=</dsig:DigestValue>
+      <dsig:DigestValue>fjePSWLcyuLYMMCtr1jeNYMvYYHJkq0JXR9mjpqFwKU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="InvoiceDatabase_log.ldf" size="8388608" writeableType="applicationData">
@@ -231,7 +231,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>jhB6dd6OVVZrco76B/uYHKKaN2iN85+hTpwShwTPc6E=</dsig:DigestValue>
+      <dsig:DigestValue>rbIG3fegLKmaGoLwq0Hf9WRXsL5MlB5RDSCtoUpCCtE=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

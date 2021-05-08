@@ -252,51 +252,83 @@ namespace Invoice_Application_Project.Models
 		/// Stop saving record if PDF is not saved - Ticket 026
 		/// </summary>
 		public void RemoveDefaultAdded_InvoiceRecord() {
+
+			try
+			{
+
+				//Open connection
+				connection = new SqlConnection(connectionString);
+
+				connection.Open();
+
+				//Reseed
+				string sqlQuery_Reseed = "DBCC CHECKIDENT ('InvoiceRecord',reseed,@reseedVal)";
+
+				//Selecting recent added id
+				string sqlQuery_recentId = "SELECT IDENT_CURRENT ('InvoiceRecord') as RecentId";
+
+				//Removing recent added record
+				string sqlQuery_removeRecent = "DELETE FROM InvoiceRecord WHERE invoiceRecordId = @recentId";
+
+
+				SqlCommand cmd1 = new SqlCommand(sqlQuery_Reseed, connection);
+				SqlCommand cmd2 = new SqlCommand(sqlQuery_recentId, connection);
+				SqlCommand cmd3 = new SqlCommand(sqlQuery_removeRecent, connection);
+
+
+				//Getting the recent added Id
+				SqlDataReader reader = cmd2.ExecuteReader();
+				reader.Read();
+				int recentId = Convert.ToInt32(reader.GetValue(0));
+
+				connection.Close();
+
+
+				//Deleting the record
+				connection.Open();
+				cmd3.Parameters.AddWithValue("@recentId", recentId);
+				cmd3.ExecuteNonQuery();
+
+				connection.Close();
+
+
+				//Reseeding record
+				connection.Open();
+				cmd1.Parameters.AddWithValue("@reseedVal", recentId - 1);
+				cmd1.ExecuteNonQuery();
+
+				connection.Close();
+			}
+			catch
+			{
+
+			}
+
+		}
+
+		//BUG 011 - Update Invoice Date and Due date
+		public void UpdateDates() {
 			//Open connection
 			connection = new SqlConnection(connectionString);
 
 			connection.Open();
 
-			//Reseed
-			string sqlQuery_Reseed = "DBCC CHECKIDENT ('InvoiceRecord',reseed,@reseedVal)";
+			//where system
+			string sqlQuery_UpdateDates = "UPDATE InvoiceRecord SET date = @date, duedate = @duedate WHERE invoiceRecordId = @currentInvoiceId;";
 
-			//Selecting recent added id
-			string sqlQuery_recentId = "SELECT IDENT_CURRENT ('InvoiceRecord') as RecentId";
+			SqlCommand cmd = new SqlCommand(sqlQuery_UpdateDates, connection);
 
-			//Removing recent added record
-			string sqlQuery_removeRecent = "DELETE FROM InvoiceRecord WHERE invoiceRecordId = @recentId";
+			//Adding values from form
+			cmd.Parameters.AddWithValue("@date", InvoiceDate);
+			cmd.Parameters.AddWithValue("@duedate", InvoiceDueDate);
+			cmd.Parameters.AddWithValue("@currentInvoiceId", InvoiceId);
 
+			//Execute command
+			cmd.ExecuteNonQuery();
 
-			SqlCommand cmd1 = new SqlCommand(sqlQuery_Reseed, connection);
-			SqlCommand cmd2 = new SqlCommand(sqlQuery_recentId, connection);
-			SqlCommand cmd3 = new SqlCommand(sqlQuery_removeRecent, connection);
-
-
-			//Getting the recent added Id
-			SqlDataReader reader = cmd2.ExecuteReader();
-			reader.Read();
-			int recentId = Convert.ToInt32(reader.GetValue(0));
-
+			//Close connection
 			connection.Close();
-
-
-			//Deleting the record
-			connection.Open();
-			cmd3.Parameters.AddWithValue("@recentId", recentId);
-			cmd3.ExecuteNonQuery();
-
-			connection.Close();
-
-
-			//Reseeding record
-			connection.Open();
-			cmd1.Parameters.AddWithValue("@reseedVal", recentId-1);
-			cmd1.ExecuteNonQuery();
-
-			connection.Close();
-
 		}
-
 
 	}
 

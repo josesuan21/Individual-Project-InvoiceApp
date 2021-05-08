@@ -82,7 +82,6 @@ namespace UnitTest_InvoiceApplication
 				invoice_Form.InvoiceDate_Text = date;
 				invoice_Form.InvoiceDueDate_Text = duedate;
 
-
 				validData = true;
 			}
 		catch
