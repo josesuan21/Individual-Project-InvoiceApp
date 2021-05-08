@@ -159,41 +159,48 @@ namespace Invoice_Application_Project
 			connection = new SqlConnection(connectionString);
 
 			string[] serviceDetails = new string[3];
+			try
+			{
+				//ServiceRecord
+				connection.Open();
 
-			//ServiceRecord
-			connection.Open();
+				string sqlQuery_DisplayServices = "SELECT serviceId, serviceName, price FROM Service WHERE serviceID = @id;";
 
-			string sqlQuery_DisplayServices = "SELECT serviceId, serviceName, price FROM Service WHERE serviceID = @id;";
+				SqlCommand cmd = new SqlCommand(sqlQuery_DisplayServices, connection);
 
-			SqlCommand cmd = new SqlCommand(sqlQuery_DisplayServices, connection);
+				cmd.Parameters.AddWithValue("@id", serviceIdTextBox.Text);
 
-			cmd.Parameters.AddWithValue("@id",serviceIdTextBox.Text);
-		
-			SqlDataReader read = cmd.ExecuteReader();
+				SqlDataReader read = cmd.ExecuteReader();
 
-			read.Read();
-			//Reads all list of service in the database
-			for (int i =0; i<serviceDetails.Length; i++) {
-				serviceDetails[i] = (read.GetValue(i).ToString());
+				read.Read();
+				//Reads all list of service in the database
+				for (int i = 0; i < serviceDetails.Length; i++)
+				{
+					serviceDetails[i] = (read.GetValue(i).ToString());
+				}
+
+				//Close connection
+				connection.Close();
+
+
+				//Old_ServiceRecord
+				connection.Open();
+
+				string sqlQuery_InsertOldRecord = "INSERT INTO Old_ServiceRecord (previousId,serviceName,servicePrice) VALUES (@currentId, @name, @price);";
+
+				SqlCommand cmd1 = new SqlCommand(sqlQuery_InsertOldRecord, connection);
+				//Get the id of the current one and get the details
+				cmd1.Parameters.AddWithValue("@currentId", serviceDetails[0]);
+				cmd1.Parameters.AddWithValue("@name", serviceDetails[1]);
+				cmd1.Parameters.AddWithValue("@price", serviceDetails[2]);
+				cmd1.ExecuteNonQuery();
+
+				connection.Close();
 			}
-			
-			//Close connection
-			connection.Close();
-
-
-			//Old_ServiceRecord
-			connection.Open();
-
-			string sqlQuery_InsertOldRecord = "INSERT INTO Old_ServiceRecord (previousId,serviceName,servicePrice) VALUES (@currentId, @name, @price);";
-
-			SqlCommand cmd1 = new SqlCommand(sqlQuery_InsertOldRecord, connection);
-			//Get the id of the current one and get the details
-			cmd1.Parameters.AddWithValue("@currentId", serviceDetails[0]);
-			cmd1.Parameters.AddWithValue("@name", serviceDetails[1]);
-			cmd1.Parameters.AddWithValue("@price", serviceDetails[2]);
-			cmd1.ExecuteNonQuery();
-
-			connection.Close();
+			catch
+			{
+				//Do nothing
+			}
 		}
 
 		private void Label_OldServices_Click(object sender, EventArgs e)

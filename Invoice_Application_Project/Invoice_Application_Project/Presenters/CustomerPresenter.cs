@@ -17,17 +17,15 @@ namespace Invoice_Application_Project.Presenters
 
 		Customer customer = new Customer();
 
-		//constructor
 
+		//Constructor
 		public CustomerPresenter(ICustomer view) {
 
 			customerView = view;
 
 		}
 
-
 		//Methods
-
 		public void CreateCustomerId() {
 			//Execute customer method to create Id
 			customer.createCustomerId();

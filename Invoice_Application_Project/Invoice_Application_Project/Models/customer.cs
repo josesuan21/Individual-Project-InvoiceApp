@@ -43,6 +43,7 @@ namespace Invoice_Application_Project.Models
 			postcode = inputPostcode;
 
 		}
+
 		//Static list of customers
 		static List<Customer> customerList = new List<Customer>();
 
